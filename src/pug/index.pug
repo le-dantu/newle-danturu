@@ -6,7 +6,11 @@ html
         link(type="text/css" rel="stylesheet" href="css/main.css")
     body
         .fullScreen
-            include main
+            .container
+                img.image(src="//le-dantu.ru/netcat_files/img/lg/design_westcall_lg.png" class="first")
+                .text-box
+                img.image(src="//le-dantu.ru/netcat_files/img/lg/design_pogudin_lg.png")
+                .text-box
                 .aboutBar
                     .logo
                     .contacts
@@ -16,8 +20,6 @@ html
                         include arrow
                     .navTB
                         include arrow
-            .container
-                img.image(src="//le-dantu.ru/netcat_files/img/lg/design_westcall_lg.png")
-                .text-box
-                img.image(src="//le-dantu.ru/netcat_files/img/lg/design_pogudin_lg.png")
-                .text-box
+    script(type="text/javascript" defer src="js/vendor/jquery-3.2.1.min.js")
+    script(type="text/javascript" defer src="js/main.js")
+    script(type="text/javascript" defer src="js/eventHandler.js")
