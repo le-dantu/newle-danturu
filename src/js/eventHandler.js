@@ -6,18 +6,22 @@ function clickArrow(direction) {
     switch(direction) {
         case 'left':
             //alert('click left');
+            $('.image.first').toggleClass('hide');
             break;
 
         case 'top':
             //alert('click top');
+            $('.image.first').toggleClass('hide');
             break;
 
         case 'right':
             //alert('click right');
+            $('.image.first').toggleClass('hide');
             break;
 
         case 'bottom':
             //alert('click bottom');
+            $('.image.first').toggleClass('hide');
             break;
     }
 }
@@ -54,4 +58,3 @@ function initScrollHandler() {
     }
 
 }
-
