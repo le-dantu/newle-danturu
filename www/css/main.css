@@ -16,6 +16,17 @@
   height: 70px;
   z-index: 110; }
 
+.container {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute; }
+
+img.image {
+  width: 100%;
+  height: 100%; }
+
 .navigationBar {
   position: absolute;
   top: 0;
