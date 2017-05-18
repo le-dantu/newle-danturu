@@ -1,8 +1,5 @@
 /node_modules/
 .DS_Store
-<<<<<<< HEAD
 /.idea/
 .gitignore
 /www/
-=======
->>>>>>> parent of f5c34af... change ignore list
