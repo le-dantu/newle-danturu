@@ -4,7 +4,7 @@ var pug = require('gulp-pug');
 var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function(){
-  return gulp.src('src/css/main.sass')
+  return gulp.src('src/css/main.scss')
     .pipe(sass())
     .pipe(gulp.dest('www/css'))
     .pipe(browserSync.reload({
