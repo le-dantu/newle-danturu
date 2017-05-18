@@ -1,14 +1,18 @@
-//
-   Created by BreakPoint on 18.05.17.
-
-.fullScreen
-    .contentWrap
-    .aboutBar
-        .logo
-        .contacts
-        .menuBtn
-    .navigationBar
-        .leftBtn
-        .topBtn
-        .rightBtn
-        .botBtn
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(type="text/css" rel="stylesheet" href="css/main.css")
+    body
+        .fullScreen
+            include main
+                .aboutBar
+                    .logo
+                    .contacts
+                    .menuBtn
+                .navigationBar
+                    .navLR
+                        include arrow
+                    .navTB
+                        include arrow
