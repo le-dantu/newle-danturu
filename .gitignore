@@ -1,4 +1,10 @@
 /node_modules/
 .DS_Store
+<<<<<<< HEAD
 /www/
 /.idea/
+=======
+/.idea/
+.gitignore
+/www/
+>>>>>>> origin/master
