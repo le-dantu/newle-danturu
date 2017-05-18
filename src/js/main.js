@@ -3,18 +3,18 @@
  */
 
 $(document).ready(function(){
-    $('button .arrow').each(function(){
-        if ( $(this).parent() == $('.navLR')) {
+    $('button.arrow').each(function(){
+        if ( $(this).parent().hasClass('navLR')) {
             if ($(this).hasClass('left')) {
-                $(this).addAtr(onclick="clickArrow(left)")
+                $(this).attr('onclick', "clickArrow('left')")
             } else {
-                $(this).addAtr(onclick="clickArrow(right)")
+                $(this).attr('onclick', "clickArrow('right')")
             }
-        } else if ( $(this).parent() == $('.navTB')) {
+        } else if ( $(this).parent().hasClass('navTB')) {
             if ($(this).hasClass('left')) {
-                $(this).addAtr(onclick="clickArrow(top)")
+                $(this).attr('onclick', "clickArrow('top')")
             } else {
-                $(this).addAtr(onclick="clickArrow(bottom)")
+                $(this).attr('onclick', "clickArrow('bottom')")
             }
         }
     })

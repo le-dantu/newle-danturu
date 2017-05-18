@@ -5,19 +5,19 @@
 function clickArrow(direction) {
     switch(direction) {
         case 'left':
-
+            //alert('click left');
             break;
 
         case 'top':
-
+            //alert('click top');
             break;
 
         case 'right':
-
+            //alert('click right');
             break;
 
         case 'bottom':
-
+            //alert('click bottom');
             break;
     }
 }
