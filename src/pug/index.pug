@@ -6,18 +6,17 @@ html
         link(type="text/css" rel="stylesheet" href="css/main.css")
     body
         .fullScreen
-            .container
-                img.image()
-                img.image()
-                .aboutBar
-                    .logo
-                    .contacts
-                    .menuBtn
-                .navigationBar
-                    .navLR
-                        include arrow
-                    .navTB
-                        include arrow
+            .contentWrap
+                .container
+            .aboutBar
+                .logo
+                .contacts
+                .menuBtn
+            .navigationBar
+                .navLR
+                    include arrow
+                .navTB
+                    include arrow
     script(type="text/javascript" defer src="js/vendor/jquery-3.2.1.min.js")
     script(type="text/javascript" defer src="js/vendor/wheel-indicator.js")
     script(type="text/javascript" defer src="js/variable.js")

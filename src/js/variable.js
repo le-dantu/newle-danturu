@@ -6,3 +6,9 @@ var gateway = './data/link.json';
 var links = [];
 var lenCurrent = 0;
 var currentImg = 0;
+
+function isTouchDevice() {
+    return 'ontouchstart'in document.documentElement;
+}
+
+var isTouch = isTouchDevice();
