@@ -6,16 +6,19 @@ $(document).ready(function(){
     $('button.arrow').each(function(){
         if ( $(this).parent().hasClass('navLR')) {
             if ($(this).hasClass('left')) {
-                $(this).attr('onclick', "clickArrow('left')")
+                $(this).attr('onclick', "clickArrow('left')");
             } else {
-                $(this).attr('onclick', "clickArrow('right')")
+                $(this).attr('onclick', "clickArrow('right')");
             }
         } else if ( $(this).parent().hasClass('navTB')) {
             if ($(this).hasClass('left')) {
-                $(this).attr('onclick', "clickArrow('top')")
+                $(this).attr('onclick', "clickArrow('top')");
             } else {
-                $(this).attr('onclick', "clickArrow('bottom')")
+                $(this).attr('onclick', "clickArrow('bottom')");
             }
         }
-    })
+    });
+
+    initScrollHandler();
+
 });

@@ -6,22 +6,22 @@ function clickArrow(direction) {
     switch(direction) {
         case 'left':
             //alert('click left');
-            $('.image.first').toggleClass('hide');
+            getContent(false);
             break;
 
         case 'top':
             //alert('click top');
-            $('.image.first').toggleClass('hide');
+            getContent(false);
             break;
 
         case 'right':
             //alert('click right');
-            $('.image.first').toggleClass('hide');
+            getContent(true);
             break;
 
         case 'bottom':
             //alert('click bottom');
-            $('.image.first').toggleClass('hide');
+            getContent(true);
             break;
     }
 }
@@ -31,11 +31,11 @@ function onWheel(e) {
     // wheelDelta не дает возможность узнать количество пикселей
     var delta = e.deltaY || e.detail || e.wheelDelta;
 
-    if (delta > 100) {
-        clickArrow(bottom);
+    if (delta > 119) {
+        clickArrow('bottom');
     }
-    else if (delta < 100) {
-        clickArrow(top);
+    else if (delta < -119) {
+        clickArrow('top');
     }
 
     e.preventDefault ? e.preventDefault() : (e.returnValue = false);
