@@ -17,16 +17,22 @@ class GWContent
 {
     //Приватные поля
     private $fileName = '';
+    private $workType = '';
+    private $clients = '';
+    private $contentType = '';
     private $getDB = array();
     private $jsonEncode = array();
     private $debug= false;
     private $status = false;
+    private $workTypeA = array();
+    private $clientsA = array();
+    private $contentTypeA = array();
 
     //Публичные поля
     public $message = '';
 
     //Конструктор
-    public function __construct($debug = false) {
+    public function __construct($contentJson, $workTypeJson, $clientsJson, $contentTypeJson, $debug = false) {
 
         $this->debug = $debug;
 
@@ -35,7 +41,10 @@ class GWContent
         // load default extensions
         $nc_core_db->init();
 
-        $this->fileName = $_SERVER['DOCUMENT_ROOT']."/modules/content.json";
+        $this->fileName = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentJson."json";
+        $this->workType = $_SERVER['DOCUMENT_ROOT']."/modules/".$workTypeJson."json";
+        $this->clients = $_SERVER['DOCUMENT_ROOT']."/modules/".$clientsJson."json";
+        $this->contentType = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentTypeJson."json";
 
         try {
             $nc_core_db->db->query("SELECT  typeEN, clientEN, content, animation, class, typeContent FROM Message113", ARRAY_A);
@@ -58,6 +67,14 @@ class GWContent
             else if ($param['typeContent'] == 'text') {
                 $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['text'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "'>" . $param['content'] . "</div>";
             }
+
+            array_push($this->workTypeA, $param['typeEN']);
+            array_push($this->clientsA, $param['clientEN']);
+            array_push($this->contentTypeA, $param['typeContent']);
+
+            array_unique($this->workTypeA);
+            array_unique($this->clientsA);
+            array_unique($this->contentTypeA);
 
             $this->display_debug(array($jsonVal), $this->debug);
 
@@ -171,13 +188,35 @@ class GWContent
     //Публичная функция записи всего массива в файла
     public function writeFiles() {
 
-        $this->jsonEncode = json_encode($this->jsonEncode, JSON_UNESCAPED_UNICODE);
-        $fileTemp = fopen($this->fileName, 'w');
-        $this->status = fwrite($fileTemp, $this->jsonEncode);
-        fclose($fileTemp);
+        try {
+            $this->jsonEncode = json_encode($this->jsonEncode, JSON_UNESCAPED_UNICODE);
+            $this->workTypeA = json_encode($this->workTypeA, JSON_UNESCAPED_UNICODE);
+            $this->clientsA = json_encode($this->clientsA, JSON_UNESCAPED_UNICODE);
+            $this->contentTypeA = json_encode($this->contentTypeA, JSON_UNESCAPED_UNICODE);
 
-        $this->status = true;
-        $this->message = $this->checkStatus('Запись в файл', 'а');
+            $fileTemp = fopen($this->fileName, 'w');
+            $this->status = fwrite($fileTemp, $this->jsonEncode);
+            fclose($fileTemp);
+
+            $fileTemp = fopen($this->workType, 'w');
+            $this->status = fwrite($fileTemp, $this->workTypeA);
+            fclose($fileTemp);
+
+            $fileTemp = fopen($this->clients, 'w');
+            $this->status = fwrite($fileTemp, $this->clientsA);
+            fclose($fileTemp);
+
+            $fileTemp = fopen($this->contentType, 'w');
+            $this->status = fwrite($fileTemp, $this->contentTypeA);
+            fclose($fileTemp);
+
+            $this->message = $this->checkStatus('Создание файлов', 'о');
+        }
+        catch (Exception $e) {
+            $this->status = false;
+            $this->checkStatus('Создание файлов', 'о', $e->getMessage());
+        }
+
 
     }
 
