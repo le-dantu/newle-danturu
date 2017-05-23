@@ -6,7 +6,7 @@
  * Time: 11:59
  */
 
-//namespace modules\Json;
+namespace modules\Json;
 
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/vars.inc.php';
@@ -15,17 +15,15 @@ require_once $SYSTEM_FOLDER.'nc_core.class.php';
 
 class GWContent
 {
-    //Константы
+    //Приватные поля
     private $fileName = '';
-    //const SECTIONS = 5;
-    //const DATATYPES = 13;
-
-    //Публичные поля
     private $getDB = array();
     private $jsonEncode = array();
     private $debug= false;
     private $status = false;
 
+    //Публичные поля
+    public $message = '';
 
     //Конструктор
     public function __construct($debug = false) {
@@ -139,7 +137,7 @@ class GWContent
         $this->display_debug(array($this->jsonEncode), $this->debug);
 
         $this->status = true;
-        echo $this->checkStatus('Добавление объекта', 'о');
+        $this->message = $this->checkStatus('Добавление объекта', 'о');
 
 
     }
@@ -159,7 +157,7 @@ class GWContent
         }
 
         $this->status = true;
-        echo $this->checkStatus('Удаление объекта', 'о');
+        $this->message = $this->checkStatus('Удаление объекта', 'о');
 
 
     }
@@ -173,14 +171,9 @@ class GWContent
         fclose($fileTemp);
 
         $this->status = true;
-        echo $this->checkStatus('Запись в файл', 'а');
+        $this->message = $this->checkStatus('Запись в файл', 'а');
 
     }
 
 
 }
-
-$temp = new GWContent(1);
-$temp->addObject('Design', 'Pomegranate', 'le-dantu.ru');
-$temp->removeObject('Design', 'Pomegranate', 'le-dantu.ru');
-$temp->writeFiles();
