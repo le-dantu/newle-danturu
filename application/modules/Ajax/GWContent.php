@@ -6,7 +6,7 @@
  * Time: 11:59
  */
 
-namespace modules\Json;
+namespace modules\Ajax;
 
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/vars.inc.php';
@@ -38,7 +38,7 @@ class GWContent
         $this->fileName = $_SERVER['DOCUMENT_ROOT']."/modules/content.json";
 
         try {
-            $nc_core_db->db->query("SELECT  typeEN, clientEN, imageLg FROM Message113", ARRAY_A);
+            $nc_core_db->db->query("SELECT  typeEN, clientEN, content, animation, class, typeContent FROM Message113", ARRAY_A);
             $this->getDB = $nc_core_db->db->last_result;
             $this->status = true;
             $this->checkStatus('Запрос к базе');
@@ -50,11 +50,17 @@ class GWContent
 
         foreach ($this->getDB as $key => $param) {
             $link = array();
-            preg_match('#img\/lg\/.*#i', $param['imageLg'], $link);
             //print_r($link);
-            $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]["block"][] = "<div class='image default' style='background:url(/netcat_files/".$link[0].")'></div>";
+            if ($param['typeContent'] == 'block') {
+                preg_match('#img\/lg\/.*#i', $param['content'], $link);
+                $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['block'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' style='background:url(/netcat_files/" . $link[0] . ")'></div>";
+            }
+            else if ($param['typeContent'] == 'text') {
+                $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['text'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "'>" . $param['content'] . "</div>";
+            }
 
             $this->display_debug(array($jsonVal), $this->debug);
+
         }
 
     }
@@ -126,10 +132,10 @@ class GWContent
     //Публичная функция добавления новго объекта
     public function addObject($type='', $company='', $content='', $class='image', $classAnim='default', $typeContent='block') {
 
-        if ($typeContent != 'text') {
+        if ($typeContent == 'block') {
             $addVal = $this->jsonEncode[$type][$company][$typeContent][] = "<div class='".$class." ".$classAnim."' style='background:url(".$content.")'></div>";
         }
-        else {
+        else if ($typeContent == 'text') {
             $addVal = $this->jsonEncode[$type][$company]['text'][] = "<div class='" . $class . " " . $classAnim . "'>" . $content . "</div>";
         }
 
@@ -145,12 +151,12 @@ class GWContent
     //Публичная функция удаления объекта
     public function removeObject($type='', $company='', $content='', $class='image', $classAnim='default', $typeContent='block') {
 
-        if ($typeContent != 'text') {
+        if ($typeContent == 'block') {
             $tempKey = array_search("<div class='".$class." ".$classAnim."' style='background:url(".$content.")'></div>", $this->jsonEncode[$type][$company][$typeContent]);
             $this->display_debug(array($tempKey), $this->debug);
             unset($this->jsonEncode[$type][$company][$typeContent][$tempKey]);
         }
-        else {
+        else if ($typeContent == 'text') {
             $tempKey = array_search("<div class='".$class." ".$classAnim."'>".$content."</div>", $this->jsonEncode[$type][$company]['text']);
             $this->display_debug(array($tempKey), $this->debug);
             unset($this->jsonEncode[$type][$company]['text'][$tempKey]);
