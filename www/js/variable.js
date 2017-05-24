@@ -10,6 +10,7 @@ var contentGlobal = '/content.json';
 //var contentTypeGlobal = '/contenttype.json';
 var horizontal = [];
 var vertical = [];
+
 var lenCurrent = 0;
 var currentImg = 0;
 var currentType = 0;
