@@ -2,7 +2,6 @@
  * Created by BreakPoint on 19.05.17.
  */
 
-<<<<<<< HEAD
 function sendRecive(link) {
     var links = [];
     $.getJSON(link, function(data) {
@@ -14,7 +13,6 @@ function sendRecive(link) {
                     });
                 });
             });
-=======
 function sendRecive (content, workType, clients, contentType) {
 
     $.getJSON(content, function(data) {
@@ -43,7 +41,6 @@ function sendRecive (content, workType, clients, contentType) {
 
             });
 
->>>>>>> Break
         });
 
      });
