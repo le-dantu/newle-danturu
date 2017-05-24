@@ -20,7 +20,7 @@ $(document).ready(function(){
     });
 
     initScrollHandler();
-    sendRecive(contentGlobal, workTypeGlobal, clientsGlobal, contentTypeGlobal);
+    sendRecive(contentGlobal); //, workTypeGlobal, clientsGlobal, contentTypeGlobal
 
 
 });
