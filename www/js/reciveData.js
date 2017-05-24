@@ -2,7 +2,6 @@
  * Created by BreakPoint on 19.05.17.
  */
 
-
 function sendRecive(link) {
     var links = [];
     $.getJSON(link, function(data) {
@@ -14,14 +13,13 @@ function sendRecive(link) {
                     });
                 });
             });
-
 function sendRecive (content, workType, clients, contentType) {
 
     $.getJSON(content, function(data) {
         contentGlobal = data;
         //console.log(contentGlobal);
 
-        /*$.getJSON(workType, function(data) {
+        $.getJSON(workType, function(data) {
             workTypeGlobal = data;
             //console.log(workTypeGlobal);
 
@@ -33,19 +31,18 @@ function sendRecive (content, workType, clients, contentType) {
                     contentTypeGlobal = data;
                     //console.log(contentTypeGlobal);
                 })
-
+                .done(function() {
+                    console.log( "success" );
+                    initFirstBlock('Design', 'WestCall', 'block');
+                })
+                .fail(function() {
+                    console.log( "error" );
+                });
 
             });
 
-
         });
-*/
-     })
-    .done(function() {
-        console.log( "success" );
-        initFirstBlock('Design', 'WestCall', 'block');
-    })
-    .fail(function() {
-        console.log( "error" );
-    });
+
+     });
+
 }
