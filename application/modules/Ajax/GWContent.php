@@ -6,7 +6,7 @@
  * Time: 11:59
  */
 
-namespace modules\Ajax;
+//namespace modules\Ajax;
 
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/vars.inc.php';
@@ -41,10 +41,10 @@ class GWContent
         // load default extensions
         $nc_core_db->init();
 
-        $this->fileName = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentJson."json";
-        $this->workType = $_SERVER['DOCUMENT_ROOT']."/modules/".$workTypeJson."json";
-        $this->clients = $_SERVER['DOCUMENT_ROOT']."/modules/".$clientsJson."json";
-        $this->contentType = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentTypeJson."json";
+        $this->fileName = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentJson.".json";
+        $this->workType = $_SERVER['DOCUMENT_ROOT']."/modules/".$workTypeJson.".json";
+        $this->clients = $_SERVER['DOCUMENT_ROOT']."/modules/".$clientsJson.".json";
+        $this->contentType = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentTypeJson.".json";
 
         try {
             $nc_core_db->db->query("SELECT  typeEN, clientEN, content, animation, class, typeContent FROM Message113", ARRAY_A);
@@ -62,19 +62,15 @@ class GWContent
             //print_r($link);
             if ($param['typeContent'] == 'block') {
                 preg_match('#img\/lg\/.*#i', $param['content'], $link);
-                $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['block'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' style='background:url(/netcat_files/" . $link[0] . ")'></div>";
+                $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['block'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' style='background:url(/netcat_files/" . $link[0] . ")' data-client='".$param['clientEN']."' data-type='".$param['typeEN']."'></div>";
             }
             else if ($param['typeContent'] == 'text') {
-                $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['text'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "'>" . $param['content'] . "</div>";
+                $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['text'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' data-client='".$param['clientEN']."' data-type='".$param['typeEN']."'>" . $param['content'] . "</div>";
             }
 
-            array_push($this->workTypeA, $param['typeEN']);
-            array_push($this->clientsA, $param['clientEN']);
-            array_push($this->contentTypeA, $param['typeContent']);
-
-            array_unique($this->workTypeA);
-            array_unique($this->clientsA);
-            array_unique($this->contentTypeA);
+            $this->workTypeA[] = $param['typeEN'];
+            $this->clientsA[] = $param['clientEN'];
+            $this->contentTypeA[] = $param['typeContent'];
 
             $this->display_debug(array($jsonVal), $this->debug);
 
@@ -150,10 +146,10 @@ class GWContent
     public function addObject($type='', $company='', $content='', $class='image', $classAnim='default', $typeContent='block') {
 
         if ($typeContent == 'block') {
-            $addVal = $this->jsonEncode[$type][$company][$typeContent][] = "<div class='".$class." ".$classAnim."' style='background:url(".$content.")'></div>";
+            $addVal = $this->jsonEncode[$type][$company][$typeContent][] = "<div class='".$class." ".$classAnim."' style='background:url(".$content.")' data-client='".$company."' data-type='".$type."'></div>";
         }
         else if ($typeContent == 'text') {
-            $addVal = $this->jsonEncode[$type][$company]['text'][] = "<div class='" . $class . " " . $classAnim . "'>" . $content . "</div>";
+            $addVal = $this->jsonEncode[$type][$company]['text'][] = "<div class='" . $class . " " . $classAnim . "' data-client='".$company."' data-type='".$type."'>" . $content . "</div>";
         }
 
         $this->display_debug(array($addVal), $this->debug);
@@ -169,12 +165,12 @@ class GWContent
     public function removeObject($type='', $company='', $content='', $class='image', $classAnim='default', $typeContent='block') {
 
         if ($typeContent == 'block') {
-            $tempKey = array_search("<div class='".$class." ".$classAnim."' style='background:url(".$content.")'></div>", $this->jsonEncode[$type][$company][$typeContent]);
+            $tempKey = array_search("<div class='".$class." ".$classAnim."' style='background:url(".$content.")' data-client='".$company."' data-type='".$type."'></div>", $this->jsonEncode[$type][$company][$typeContent]);
             $this->display_debug(array($tempKey), $this->debug);
             unset($this->jsonEncode[$type][$company][$typeContent][$tempKey]);
         }
         else if ($typeContent == 'text') {
-            $tempKey = array_search("<div class='".$class." ".$classAnim."'>".$content."</div>", $this->jsonEncode[$type][$company]['text']);
+            $tempKey = array_search("<div class='".$class." ".$classAnim."' data-client='".$type."' data-type='".$company."'>".$content."</div>", $this->jsonEncode[$type][$company]['text']);
             $this->display_debug(array($tempKey), $this->debug);
             unset($this->jsonEncode[$type][$company]['text'][$tempKey]);
         }
@@ -189,6 +185,10 @@ class GWContent
     public function writeFiles() {
 
         try {
+            $this->workTypeA = array_unique($this->workTypeA);
+            $this->clientsA = array_unique($this->clientsA);
+            $this->contentTypeA = array_unique($this->contentTypeA);
+
             $this->jsonEncode = json_encode($this->jsonEncode, JSON_UNESCAPED_UNICODE);
             $this->workTypeA = json_encode($this->workTypeA, JSON_UNESCAPED_UNICODE);
             $this->clientsA = json_encode($this->clientsA, JSON_UNESCAPED_UNICODE);
