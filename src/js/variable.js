@@ -2,8 +2,6 @@
  * Created by BreakPoint on 19.05.17.
  */
 
-var gateway = '../modules/content.json';
-var links = [];
 var contentGlobal = '/content.json';
 //var clientsGlobal = '/clients.json';
 //var workTypeGlobal = '/worktype.json';
@@ -12,7 +10,8 @@ var horizontal = [];
 var vertical = [];
 
 var lenCurrent = 0;
-var currentImg = 0;
+var currentImgH= 0;
+var currentImgV= 0;
 var currentType = 0;
 var currentClient = 0;
 

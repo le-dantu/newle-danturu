@@ -3,29 +3,37 @@
  */
 function initFirstBlock(worktype, clientsL, contenttype) {
 
-    $.each(contentGlobal[worktype][clientsL][contenttype], function(key, data) {
-        vertical.push(data);
-        console.log(data);
+    $.each(contentGlobal[worktype][clientsL][contenttype], function(index, val) {
+        vertical.push(val);
+        //console.log(data);
     });
 
     $.each(contentGlobal[worktype], function(key) {
         $.each(contentGlobal[worktype][key][contenttype], function(index, val) {
+            //console.log(key);
             if (key != clientsL) {
                 vertical.push(val);
-                console.log(val);
+                //console.log(val);
             }
         });
     });
 
-    horizontal.push(contentGlobal[worktype][clientsL][contenttype][0]);
+    getContent(true);
+
+    /*horizontal.push(contentGlobal[worktype][clientsL][contenttype][0]);
     console.log(contentGlobal[worktype][clientsL][contenttype][0]);
 
     $.each(contentGlobal, function(key) {
         if (key != worktype) {
-            horizontal.push(contentGlobal[key][clientsL][contenttype][0]);
-            console.log(contentGlobal[key][clientsL][contenttype][0]);
+            if (contentGlobal[key][clientsL] !== undefined) {
+                horizontal.push(contentGlobal[key][clientsL][contenttype][0]);
+                console.log(contentGlobal[key][clientsL][contenttype][0]);
+            }
         }
-    });
+    });*/
+
+    currentClient = $('.container').children().data('client');
+    currentType = $('.container').children().data('client');
 
 }
 
@@ -34,22 +42,22 @@ function changeType(next) {
     lenCurrent = horizontal.length;
 
     if (next) {
-        if (currentType == lenCurrent - 1) {
-            currentType = 0;
-            $('.container').html(horizontal[currentType]);
+        if (currentImgH == lenCurrent - 1) {
+            currentImgH = 0;
+            $('.container').html(horizontal[currentImgH]);
         } else {
-            currentType += 1;
-            $('.container').html(horizontal[currentType]);
+            currentImgH += 1;
+            $('.container').html(horizontal[currentImgH]);
         }
         //console.log(currentImg);
         //console.log(lenCurrent);
     } else {
-        if (currentType == 0) {
-            currentType = lenCurrent - 1;
-            $('.container').html(horizontal[currentType]);
+        if (currentImgH == 0) {
+            currentImgH = lenCurrent - 1;
+            $('.container').html(horizontal[currentImgH]);
         } else {
-            currentType -= 1;
-            $('.container').html(horizontal[currentType]);
+            currentImgH -= 1;
+            $('.container').html(horizontal[currentImgH]);
         }
         //console.log(currentImg);
         //console.log(lenCurrent);
@@ -65,6 +73,7 @@ function changeType(next) {
         });
     }
 
+    currentImgV = 0;
 
 }
 
@@ -73,35 +82,37 @@ function getContent(next) {
     lenCurrent = vertical.length;
 
     if (next) {
-        if (currentImg == lenCurrent - 1) {
-            currentImg = 0;
-            $('.container').html(vertical[currentImg]);
+        if (currentImgV == lenCurrent - 1) {
+            $('.container').html(vertical[currentImgV]);
+            currentImgV = 0;
         } else {
-            currentImg += 1;
-            $('.container').html(vertical[currentImg]);
+            $('.container').html(vertical[currentImgV]);
+            currentImgV += 1;
         }
-        //console.log(currentImg);
-        //console.log(lenCurrent);
+        console.log(currentImgV);
+        console.log(lenCurrent);
     } else {
-        if (currentImg == 0) {
-            currentImg = lenCurrent - 1;
-            $('.container').html(vertical[currentImg]);
+        if (currentImgV == 0) {
+            $('.container').html(vertical[currentImgV]);
+            currentImgV = lenCurrent - 1;
         } else {
-            currentImg -= 1;
-            $('.container').html(vertical[currentImg]);
+            $('.container').html(vertical[currentImgV]);
+            currentImgV -= 1;
         }
-        //console.log(currentImg);
-        //console.log(lenCurrent);
+        console.log(currentImgV);
+        console.log(lenCurrent);
     }
 
     if (currentClient != $('.container').children().data('client')) {
         currentClient = $('.container').children().data('client');
         $.each(contentGlobal, function(key) {
-            $.each(contentGlobal[key][currentClient]['block'], function(index, val) {
-                horizontal.push(val);
-                console.log(val);
-            });
+            if (contentGlobal[key][currentClient] !== undefined) {
+                horizontal.push(contentGlobal[key][currentClient]['block'][0]);
+                console.log(contentGlobal[key][currentClient]['block'][0]);
+            }
         });
     }
+
+    currentImgH = 0;
 
 }
