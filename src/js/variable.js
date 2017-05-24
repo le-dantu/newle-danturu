@@ -3,15 +3,21 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 var gateway = '../modules/content.json';
 var links = [];
 =======
+=======
+>>>>>>> Break
 var contentGlobal = '/content.json';
 //var clientsGlobal = '/clients.json';
 //var workTypeGlobal = '/worktype.json';
 //var contentTypeGlobal = '/contenttype.json';
 var horizontal = [];
 var vertical = [];
+<<<<<<< HEAD
+>>>>>>> Break
+=======
 >>>>>>> Break
 var lenCurrent = 0;
 var currentImg = 0;
