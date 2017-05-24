@@ -3,6 +3,7 @@
  */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function sendRecive(link) {
     var links = [];
     $.getJSON(link, function(data) {
@@ -15,6 +16,8 @@ function sendRecive(link) {
                 });
             });
 =======
+=======
+>>>>>>> Break
 function sendRecive (content, workType, clients, contentType) {
 
     $.getJSON(content, function(data) {
@@ -43,6 +46,9 @@ function sendRecive (content, workType, clients, contentType) {
 
             });
 
+<<<<<<< HEAD
+>>>>>>> Break
+=======
 >>>>>>> Break
         });
 
