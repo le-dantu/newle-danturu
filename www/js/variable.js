@@ -14,6 +14,7 @@ var currentImgH= 0;
 var currentImgV= 0;
 var currentType = 0;
 var currentClient = 0;
+var counterClient = 0;
 
 function isTouchDevice() {
     return 'ontouchstart'in document.documentElement;

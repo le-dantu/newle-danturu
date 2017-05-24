@@ -18,22 +18,11 @@ function initFirstBlock(worktype, clientsL, contenttype) {
         });
     });
 
+    currentImgV = vertical.length - 1;
     getContent(true);
 
-    /*horizontal.push(contentGlobal[worktype][clientsL][contenttype][0]);
-    console.log(contentGlobal[worktype][clientsL][contenttype][0]);
-
-    $.each(contentGlobal, function(key) {
-        if (key != worktype) {
-            if (contentGlobal[key][clientsL] !== undefined) {
-                horizontal.push(contentGlobal[key][clientsL][contenttype][0]);
-                console.log(contentGlobal[key][clientsL][contenttype][0]);
-            }
-        }
-    });*/
-
     currentClient = $('.container').children().data('client');
-    currentType = $('.container').children().data('client');
+
 
 }
 
@@ -63,17 +52,24 @@ function changeType(next) {
         //console.log(lenCurrent);
     }
 
+    currentImgV = 0;
+    vertical = [];
+
     if (currentType != $('.container').children().data('type')) {
         currentType = $('.container').children().data('type');
         $.each(contentGlobal[currentType], function (key) {
             $.each(contentGlobal[currentType][key]['block'], function (index, val) {
                 vertical.push(val);
-                console.log(val);
+                //console.log(val);
             });
         });
     }
 
-    currentImgV = 0;
+    if (vertical.length == 1) {
+        $('.navTB').hide();
+    } else {
+        $('.navTB').show();
+    }
 
 }
 
@@ -83,36 +79,53 @@ function getContent(next) {
 
     if (next) {
         if (currentImgV == lenCurrent - 1) {
-            $('.container').html(vertical[currentImgV]);
             currentImgV = 0;
-        } else {
             $('.container').html(vertical[currentImgV]);
+        } else {
             currentImgV += 1;
+            $('.container').html(vertical[currentImgV]);
         }
         console.log(currentImgV);
         console.log(lenCurrent);
     } else {
         if (currentImgV == 0) {
-            $('.container').html(vertical[currentImgV]);
             currentImgV = lenCurrent - 1;
-        } else {
             $('.container').html(vertical[currentImgV]);
+        } else {
             currentImgV -= 1;
+            $('.container').html(vertical[currentImgV]);
         }
         console.log(currentImgV);
         console.log(lenCurrent);
     }
 
+    currentImgH = 0;
+    currentType = $('.container').children().data('type');
+
+
     if (currentClient != $('.container').children().data('client')) {
+        horizontal = [];
         currentClient = $('.container').children().data('client');
+        horizontal.push(contentGlobal[currentType][currentClient]['block'][counterClient]);
         $.each(contentGlobal, function(key) {
             if (contentGlobal[key][currentClient] !== undefined) {
-                horizontal.push(contentGlobal[key][currentClient]['block'][0]);
-                console.log(contentGlobal[key][currentClient]['block'][0]);
+                $.each(contentGlobal[key][currentClient]['block'], function(index, val) {
+                    if (horizontal[0] != val) {
+                        horizontal.push(val);
+                        //console.log(contentGlobal[key][currentClient]['block'][0]);
+                    }
+                });
             }
         });
+        counterClient = 0;
+    } else {
+        counterClient += 1;
     }
 
-    currentImgH = 0;
+    if (horizontal.length == 1) {
+        $('.navLR').hide();
+    } else {
+        $('.navLR').show();
+    }
 
 }
