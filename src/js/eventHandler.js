@@ -6,7 +6,7 @@ function clickArrow(direction) {
     switch(direction) {
         case 'left':
             //alert('click left');
-            getContent(false);
+            changeType(false);
             break;
 
         case 'top':
@@ -16,7 +16,7 @@ function clickArrow(direction) {
 
         case 'right':
             //alert('click right');
-            getContent(true);
+            changeType(true);
             break;
 
         case 'bottom':
