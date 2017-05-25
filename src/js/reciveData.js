@@ -30,7 +30,9 @@ function sendRecive (content) { //, workType, clients, contentType
      })
     .done(function() {
         console.log( "success" );
-        initFirstBlock('Design', 'WestCall', 'block');
+        initFirstBlock('portfolio', 'Design', 'WestCall');
+        //initFirstBlock('vacancies', 'vacancies', 'vacancies');
+        //initFirstBlock('contacts', 'contacts', 'contacts');
     })
     .fail(function() {
         console.log( "error" );

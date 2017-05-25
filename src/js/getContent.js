@@ -1,28 +1,34 @@
 /**
  * Created by BreakPoint on 19.05.17.
  */
-function initFirstBlock(worktype, clientsL, contenttype) {
+function initFirstBlock(page, worktype, clients) {
 
-    $.each(contentGlobal[worktype][clientsL][contenttype], function(index, val) {
-        vertical.push(val);
-        //console.log(data);
-    });
+    pageGlobal = page;
 
-    $.each(contentGlobal[worktype], function(key) {
-        $.each(contentGlobal[worktype][key][contenttype], function(index, val) {
-            //console.log(key);
-            if (key != clientsL) {
-                vertical.push(val);
-                //console.log(val);
-            }
+    if (pageGlobal != 'portfolio') {
+
+        $.each(contentGlobal[pageGlobal][worktype][clients], function(index, val) {
+            vertical.push(val);
+            //console.log(data);
         });
-    });
 
-    currentImgV = vertical.length - 1;
-    getContent(true);
+        $.each(contentGlobal[pageGlobal][worktype], function(key) {
+            $.each(contentGlobal[pageGlobal][worktype][key], function(index, val) {
+                //console.log(key);
+                if (key != clients) {
+                    vertical.push(val);
+                    //console.log(val);
+                }
+            });
+        });
 
-    currentClient = $('.container').children().data('client');
+        currentImgV = vertical.length - 1;
+        getContent(true);
 
+    }
+    else {
+        $('.container').html(contentGlobal[pageGlobal][worktype][clients]);
+    }
 
 }
 
@@ -57,9 +63,9 @@ function changeType(next) {
     if (currentType != $('.container').children().data('type')) {
         vertical = [];
         currentType = $('.container').children().data('type');
-        vertical.push(contentGlobal[currentType][currentClient]['block'][counterType]);
-        $.each(contentGlobal[currentType], function (key) {
-            $.each(contentGlobal[currentType][key]['block'], function (index, val) {
+        vertical.push(contentGlobal[pageGlobal][currentType][currentClient][counterType]);
+        $.each(contentGlobal[pageGlobal][currentType], function (key) {
+            $.each(contentGlobal[pageGlobal][currentType][key], function (index, val) {
                 if (vertical[0] != val) {
                     vertical.push(val);
                 }
@@ -80,6 +86,8 @@ function changeType(next) {
 }
 
 function getContent(next) {
+
+    currentClient = $('.container').children().data('client');
     
     lenCurrent = vertical.length;
 
@@ -112,13 +120,13 @@ function getContent(next) {
     if (currentClient != $('.container').children().data('client')) {
         horizontal = [];
         currentClient = $('.container').children().data('client');
-        horizontal.push(contentGlobal[currentType][currentClient]['block'][counterClient]);
-        $.each(contentGlobal, function(key) {
-            if (contentGlobal[key][currentClient] !== undefined) {
-                $.each(contentGlobal[key][currentClient]['block'], function(index, val) {
+        horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][counterClient]);
+        $.each(contentGlobal[pageGlobal], function(key) {
+            if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
+                $.each(contentGlobal[pageGlobal][key][currentClient], function(index, val) {
                     if (horizontal[0] != val) {
                         horizontal.push(val);
-                        //console.log(contentGlobal[key][currentClient]['block'][0]);
+                        //console.log(contentGlobal[key][currentClient][0]);
                     }
                 });
             }

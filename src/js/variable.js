@@ -8,7 +8,7 @@ var contentGlobal = '/content.json';
 //var contentTypeGlobal = '/contenttype.json';
 var horizontal = [];
 var vertical = [];
-
+var pageGlobal = 0;
 var lenCurrent = 0;
 var currentImgH= 0;
 var currentImgV= 0;
