@@ -32,7 +32,7 @@ function sendRecive (content) { // ,workType, clients, contentType
      })
     .done(function() {
         console.log( "success" );
-        initFirstBlock('portfolio', 'Design', 'WestCall');
+        initFirstBlock(locationurl[0], locationurl[1], locationurl[2]);
         //initFirstBlock('vacancies', 'vacancies', 'vacancies');
         //initFirstBlock('contacts', 'contacts', 'contacts');
 
