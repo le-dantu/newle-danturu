@@ -111,6 +111,7 @@ function changeType(next) {
         $('.navTB').show();
     }
 
+
 }
 
 function getContent(next) {

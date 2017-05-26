@@ -6,7 +6,6 @@ function clickArrow(direction) {
         case 'left':
             //alert('click left');
             changeType(false);
-            //window.history.pushState("object or string", "Title", "/next");
             break;
 
         case 'top':
