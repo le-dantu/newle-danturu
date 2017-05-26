@@ -2,7 +2,8 @@
  * Created by BreakPoint on 19.05.17.
  */
 
-function sendRecive (content) { //, workType, clients, contentType
+
+function sendRecive (content) { // ,workType, clients, contentType
 
     $.getJSON(content, function(data) {
         contentGlobal = data;
@@ -19,6 +20,7 @@ function sendRecive (content) { //, workType, clients, contentType
                 $.getJSON(contentType, function(data) {
                     contentTypeGlobal = data;
                     //console.log(contentTypeGlobal);
+
                 })
 
 
@@ -33,8 +35,10 @@ function sendRecive (content) { //, workType, clients, contentType
         initFirstBlock('portfolio', 'Design', 'WestCall');
         //initFirstBlock('vacancies', 'vacancies', 'vacancies');
         //initFirstBlock('contacts', 'contacts', 'contacts');
+
     })
     .fail(function() {
         console.log( "error" );
     });
+
 }

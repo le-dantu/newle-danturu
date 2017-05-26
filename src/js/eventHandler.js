@@ -1,12 +1,12 @@
 /**
  * Created by BreakPoint on 18.05.17.
  */
-
 function clickArrow(direction) {
     switch(direction) {
         case 'left':
             //alert('click left');
             changeType(false);
+            window.history.pushState("object or string", "Title", "/next");
             break;
 
         case 'top':
