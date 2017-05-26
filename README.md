@@ -1,37 +1,18 @@
-## Welcome to GitHub Pages
+# Welcome to GitHub NewSite le-dantu
 
-You can use the [editor on GitHub](https://github.com/le-dantu/newle-danturu/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+You can see our project [here](https://newsite.le-dantu.ru).
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### What is it?
 
-### Markdown
+It's projects create for our company. Old [site](http://le-dantu.ru) created on 2015. And to our developers team was entrusted
+to create a **new** technological site.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+For based we choose [wacoal.jp](http://www.wacoal.jp/yourbeauty/) and [alfabank.ru](https://alfabank.ru)
 
-```markdown
-Syntax highlighted code block
+### Contacts
 
-# Header 1
-## Header 2
-### Header 3
+Our team can create site for you too.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/le-dantu/newle-danturu/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+**Phone:** +7 (812) 409-98-20
+**E-mail:** MAILBOX@LE-DANTU.RU
+**Adress:** CАНКТ-ПЕТЕРБУРГ, КОЛОМЯЖСКИЙ ПРОСПЕКТ, д. 18, ОФИС 89; LE-DANTU
