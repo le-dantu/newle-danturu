@@ -10,12 +10,37 @@ function cleanArray(actual) {
   }
   return newArray;
 }
-var locationurl = window.location.pathname.split("/");
-locationurl = cleanArray(locationurl);
-if (locationurl.length == 1) {
-    locationurl[1] = locationurl[0];
-    locationurl[2] = locationurl[0];
+
+locationUrl = window.location.pathname.split("/");
+locationUrl = cleanArray(locationUrl);
+
+if (locationUrl.length == 1) {
+    locPage = locationUrl[0];
+    locCompany = false;
+    locType = false;
+    locKeyword = false;
+} else if (locationUrl.length == 2){
+    locPage = locationUrl[0];
+    locCompany = locationUrl[1];
+    locType = false;
+    locKeyword = false;
+} else if (locationUrl.length == 3){
+    locPage = locationUrl[0];
+    locCompany = locationUrl[1];
+    locType = locationUrl[2];
+    locKeyword = false;
+} else if (locationUrl.length == 4) {
+    locPage = locationUrl[0];
+    locCompany = locationUrl[1];
+    locType = locationUrl[2];
+    locKeyword = locationUrl[3];
+} else {
+    locPage = false;
+    locCompany = false;
+    locType = false;
+    locKeyword = false;
 }
+
 $(document).ready(function(){
     $('button.arrow').each(function(){
         if ( $(this).parent().hasClass('navLR')) {

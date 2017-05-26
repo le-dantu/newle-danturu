@@ -21,10 +21,10 @@ function itemExists(haystack, needle) {
     return false;
 }
 
-function searchFor(objescts, toSearch) {
+function searchFor(objects, toSearch) {
     var results = [];
     toSearch = trimString(toSearch); // trim it
-    for(var i=0; i<objects.length; i++) {
+    for(var i=0; i < objects.length; i++) {
         for(var key in objects[i]) {
             if(objects[i][key].indexOf(toSearch)!=-1) {
                 if(!itemExists(results, objects[i])) results.push(objects[i]);

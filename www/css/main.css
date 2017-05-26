@@ -20,7 +20,8 @@
   justify-content: center;
   flex-wrap: wrap; }
   .gridWrap .gridItem {
-    width: 25%; }
+    width: 25%;
+    height: 33.33%; }
   .gridWrap .gridItem:nth-child(even) {
     background: #ccc; }
   .gridWrap .gridItem:nth-child(odd) {
