@@ -22,13 +22,16 @@ function initFirstBlock(page, worktype, clients, keyword) {
                 }
             });
         });
-    } else if (page && worktype && !clients && !keyword) {
-        $.each(contentGlobal[pageGlobal][worktype], function (key) {
-            $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
-                vertical.push(val);
+    } else if (page && !worktype && clients && !keyword) {
+        $.each(contentGlobal[pageGlobal], function (key) {
+            $.each(contentGlobal[pageGlobal][key][clients], function (index, val) {
+                horizontal.push(val);
                 //console.log(val);
             });
         });
+        currentImgH = horizontal.length - 1;
+        changeType(true);
+        return false;
     } else if (page && !worktype && !clients && !keyword) {
         if ( page == 'portfolio') {
             gridInit();
