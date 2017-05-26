@@ -1,11 +1,6 @@
-@keyframes navItems {
-	from { transform: scale(1.1, 1.1) }
-	50% { transform: scale(-1) }
-	to { transform: scale(1.1, 1.1) }
-}
-
 body {
 	font-size: 12pt;
+	font-family: sans-serif;
 }
 
 .fullScreen {
@@ -17,7 +12,7 @@ body {
 	z-index: 10;
 }
 
-nav {
+nav, .burger-nav {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -33,7 +28,7 @@ nav {
 		left: 1em;
 		right: 1em;
 	}
-	.logo, .burger {
+	.logo, .burger, .burger-close {
 		z-index: 1488;
 		height: 4em;
 		img {
@@ -41,8 +36,7 @@ nav {
 			transition: all linear 0.5s;
 			&:hover {
 				cursor: pointer;
-				//transform: scale(1.1,1.1);
-				animation: navItems 2s infinite ease-in-out;
+				transform: scale(1.1,1.1);
 			}
 		}
 	}
@@ -130,6 +124,25 @@ nav {
 		}
 	}
 
+}
+
+.burgerMenu {
+	position: absolute;
+	top: 0;
+	right: -100%;
+	padding: 2em;
+	background: #333;
+	color: #eee;
+	font-weight: 700;
+	z-index: 2048;
+	width: 25%;
+	height: calc(100% - 4em);
+	transition: all linear 0.5s;
+	ul {
+		z-index: 2049;
+		list-style: none outside;
+		font-size: 36pt;
+	}
 }
 
 @import "arrow";

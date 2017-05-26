@@ -24,8 +24,17 @@ html
             nav
                 .logo
                     img(src="res/logo.svg")
-                .burger
+                .burger(onclick="UI.burger.trigger()")
                     img(src="res/burger.svg")
+            .burgerMenu
+                .burger-nav
+                    p &nbsp;
+                    .burger-close(onclick="UI.burger.trigger()")
+                        img(src="res/close.svg")
+                ul
+                    li портфолио
+                    li контакты
+                    li о нас
             .navigationBar
                 .navLR
                     include arrow
@@ -39,3 +48,4 @@ html
     script(type="text/javascript" defer src="js/getContent.js")
     script(type="text/javascript" defer src="js/main.js")
     script(type="text/javascript" defer src="js/gridInit.js")
+    script(type="text/javascript" defer src="js/ui.js")
