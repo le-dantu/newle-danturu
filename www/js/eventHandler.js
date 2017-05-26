@@ -1,7 +1,6 @@
 /**
  * Created by BreakPoint on 18.05.17.
  */
-
 function clickArrow(direction) {
     switch(direction) {
         case 'left':
