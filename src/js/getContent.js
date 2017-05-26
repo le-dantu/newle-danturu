@@ -1,31 +1,34 @@
 /**
  * Created by BreakPoint on 19.05.17.
  */
-function initFirstBlock(worktype, clientsL, contenttype) {
+function initFirstBlock(page, worktype, clients) {
 
-    $.each(contentGlobal[worktype][clientsL][contenttype], function(key, data) {
-        vertical.push(data);
-        console.log(data);
-    });
+    pageGlobal = page;
 
-    $.each(contentGlobal[worktype], function(key) {
-        $.each(contentGlobal[worktype][key][contenttype], function(index, val) {
-            if (key != clientsL) {
-                vertical.push(val);
-                console.log(val);
-            }
+    if (pageGlobal != 'portfolio') {
+
+        $.each(contentGlobal[pageGlobal][worktype][clients], function(index, val) {
+            vertical.push(val);
+            //console.log(data);
         });
-    });
 
-    horizontal.push(contentGlobal[worktype][clientsL][contenttype][0]);
-    console.log(contentGlobal[worktype][clientsL][contenttype][0]);
+        $.each(contentGlobal[pageGlobal][worktype], function(key) {
+            $.each(contentGlobal[pageGlobal][worktype][key], function(index, val) {
+                //console.log(key);
+                if (key != clients) {
+                    vertical.push(val);
+                    //console.log(val);
+                }
+            });
+        });
 
-    $.each(contentGlobal, function(key) {
-        if (key != worktype) {
-            horizontal.push(contentGlobal[key][clientsL][contenttype][0]);
-            console.log(contentGlobal[key][clientsL][contenttype][0]);
-        }
-    });
+        currentImgV = vertical.length - 1;
+        getContent(true);
+
+    }
+    else {
+        $('.container').html(contentGlobal[pageGlobal][worktype][clients]);
+    }
 
 }
 
@@ -34,74 +37,109 @@ function changeType(next) {
     lenCurrent = horizontal.length;
 
     if (next) {
-        if (currentType == lenCurrent - 1) {
-            currentType = 0;
-            $('.container').html(horizontal[currentType]);
+        if (currentImgH == lenCurrent - 1) {
+            currentImgH = 0;
+            $('.container').html(horizontal[currentImgH]);
         } else {
-            currentType += 1;
-            $('.container').html(horizontal[currentType]);
+            currentImgH += 1;
+            $('.container').html(horizontal[currentImgH]);
         }
         //console.log(currentImg);
         //console.log(lenCurrent);
     } else {
-        if (currentType == 0) {
-            currentType = lenCurrent - 1;
-            $('.container').html(horizontal[currentType]);
+        if (currentImgH == 0) {
+            currentImgH = lenCurrent - 1;
+            $('.container').html(horizontal[currentImgH]);
         } else {
-            currentType -= 1;
-            $('.container').html(horizontal[currentType]);
+            currentImgH -= 1;
+            $('.container').html(horizontal[currentImgH]);
         }
         //console.log(currentImg);
         //console.log(lenCurrent);
     }
 
+    currentImgV = 0;
+
     if (currentType != $('.container').children().data('type')) {
+        vertical = [];
         currentType = $('.container').children().data('type');
-        $.each(contentGlobal[currentType], function (key) {
-            $.each(contentGlobal[currentType][key]['block'], function (index, val) {
-                vertical.push(val);
-                console.log(val);
+        vertical.push(contentGlobal[pageGlobal][currentType][currentClient][counterType]);
+        $.each(contentGlobal[pageGlobal][currentType], function (key) {
+            $.each(contentGlobal[pageGlobal][currentType][key], function (index, val) {
+                if (vertical[0] != val) {
+                    vertical.push(val);
+                }
+                //console.log(val);
             });
         });
+        counterType = 0;
+    } else {
+        counterType += 1;
     }
 
+    if (vertical.length == 1) {
+        $('.navTB').hide();
+    } else {
+        $('.navTB').show();
+    }
 
 }
 
 function getContent(next) {
+
+    currentClient = $('.container').children().data('client');
     
     lenCurrent = vertical.length;
 
     if (next) {
-        if (currentImg == lenCurrent - 1) {
-            currentImg = 0;
-            $('.container').html(vertical[currentImg]);
+        if (currentImgV == lenCurrent - 1) {
+            currentImgV = 0;
+            $('.container').html(vertical[currentImgV]);
         } else {
-            currentImg += 1;
-            $('.container').html(vertical[currentImg]);
+            currentImgV += 1;
+            $('.container').html(vertical[currentImgV]);
         }
-        //console.log(currentImg);
-        //console.log(lenCurrent);
+        console.log(currentImgV);
+        console.log(lenCurrent);
     } else {
-        if (currentImg == 0) {
-            currentImg = lenCurrent - 1;
-            $('.container').html(vertical[currentImg]);
+        if (currentImgV == 0) {
+            currentImgV = lenCurrent - 1;
+            $('.container').html(vertical[currentImgV]);
         } else {
-            currentImg -= 1;
-            $('.container').html(vertical[currentImg]);
+            currentImgV -= 1;
+            $('.container').html(vertical[currentImgV]);
         }
-        //console.log(currentImg);
-        //console.log(lenCurrent);
+        console.log(currentImgV);
+        console.log(lenCurrent);
     }
 
+    currentImgH = 0;
+    currentType = $('.container').children().data('type');
+
+
     if (currentClient != $('.container').children().data('client')) {
+        horizontal = [];
         currentClient = $('.container').children().data('client');
-        $.each(contentGlobal, function(key) {
-            $.each(contentGlobal[key][currentClient]['block'], function(index, val) {
-                horizontal.push(val);
-                console.log(val);
-            });
+        horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][counterClient]);
+        $.each(contentGlobal[pageGlobal], function(key) {
+            if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
+                $.each(contentGlobal[pageGlobal][key][currentClient], function(index, val) {
+                    if (horizontal[0] != val) {
+                        horizontal.push(val);
+                        //console.log(contentGlobal[key][currentClient][0]);
+                    }
+                });
+            }
         });
+        counterClient = 0;
+    } else {
+        counterClient += 1;
+    }
+
+    if (horizontal.length == 1) {
+        $('.navLR').hide();
+    } else {
+        $('.navLR').show();
     }
 
 }

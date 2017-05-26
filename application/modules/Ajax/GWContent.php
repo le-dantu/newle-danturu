@@ -17,22 +17,22 @@ class GWContent
 {
     //Приватные поля
     private $fileName = '';
-    private $workType = '';
-    private $clients = '';
-    private $contentType = '';
+//    private $workType = '';
+//    private $clients = '';
+//    private $contentType = '';
     private $getDB = array();
     private $jsonEncode = array();
     private $debug= false;
     private $status = false;
-    private $workTypeA = array();
-    private $clientsA = array();
-    private $contentTypeA = array();
+//    private $workTypeA = array();
+//    private $clientsA = array();
+//    private $contentTypeA = array();
 
     //Публичные поля
     public $message = '';
 
     //Конструктор
-    public function __construct($contentJson, $workTypeJson, $clientsJson, $contentTypeJson, $debug = false) {
+    public function __construct($contentJson, $debug = false) { //$workTypeJson, $clientsJson, $contentTypeJson,
 
         $this->debug = $debug;
 
@@ -42,12 +42,12 @@ class GWContent
         $nc_core_db->init();
 
         $this->fileName = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentJson.".json";
-        $this->workType = $_SERVER['DOCUMENT_ROOT']."/modules/".$workTypeJson.".json";
-        $this->clients = $_SERVER['DOCUMENT_ROOT']."/modules/".$clientsJson.".json";
-        $this->contentType = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentTypeJson.".json";
+//        $this->workType = $_SERVER['DOCUMENT_ROOT']."/modules/".$workTypeJson.".json";
+//        $this->clients = $_SERVER['DOCUMENT_ROOT']."/modules/".$clientsJson.".json";
+//        $this->contentType = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentTypeJson.".json";
 
         try {
-            $nc_core_db->db->query("SELECT  typeEN, clientEN, content, animation, class, typeContent FROM Message113", ARRAY_A);
+            $nc_core_db->db->query("SELECT  typeEN, clientEN, content, animation, class, view, contentHTML, page FROM Message113 WHERE checked", ARRAY_A);
             $this->getDB = $nc_core_db->db->last_result;
             $this->status = true;
             $this->checkStatus('Запрос к базе');
@@ -60,17 +60,17 @@ class GWContent
         foreach ($this->getDB as $key => $param) {
             $link = array();
             //print_r($link);
-            if ($param['typeContent'] == 'block') {
+            if ($param['view'] == 'background') {
                 preg_match('#img\/lg\/.*#i', $param['content'], $link);
-                $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['block'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' style='background:url(/netcat_files/" . $link[0] . ")' data-client='".$param['clientEN']."' data-type='".$param['typeEN']."'></div>";
+                $jsonVal = $this->jsonEncode[$param['page']][$param['typeEN']][$param['clientEN']][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' style='background:url(/netcat_files/" . $link[0] . ")' data-client='".$param['clientEN']."' data-type='".$param['typeEN']."'></div>";
             }
-            else if ($param['typeContent'] == 'text') {
-                $jsonVal = $this->jsonEncode[$param['typeEN']][$param['clientEN']]['text'][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' data-client='".$param['clientEN']."' data-type='".$param['typeEN']."'>" . $param['content'] . "</div>";
+            else {
+                $jsonVal = $this->jsonEncode[$param['page']][$param['typeEN']][$param['clientEN']][] = "<div>" . $param['contentHTML'] . "</div>";
             }
 
-            $this->workTypeA[] = $param['typeEN'];
-            $this->clientsA[] = $param['clientEN'];
-            $this->contentTypeA[] = $param['typeContent'];
+//            $this->workTypeA[] = $param['typeEN'];
+//            $this->clientsA[] = $param['clientEN'];
+//            $this->contentTypeA[] = $param['typeContent'];
 
             $this->display_debug(array($jsonVal), $this->debug);
 
@@ -143,13 +143,13 @@ class GWContent
     }
 
     //Публичная функция добавления новго объекта
-    public function addObject($type='', $company='', $content='', $class='image', $classAnim='default', $typeContent='block') {
+    public function addObject($type='', $company='', $content='', $class='image', $classAnim='default', $view='background') {
 
-        if ($typeContent == 'block') {
-            $addVal = $this->jsonEncode[$type][$company][$typeContent][] = "<div class='".$class." ".$classAnim."' style='background:url(".$content.")' data-client='".$company."' data-type='".$type."'></div>";
+        if ($view == 'background') {
+            $addVal = $this->jsonEncode[$type][$company][] = "<div class='".$class." ".$classAnim."' style='background:url(".$content.")' data-client='".$company."' data-type='".$type."'></div>";
         }
-        else if ($typeContent == 'text') {
-            $addVal = $this->jsonEncode[$type][$company]['text'][] = "<div class='" . $class . " " . $classAnim . "' data-client='".$company."' data-type='".$type."'>" . $content . "</div>";
+        else  {
+            $addVal = $this->jsonEncode[$type][$company][] = "<div>" . $content . "</div>";
         }
 
         $this->display_debug(array($addVal), $this->debug);
@@ -162,17 +162,17 @@ class GWContent
     }
 
     //Публичная функция удаления объекта
-    public function removeObject($type='', $company='', $content='', $class='image', $classAnim='default', $typeContent='block') {
+    public function removeObject($type='', $company='', $content='', $class='image', $classAnim='default', $view='background') {
 
-        if ($typeContent == 'block') {
-            $tempKey = array_search("<div class='".$class." ".$classAnim."' style='background:url(".$content.")' data-client='".$company."' data-type='".$type."'></div>", $this->jsonEncode[$type][$company][$typeContent]);
+        if ($view == 'background') {
+            $tempKey = array_search("<div class='".$class." ".$classAnim."' style='background:url(".$content.")' data-client='".$company."' data-type='".$type."'></div>", $this->jsonEncode[$type][$company]);
             $this->display_debug(array($tempKey), $this->debug);
-            unset($this->jsonEncode[$type][$company][$typeContent][$tempKey]);
+            unset($this->jsonEncode[$type][$company][$tempKey]);
         }
-        else if ($typeContent == 'text') {
-            $tempKey = array_search("<div class='".$class." ".$classAnim."' data-client='".$type."' data-type='".$company."'>".$content."</div>", $this->jsonEncode[$type][$company]['text']);
+        else {
+            $tempKey = array_search("<div>".$content."</div>", $this->jsonEncode[$type][$company]);
             $this->display_debug(array($tempKey), $this->debug);
-            unset($this->jsonEncode[$type][$company]['text'][$tempKey]);
+            unset($this->jsonEncode[$type][$company][$tempKey]);
         }
 
         $this->status = true;
@@ -185,30 +185,30 @@ class GWContent
     public function writeFiles() {
 
         try {
-            $this->workTypeA = array_unique($this->workTypeA);
-            $this->clientsA = array_unique($this->clientsA);
-            $this->contentTypeA = array_unique($this->contentTypeA);
-
+//            $this->workTypeA = array_unique($this->workTypeA);
+//            $this->clientsA = array_unique($this->clientsA);
+//            $this->contentTypeA = array_unique($this->contentTypeA);
+//
             $this->jsonEncode = json_encode($this->jsonEncode, JSON_UNESCAPED_UNICODE);
-            $this->workTypeA = json_encode($this->workTypeA, JSON_UNESCAPED_UNICODE);
-            $this->clientsA = json_encode($this->clientsA, JSON_UNESCAPED_UNICODE);
-            $this->contentTypeA = json_encode($this->contentTypeA, JSON_UNESCAPED_UNICODE);
+//            $this->workTypeA = json_encode($this->workTypeA, JSON_UNESCAPED_UNICODE);
+//            $this->clientsA = json_encode($this->clientsA, JSON_UNESCAPED_UNICODE);
+//            $this->contentTypeA = json_encode($this->contentTypeA, JSON_UNESCAPED_UNICODE);
 
             $fileTemp = fopen($this->fileName, 'w');
             $this->status = fwrite($fileTemp, $this->jsonEncode);
             fclose($fileTemp);
 
-            $fileTemp = fopen($this->workType, 'w');
-            $this->status = fwrite($fileTemp, $this->workTypeA);
-            fclose($fileTemp);
-
-            $fileTemp = fopen($this->clients, 'w');
-            $this->status = fwrite($fileTemp, $this->clientsA);
-            fclose($fileTemp);
-
-            $fileTemp = fopen($this->contentType, 'w');
-            $this->status = fwrite($fileTemp, $this->contentTypeA);
-            fclose($fileTemp);
+//            $fileTemp = fopen($this->workType, 'w');
+//            $this->status = fwrite($fileTemp, $this->workTypeA);
+//            fclose($fileTemp);
+//
+//            $fileTemp = fopen($this->clients, 'w');
+//            $this->status = fwrite($fileTemp, $this->clientsA);
+//            fclose($fileTemp);
+//
+//            $fileTemp = fopen($this->contentType, 'w');
+//            $this->status = fwrite($fileTemp, $this->contentTypeA);
+//            fclose($fileTemp);
 
             $this->message = $this->checkStatus('Создание файлов', 'о');
         }
