@@ -22,6 +22,7 @@ var locCompany = false;
 var locType = false;
 var locKeyword = false;
 
+
 function isTouchDevice() {
     return 'ontouchstart'in document.documentElement;
 }

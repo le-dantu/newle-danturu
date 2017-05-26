@@ -1,6 +1,7 @@
 /**
  * Created by BreakPoint on 19.05.17.
  */
+
 function initFirstBlock(page, worktype, clients, keyword) {
 
     pageGlobal = page;
