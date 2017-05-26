@@ -1,19 +1,21 @@
 /**
  * Created by BreakPoint on 19.05.17.
  */
-function initFirstBlock(page, worktype, clients) {
+
+function initFirstBlock(page, worktype, clients, keyword) {
 
     pageGlobal = page;
 
-    if (pageGlobal != 'portfolio') {
-
-        $.each(contentGlobal[pageGlobal][worktype][clients], function(index, val) {
+    if (!(page || worktype || clients || keyword)) {
+        gridInit();
+        return false;
+    } else if (page && worktype && clients && !keyword) {
+        $.each(contentGlobal[pageGlobal][worktype][clients], function (index, val) {
             vertical.push(val);
             //console.log(data);
         });
-
-        $.each(contentGlobal[pageGlobal][worktype], function(key) {
-            $.each(contentGlobal[pageGlobal][worktype][key], function(index, val) {
+        $.each(contentGlobal[pageGlobal][worktype], function (key) {
+            $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
                 //console.log(key);
                 if (key != clients) {
                     vertical.push(val);
@@ -21,14 +23,41 @@ function initFirstBlock(page, worktype, clients) {
                 }
             });
         });
-
-        currentImgV = vertical.length - 1;
-        getContent(true);
-
+    } else if (page && worktype && !clients && !keyword) {
+        $.each(contentGlobal[pageGlobal][worktype], function (key) {
+            $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
+                vertical.push(val);
+                //console.log(val);
+            });
+        });
+    } else if (page && !worktype && !clients && !keyword) {
+        if ( page == 'portfolio') {
+            gridInit();
+            return false;
+        } else {
+            $.each(contentGlobal[pageGlobal][pageGlobal][pageGlobal], function (index, val) {
+                vertical.push(val);
+                //console.log(val);
+            });
+        }
+    } else if (page && worktype && clients && keyword) {
+        vertical.push(contentGlobal[pageGlobal][worktype][clients][keyword]);
+        $.each(contentGlobal[pageGlobal][worktype], function (key) {
+            $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
+                //console.log(key);
+                if (key != clients) {
+                    vertical.push(val);
+                    //console.log(val);
+                }
+            });
+        });
+    } else {
+        gridInit();
+        return false;
     }
-    else {
-        $('.container').html(contentGlobal[pageGlobal][worktype][clients]);
-    }
+
+    currentImgV = vertical.length - 1;
+    getContent(true);
 
 }
 
@@ -86,8 +115,6 @@ function changeType(next) {
 }
 
 function getContent(next) {
-
-    currentClient = $('.container').children().data('client');
     
     lenCurrent = vertical.length;
 

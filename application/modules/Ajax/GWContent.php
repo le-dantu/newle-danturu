@@ -47,7 +47,7 @@ class GWContent
 //        $this->contentType = $_SERVER['DOCUMENT_ROOT']."/modules/".$contentTypeJson.".json";
 
         try {
-            $nc_core_db->db->query("SELECT  typeEN, clientEN, content, animation, class, view, contentHTML, page FROM Message113 WHERE checked", ARRAY_A);
+            $nc_core_db->db->query("SELECT  typeEN, clientEN, content, animation, class, view, contentHTML, page, Keyword FROM Message113 WHERE checked", ARRAY_A);
             $this->getDB = $nc_core_db->db->last_result;
             $this->status = true;
             $this->checkStatus('Запрос к базе');
@@ -60,16 +60,26 @@ class GWContent
         foreach ($this->getDB as $key => $param) {
             $link = array();
             //print_r($link);
-            if ($param['view'] == 'background') {
-                preg_match('#img\/lg\/.*#i', $param['content'], $link);
-                $jsonVal = $this->jsonEncode[$param['page']][$param['typeEN']][$param['clientEN']][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' style='background:url(/netcat_files/" . $link[0] . ")' data-client='".$param['clientEN']."' data-type='".$param['typeEN']."'></div>";
-            }
-            else {
-                $jsonVal = $this->jsonEncode[$param['page']][$param['typeEN']][$param['clientEN']][] = "<div>" . $param['contentHTML'] . "</div>";
+            if (empty($param['Keyword'])) {
+                if ($param['view'] == 'background') {
+                    preg_match('#img\/lg\/.*#i', $param['content'], $link);
+                    $jsonVal = $this->jsonEncode[$param['page']][$param['typeEN']][strtolower(str_replace(' ', '-', $param['clientEN']))][] = "<div class='" . $param['class'] . " " . $param['animation'] . "' style='background:url(/netcat_files/" . $link[0] . ")' data-client='".strtolower(str_replace(' ', '-', $param['clientEN']))."' data-type='".$param['typeEN']."'></div>";
+                }
+                else {
+                    $jsonVal = $this->jsonEncode[$param['page']][$param['typeEN']][strtolower(str_replace(' ', '-', $param['clientEN']))][] = "<div data-client='".strtolower(str_replace(' ', '-', $param['clientEN']))."' data-type='".$param['typeEN']."'>" . $param['contentHTML'] . "</div>";
+                }
+            } else {
+                if ($param['view'] == 'background') {
+                    preg_match('#img\/lg\/.*#i', $param['content'], $link);
+                    $jsonVal = $this->jsonEncode[$param['page']][$param['typeEN']][strtolower(str_replace(' ', '-', $param['clientEN']))][$param['Keyword']] = "<div class='" . $param['class'] . " " . $param['animation'] . "' style='background:url(/netcat_files/" . $link[0] . ")' data-client='".strtolower(str_replace(' ', '-', $param['clientEN']))."' data-type='".$param['typeEN']."'></div>";
+                }
+                else {
+                    $jsonVal = $this->jsonEncode[$param['page']][$param['typeEN']][strtolower(str_replace(' ', '-', $param['clientEN']))][$param['Keyword']] = "<div data-client='".strtolower(str_replace(' ', '-', $param['clientEN']))."' data-type='".$param['typeEN']."'>" . $param['contentHTML'] . "</div>";
+                }
             }
 
 //            $this->workTypeA[] = $param['typeEN'];
-//            $this->clientsA[] = $param['clientEN'];
+//            $this->clientsA[] = strtolower(str_replace(' ', '-', $param['clientEN']));
 //            $this->contentTypeA[] = $param['typeContent'];
 
             $this->display_debug(array($jsonVal), $this->debug);
@@ -143,13 +153,13 @@ class GWContent
     }
 
     //Публичная функция добавления новго объекта
-    public function addObject($type='', $company='', $content='', $class='image', $classAnim='default', $view='background') {
+    public function addObject($keyword, $type='', $company='', $content='', $class='image', $classAnim='default', $view='background') {
 
         if ($view == 'background') {
-            $addVal = $this->jsonEncode[$type][$company][] = "<div class='".$class." ".$classAnim."' style='background:url(".$content.")' data-client='".$company."' data-type='".$type."'></div>";
+            $addVal = $this->jsonEncode[$type][$company][$keyword] = "<div class='".$class." ".$classAnim."' style='background:url(".$content.")' data-client='".$company."' data-type='".$type."'></div>";
         }
         else  {
-            $addVal = $this->jsonEncode[$type][$company][] = "<div>" . $content . "</div>";
+            $addVal = $this->jsonEncode[$type][$company][$keyword] = "<div data-client='".$company."' data-type='".$type."'>" . $content . "</div>";
         }
 
         $this->display_debug(array($addVal), $this->debug);
@@ -170,7 +180,7 @@ class GWContent
             unset($this->jsonEncode[$type][$company][$tempKey]);
         }
         else {
-            $tempKey = array_search("<div>".$content."</div>", $this->jsonEncode[$type][$company]);
+            $tempKey = array_search("<div data-client='".$company."' data-type='".$type."'>".$content."</div>", $this->jsonEncode[$type][$company]);
             $this->display_debug(array($tempKey), $this->debug);
             unset($this->jsonEncode[$type][$company][$tempKey]);
         }

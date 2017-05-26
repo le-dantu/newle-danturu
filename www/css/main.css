@@ -1,0 +1,111 @@
+.fullScreen {
+  margin: -8px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 10; }
+
+.contentWrap {
+  width: 100%;
+  height: 100%;
+  z-index: 1; }
+
+.gridWrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap; }
+  .gridWrap .gridItem {
+    width: 25%;
+    height: 33.33%; }
+  .gridWrap .gridItem:nth-child(even) {
+    background: #ccc; }
+  .gridWrap .gridItem:nth-child(odd) {
+    background: #eee; }
+
+.aboutBar {
+  width: 100%;
+  height: 70px;
+  z-index: 110; }
+
+.container {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute; }
+
+.image {
+  width: 100%;
+  height: 100%;
+  background-position: 50% 50% !important;
+  background-size: cover !important; }
+
+.navigationBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100; }
+  .navigationBar .navLR {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 101; }
+  .navigationBar .navTB {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 102; }
+    .navigationBar .navTB .left {
+      transform: rotate(90deg); }
+    .navigationBar .navTB .right {
+      transform: rotate(90deg); }
+
+button {
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  outline: 0; }
+
+svg {
+  padding: 5px; }
+
+.arrow {
+  cursor: pointer; }
+
+.left:hover polyline,
+.left:focus polyline {
+  stroke-width: 3; }
+
+.left:active polyline {
+  stroke-width: 6;
+  transition: all 100ms ease-in-out; }
+
+.right:hover polyline,
+.right:focus polyline {
+  stroke-width: 3; }
+
+.right:active polyline {
+  stroke-width: 6;
+  transition: all 100ms ease-in-out; }
+
+polyline {
+  transition: all 250ms ease-in-out; }
