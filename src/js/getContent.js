@@ -86,6 +86,8 @@ function initFirstBlock(page, worktype, clients, keyword) {
         try {
             if (contentGlobal[pageGlobal][worktype][clients][keyword] !== undefined) {
                 vertical.push(contentGlobal[pageGlobal][worktype][clients][keyword]);
+            } else {
+                window.history.pushState(locCompany + " | " + locType, locCompany + " | " + locType, "/portfolio/" + locCompany + "/" + locType);
             }
             if (contentGlobal[pageGlobal][worktype] === undefined) {
                 redirectNotFound();
@@ -94,6 +96,11 @@ function initFirstBlock(page, worktype, clients, keyword) {
             $.each(contentGlobal[pageGlobal][worktype], function (key) {
                 $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
                     //console.log(key);
+                    if (vertical.length == 0) {
+                        vertical.push(val);
+                        //console.log(val);
+                    }
+
                     if (vertical.length != 0 && val != vertical[0]) {
                         vertical.push(val);
                         //console.log(val);
@@ -162,6 +169,8 @@ function changeType(next) {
         counterType += 1;
     }
 
+    window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, pageGlobal + "/" + currentClient + "/" + currentType);
+
     if (vertical.length == 1) {
         $('.navTB').hide();
     } else {
@@ -219,6 +228,8 @@ function getContent(next) {
     } else {
         counterClient += 1;
     }
+
+    window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, pageGlobal + "/" + currentClient + "/" + currentType);
 
     if (horizontal.length == 1) {
         $('.navLR').hide();

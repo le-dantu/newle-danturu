@@ -42,11 +42,12 @@ function initScrollHandler() {
 
 function redirectNotFound() {
     $.ajax({
-        url: '404.php',
-        type: POST,
-        data:'404',
-        success: function(){
+        url: '/index.php',
+        type: 'POST',
+        data: {data : 'error', url : window.location.pathname},
+        success: function(data) {
             console.log('Страница не существует');
+            window.location.href = data;
         }
     });
 }
