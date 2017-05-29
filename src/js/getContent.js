@@ -53,10 +53,12 @@ function initFirstBlock(page, worktype, clients, keyword) {
             }
 
             currentImgH = horizontal.length - 1;
+            currentClient = clients;
             changeType(true);
             return false;
 
         } catch (err) {
+            console.log(err);
             redirectNotFound();
             return false;
         }
@@ -85,25 +87,31 @@ function initFirstBlock(page, worktype, clients, keyword) {
 
         try {
             if (contentGlobal[pageGlobal][worktype][clients][keyword] !== undefined) {
+                console.log("Верный ключ");
+                trueKey = true;
                 vertical.push(contentGlobal[pageGlobal][worktype][clients][keyword]);
             } else {
-                window.history.pushState(locCompany + " | " + locType, locCompany + " | " + locType, "/portfolio/" + locCompany + "/" + locType);
+                trueKey = false;
             }
             if (contentGlobal[pageGlobal][worktype] === undefined) {
                 redirectNotFound();
                 return false;
             }
+            $.each(contentGlobal[pageGlobal][worktype][clients], function (index, val) {
+                if (vertical.length == 0) {
+                    vertical.push(val);
+                    //console.log(val);
+                }
+                if (vertical.length != 0 && val != vertical[0]) {
+                    vertical.push(val);
+                    //console.log(val);
+                }
+            });
             $.each(contentGlobal[pageGlobal][worktype], function (key) {
                 $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
-                    //console.log(key);
-                    if (vertical.length == 0) {
+                    if (key != clients) {
+                        //console.log(key);
                         vertical.push(val);
-                        //console.log(val);
-                    }
-
-                    if (vertical.length != 0 && val != vertical[0]) {
-                        vertical.push(val);
-                        //console.log(val);
                     }
                 });
             });
@@ -169,7 +177,8 @@ function changeType(next) {
         counterType += 1;
     }
 
-    window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, pageGlobal + "/" + currentClient + "/" + currentType);
+    window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
+    document.title = currentClient + " | " + currentType;
 
     if (vertical.length == 1) {
         $('.navTB').hide();
@@ -229,7 +238,13 @@ function getContent(next) {
         counterClient += 1;
     }
 
-    window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, pageGlobal + "/" + currentClient + "/" + currentType);
+    if (trueKey) {
+        window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType + "/" + locKeyword);
+        document.title = currentClient + " | " + currentType;
+    } else {
+        window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
+        document.title = currentClient + " | " + currentType;
+    }
 
     if (horizontal.length == 1) {
         $('.navLR').hide();
