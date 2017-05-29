@@ -241,9 +241,12 @@ function getContent(next) {
     if (trueKey) {
         window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType + "/" + locKeyword);
         document.title = currentClient + " | " + currentType;
-    } else {
+    } else if (pageGlobal != currentType){
         window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
         document.title = currentClient + " | " + currentType;
+    } else {
+        window.history.pushState(currentType, currentType, "/" + pageGlobal);
+        document.title = currentType;
     }
 
     if (horizontal.length == 1) {
