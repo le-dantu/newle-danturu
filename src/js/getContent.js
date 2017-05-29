@@ -9,53 +9,107 @@ function initFirstBlock(page, worktype, clients, keyword) {
         gridInit();
         return false;
     } else if (page && worktype && clients && !keyword) {
-        $.each(contentGlobal[pageGlobal][worktype][clients], function (index, val) {
-            vertical.push(val);
-            //console.log(data);
-        });
-        $.each(contentGlobal[pageGlobal][worktype], function (key) {
-            $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
-                //console.log(key);
-                if (key != clients) {
-                    vertical.push(val);
-                    //console.log(val);
-                }
+
+        try {
+            if (contentGlobal[pageGlobal][worktype][clients] === undefined) {
+                redirectNotFound();
+                return false;
+            }
+
+            $.each(contentGlobal[pageGlobal][worktype][clients], function (index, val) {
+                vertical.push(val);
+                //console.log(data);
             });
-        });
+            $.each(contentGlobal[pageGlobal][worktype], function (key) {
+                $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
+                    //console.log(key);
+                    if (key != clients) {
+                        vertical.push(val);
+                        //console.log(val);
+                    }
+                });
+            });
+        } catch (err) {
+            redirectNotFound();
+            return false;
+        }
+
     } else if (page && !worktype && clients && !keyword) {
-        $.each(contentGlobal[pageGlobal], function (key) {
-            $.each(contentGlobal[pageGlobal][key][clients], function (index, val) {
-                horizontal.push(val);
-                //console.log(val);
+
+        try {
+
+            $.each(contentGlobal[pageGlobal], function (key) {
+                $.each(contentGlobal[pageGlobal][key][clients], function (index, val) {
+                    if (contentGlobal[pageGlobal][key][clients] !== undefined) {
+                        horizontal.push(val);
+                        //console.log(val);
+                    }
+                });
             });
-        });
-        currentImgH = horizontal.length - 1;
-        changeType(true);
-        return false;
+
+            if (horizontal.length == 0){
+                redirectNotFound();
+                return false;
+            }
+
+            currentImgH = horizontal.length - 1;
+            changeType(true);
+            return false;
+
+        } catch (err) {
+            redirectNotFound();
+            return false;
+        }
+
     } else if (page && !worktype && !clients && !keyword) {
+
         if ( page == 'portfolio') {
             gridInit();
             return false;
         } else {
-            $.each(contentGlobal[pageGlobal][pageGlobal][pageGlobal], function (index, val) {
-                vertical.push(val);
-                //console.log(val);
-            });
-        }
-    } else if (page && worktype && clients && keyword) {
-        vertical.push(contentGlobal[pageGlobal][worktype][clients][keyword]);
-        $.each(contentGlobal[pageGlobal][worktype], function (key) {
-            $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
-                //console.log(key);
-                if (key != clients) {
+            try {
+
+                $.each(contentGlobal[pageGlobal][pageGlobal][pageGlobal], function (index, val) {
                     vertical.push(val);
                     //console.log(val);
-                }
+                });
+
+            } catch (err) {
+                redirectNotFound();
+                return false;
+            }
+
+        }
+
+    } else if (page && worktype && clients && keyword) {
+
+        try {
+            if (contentGlobal[pageGlobal][worktype][clients][keyword] !== undefined) {
+                vertical.push(contentGlobal[pageGlobal][worktype][clients][keyword]);
+            }
+            if (contentGlobal[pageGlobal][worktype] === undefined) {
+                redirectNotFound();
+                return false;
+            }
+            $.each(contentGlobal[pageGlobal][worktype], function (key) {
+                $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
+                    //console.log(key);
+                    if (vertical.length != 0 && val != vertical[0]) {
+                        vertical.push(val);
+                        //console.log(val);
+                    }
+                });
             });
-        });
+        } catch (err) {
+            redirectNotFound();
+            return false;
+        }
+
     } else {
+
         gridInit();
         return false;
+
     }
 
     currentImgV = vertical.length - 1;

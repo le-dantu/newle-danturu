@@ -39,3 +39,14 @@ function initScrollHandler() {
     });
 
 }
+
+function redirectNotFound() {
+    $.ajax({
+        url: '404.php',
+        type: POST,
+        data:'404',
+        success: function(){
+            console.log('Страница не существует');
+        }
+    });
+}
