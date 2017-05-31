@@ -26,7 +26,7 @@ function clickArrow(direction) {
 }
 
 function initScrollHandler() {
-    var indicator = new WheelIndicator({
+    indicator = new WheelIndicator({
         callback: function(e){
             if (e.direction == 'down') {
                 clickArrow('bottom');
