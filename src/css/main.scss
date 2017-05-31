@@ -41,7 +41,6 @@ nav, .burger-nav {
 			transition: all linear 0.5s;
 			&:hover {
 				cursor: pointer;
-				transform: scale(1.1,1.1);
 			}
 		}
 	}
@@ -62,6 +61,7 @@ nav, .burger-nav {
 	justify-content: center;
 	flex-wrap: wrap;
 	.gridItem {
+		cursor: pointer;
 		width: 25%;
 		height: 33.33%;
 	}

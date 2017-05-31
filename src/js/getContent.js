@@ -128,7 +128,7 @@ function initFirstBlock(page, worktype, clients, keyword) {
     }
 
     currentImgV = vertical.length - 1;
-    getContent(true);
+    getContent(true, true);
 
 }
 
@@ -194,7 +194,8 @@ function changeType(next) {
 
 }
 
-function getContent(next) {
+function getContent(next, linksFlag) {
+    linksFlag = linksFlag ? linksFlag : false;
     
     lenCurrent = vertical.length;
 
@@ -243,15 +244,17 @@ function getContent(next) {
         counterClient += 1;
     }
 
-    if (trueKey) {
-        window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType + "/" + locKeyword);
-        document.title = currentClient + " | " + currentType;
-    } else if (pageGlobal != currentType){
-        window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
-        document.title = currentClient + " | " + currentType;
-    } else {
-        window.history.pushState(currentType, currentType, "/" + pageGlobal);
-        document.title = currentType;
+    if (!linksFlag) {
+        if (trueKey) {
+            window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType + "/" + locKeyword);
+            document.title = currentClient + " | " + currentType;
+        } else if (pageGlobal != currentType) {
+            window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
+            document.title = currentClient + " | " + currentType;
+        } else {
+            window.history.pushState(currentType, currentType, "/" + pageGlobal);
+            document.title = currentType;
+        }
     }
 
     if (horizontal.length == 1) {
