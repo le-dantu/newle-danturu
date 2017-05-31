@@ -186,6 +186,11 @@ function changeType(next) {
         $('.navTB').show();
     }
 
+    if (horizontal.length == 1) {
+        $('.navLR').hide();
+    } else {
+        $('.navLR').show();
+    }
 
 }
 
@@ -253,6 +258,12 @@ function getContent(next) {
         $('.navLR').hide();
     } else {
         $('.navLR').show();
+    }
+
+    if (vertical.length == 1) {
+        $('.navTB').hide();
+    } else {
+        $('.navTB').show();
     }
 
 }
