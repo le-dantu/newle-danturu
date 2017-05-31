@@ -22,7 +22,7 @@ var locCompany = false;
 var locType = false;
 var locKeyword = false;
 var trueKey = false;
-
+var indicator = 0;
 function isTouchDevice() {
     return 'ontouchstart'in document.documentElement;
 }

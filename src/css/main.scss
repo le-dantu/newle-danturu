@@ -1,8 +1,12 @@
 body {
 	font-size: 12pt;
 	font-family: sans-serif;
+	overflow: hidden;
 }
-
+html {
+	width: 100%;
+	height: 100%;
+}
 .fullScreen {
 	margin: -8px;
 	position: absolute;
@@ -10,6 +14,7 @@ body {
 	height: 100%;
 	overflow: hidden;
 	z-index: 10;
+
 }
 
 nav, .burger-nav {
@@ -84,44 +89,52 @@ nav, .burger-nav {
 }
 
 .navigationBar {
-	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: 100;
-
 	.navLR  {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		z-index: 101;
+		.left {
+		    cursor: pointer;
+		    display: block;
+		    float:left;
+		    position: absolute;
+		    top: 48.2%;
+		    left: 0;
+		    z-index: 1000;
+		}
+		.right {
+		    cursor:  pointer;
+		    display: block;
+		    float:   right;
+		    position: absolute;
+		    top: 48.2%;
+		    right: 0;
+		    z-index: 1000;
+		}
+
 	}
 
 	.navTB {
-		position: absolute;
-		top: 0;
-		left: 40%;
-		height: 100%;
-		width: 20%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
-		z-index: 102;
 
 		.left {
 			transform: rotate(90deg);
+			cursor: pointer;
+		    display: block;
+		    position: absolute;
+		    top: 0;
+		    left:48.2%;
+		    z-index: 1000;
 		}
 
 		.right {
+			cursor: pointer;
+		    display: block;
+		    position: absolute;
+		    bottom: 0;
+		    left:48.2%;
 			transform: rotate(90deg);
+			z-index: 1000;
 		}
 	}
 
