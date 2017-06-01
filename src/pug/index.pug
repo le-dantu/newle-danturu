@@ -22,10 +22,15 @@ html
                         .gridItem(data-type="design" class="image")
                         .gridItem(data-type="solutions" class="image")
             .aboutBar
+            .burgerDisplay
+                .burgerHeader
+                    .menuOne
+                    .menuTwo
+                    .menuThree
             nav
                 .logo(onclick="window.location.href = '/'")
                     img(src="/res/logo.svg")
-                .burger(onclick="UI.burger.trigger()")
+                .burger(onclick="$('.burgerDisplay').toggleClass('showBurger');")
                     img(src="/res/burger.svg")
             .navigationBar
                 .navLR

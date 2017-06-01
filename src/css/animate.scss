@@ -21,36 +21,19 @@
 }
 
 .header_show_start {
-        transition: all 500ms ease-in;
-        color: white;
-        position: absolute;
-        padding-top: 15%;
-        padding-left: 300%;
-        width: 100%;
-        text-align: center;
-        font-size: 10em;
-        height: 100%;
-        background: rgba(0,0,0,1);
-        top: 0;
-        z-index: 2000;
+    transition: all 500ms ease-in;
+    opacity: 0;
 }
 .header_show_end {
-        padding-left: 0;
-        background: rgba(0,0,0,0.6);
+    opacity: 1;
+    padding-left: 0;
+    background: rgba(0,0,0,0.6);
 }
 .subheader_show_start {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        display: block;
-        padding-top: 30%;
-        font-size: 8em;
-        text-align: center;
-        color: cadetblue;
-        z-index: 2000;
-        padding-right: 300%;
-        transition: all 500ms ease-in;
+    opacity: 0;
+    transition: all 500ms ease-in;
 }
 .subheader_show_end {
-        padding-right: 0;
+    opacity: 1;
+    padding-right: 0;
 }
