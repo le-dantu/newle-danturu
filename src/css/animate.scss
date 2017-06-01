@@ -21,19 +21,40 @@
 }
 
 .header_show_start {
-    transition: all 500ms ease-in;
-    opacity: 0;
+    transition: all 300ms ease-out;
+    padding-right: 15px;
 }
 .header_show_end {
     opacity: 1;
-    padding-left: 0;
-    background: rgba(0,0,0,0.6);
+    padding-right: 10px;
+    color: rgba(255,255,255,1);
 }
 .subheader_show_start {
-    opacity: 0;
-    transition: all 500ms ease-in;
+    padding-right: 15px;
+    transition: all 800ms ease-out;
 }
 .subheader_show_end {
     opacity: 1;
+    padding-right: 10px;
+}
+.header_hide_start {
+    padding-right: 5px;
+    transition: all 300ms ease-in;
+    opacity: 1;
+}
+.header_hide_end {
     padding-right: 0;
+    opacity: 0;
+}
+.subheader_hide_start {
+    padding-right: 5px;
+    opacity: 1;
+    transition: all 300ms ease-in;
+}
+.subheader_hide_end {
+    padding-right: 0;
+    opacity: 0;
+}
+.hideText {
+    display: none;
 }
