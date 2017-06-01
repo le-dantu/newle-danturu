@@ -198,7 +198,7 @@ function changeType(next, linksFlag) {
         } else {
             $('.navLR').show();
         }
-    }, 10);
+    }, animDuration + 30);
 
 }
 
@@ -285,6 +285,6 @@ function getContent(next, linksFlag) {
         } else {
             $('.navTB').show();
         }
-    }, 10);
+    }, animDuration + 30);
 
 }
