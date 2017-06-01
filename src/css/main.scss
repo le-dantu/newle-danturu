@@ -191,29 +191,31 @@ nav, .burger-nav {
 	}
 }
 .header {
-    color: white;
+    color: rgba(255,255,255, 0);
     position: absolute;
-    padding-top: 15%;
-    padding-left: 300%;
+    padding-top: 100px;
+    padding-right: 20px;
     width: 100%;
     text-align: center;
-    font-size: 10em;
+    font-size: 5em;
     height: 100%;
-    background: rgba(0,0,0,1);
     top: 0;
+    right: 0;
     z-index: 2000;
+    opacity: 0;
 }
 .subheader {
     position: absolute;
     width: 100%;
     top: 0;
-    display: block;
-    padding-top: 30%;
-    font-size: 8em;
+    padding-top: 250px;
+    font-size: 3em;
     text-align: center;
     color: cadetblue;
     z-index: 2000;
-    padding-right: 300%;
+    right: 0;
+    opacity: 0;
+    padding-right: 20px;
 }
 .burgerDisplay {
 	transition: all 500ms ease-out;
