@@ -138,135 +138,195 @@ function changeType(next) {
 
     if (next) {
         if (currentImgH == lenCurrent - 1) {
-            currentImgH = 0;
-            $('.container').html(horizontal[currentImgH]);
+            animate(getClassAnim(), 'hide');
+            setTimeout(function() {
+                currentImgH = 0;
+                changeSlide('H');
+            }, 750);
+            setTimeout(function() {
+                animate(getClassAnim(), 'show');
+            }, 1000);
         } else {
-            currentImgH += 1;
-            $('.container').html(horizontal[currentImgH]);
+            animate(getClassAnim(), 'hide');
+            setTimeout(function () {
+                currentImgH += 1;
+                changeSlide('H');
+            }, 750);
+            setTimeout(function () {
+                animate(getClassAnim(), 'show');
+            }, 1000);
         }
         //console.log(currentImg);
         //console.log(lenCurrent);
     } else {
         if (currentImgH == 0) {
-            currentImgH = lenCurrent - 1;
-            $('.container').html(horizontal[currentImgH]);
+            animate(getClassAnim(), 'hide');
+            setTimeout(function() {
+                currentImgH = lenCurrent - 1;
+                changeSlide('H');
+            }, 750);
+            setTimeout(function() {
+                animate(getClassAnim(), 'show');
+            }, 1000);
         } else {
-            currentImgH -= 1;
-            $('.container').html(horizontal[currentImgH]);
+            animate(getClassAnim(), 'hide');
+            setTimeout(function() {
+                currentImgH -= 1;
+                changeSlide('H');
+            }, 750);
+            setTimeout(function() {
+                animate(getClassAnim(), 'show');
+            }, 1000);
         }
         //console.log(currentImg);
         //console.log(lenCurrent);
-    }
-
-    currentImgV = 0;
-
-    if (currentType != $('.container').children().data('type')) {
-        vertical = [];
-        currentType = $('.container').children().data('type');
-        vertical.push(contentGlobal[pageGlobal][currentType][currentClient][counterType]);
-        $.each(contentGlobal[pageGlobal][currentType], function (key) {
-            $.each(contentGlobal[pageGlobal][currentType][key], function (index, val) {
-                if (vertical[0] != val) {
-                    vertical.push(val);
-                }
-                //console.log(val);
-            });
-        });
-        counterType = 0;
-    } else {
-        counterType += 1;
-    }
-
-    window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
-    document.title = currentClient + " | " + currentType;
-
-    if (vertical.length == 1) {
-        $('.navTB').hide();
-    } else {
-        $('.navTB').show();
-    }
-
-    if (horizontal.length == 1) {
-        $('.navLR').hide();
-    } else {
-        $('.navLR').show();
     }
 
 }
 
 function getContent(next, linksFlag) {
     linksFlag = linksFlag ? linksFlag : false;
+    globalLinksFlag = linksFlag;
     
     lenCurrent = vertical.length;
 
     if (next) {
         if (currentImgV == lenCurrent - 1) {
-            currentImgV = 0;
-            $('.container').html(vertical[currentImgV]);
+            animate(getClassAnim(), 'hide');
+            setTimeout(function() {
+                currentImgV = 0;
+                changeSlide('V');
+            }, 750);
+            setTimeout(function() {
+                animate(getClassAnim(), 'show');
+            }, 1000);
         } else {
-            currentImgV += 1;
-            $('.container').html(vertical[currentImgV]);
+            animate(getClassAnim(), 'hide');
+            setTimeout(function() {
+                currentImgV += 1;
+                changeSlide('V');
+            }, 750);
+            setTimeout(function() {
+                animate(getClassAnim(), 'show');
+            }, 1000);
         }
-        console.log(currentImgV);
-        console.log(lenCurrent);
+        //console.log(currentImgV);
+        //console.log(lenCurrent);
     } else {
         if (currentImgV == 0) {
-            currentImgV = lenCurrent - 1;
-            $('.container').html(vertical[currentImgV]);
+            animate(getClassAnim(), 'hide');
+            setTimeout(function() {
+                currentImgV = lenCurrent - 1;
+                changeSlide('V');
+            }, 750);
+            setTimeout(function() {
+                animate(getClassAnim(), 'show');
+            }, 1000);
         } else {
-            currentImgV -= 1;
-            $('.container').html(vertical[currentImgV]);
+            animate(getClassAnim(), 'hide');
+            setTimeout(function() {
+                currentImgV -= 1;
+                changeSlide('V');
+            }, 750);
+            setTimeout(function() {
+                animate(getClassAnim(), 'show');
+            }, 1000);
         }
-        console.log(currentImgV);
-        console.log(lenCurrent);
+        //console.log(currentImgV);
+        //console.log(lenCurrent);
     }
 
-    currentImgH = 0;
-    currentType = $('.container').children().data('type');
+}
 
+function changeSlide(direction) {
+    if (direction == 'V') {
 
-    if (currentClient != $('.container').children().data('client')) {
-        horizontal = [];
-        currentClient = $('.container').children().data('client');
-        horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][counterClient]);
-        $.each(contentGlobal[pageGlobal], function(key) {
-            if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
-                $.each(contentGlobal[pageGlobal][key][currentClient], function(index, val) {
-                    if (horizontal[0] != val) {
-                        horizontal.push(val);
-                        //console.log(contentGlobal[key][currentClient][0]);
-                    }
-                });
+        $('.container').html(vertical[currentImgV]);
+        currentImgH = 0;
+        currentType = $('.container').children().data('type');
+
+        if (currentClient != $('.container').children().data('client')) {
+            horizontal = [];
+            currentClient = $('.container').children().data('client');
+            horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][counterClient]);
+            $.each(contentGlobal[pageGlobal], function(key) {
+                if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
+                    $.each(contentGlobal[pageGlobal][key][currentClient], function(index, val) {
+                        if (horizontal[0] != val) {
+                            horizontal.push(val);
+                            //console.log(contentGlobal[key][currentClient][0]);
+                        }
+                    });
+                }
+            });
+            counterClient = 0;
+        } else {
+            counterClient += 1;
+        }
+
+        if (!globalLinksFlag) {
+            if (trueKey) {
+                window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType + "/" + locKeyword);
+                document.title = currentClient + " | " + currentType;
+            } else if (pageGlobal != currentType) {
+                window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
+                document.title = currentClient + " | " + currentType;
+            } else {
+                window.history.pushState(currentType, currentType, "/" + pageGlobal);
+                document.title = currentType;
             }
-        });
-        counterClient = 0;
-    } else {
-        counterClient += 1;
-    }
-
-    if (!linksFlag) {
-        if (trueKey) {
-            window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType + "/" + locKeyword);
-            document.title = currentClient + " | " + currentType;
-        } else if (pageGlobal != currentType) {
-            window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
-            document.title = currentClient + " | " + currentType;
-        } else {
-            window.history.pushState(currentType, currentType, "/" + pageGlobal);
-            document.title = currentType;
         }
-    }
 
-    if (horizontal.length == 1) {
-        $('.navLR').hide();
-    } else {
-        $('.navLR').show();
-    }
+        if (horizontal.length == 1) {
+            $('.navLR').hide();
+        } else {
+            $('.navLR').show();
+        }
 
-    if (vertical.length == 1) {
-        $('.navTB').hide();
+        if (vertical.length == 1) {
+            $('.navTB').hide();
+        } else {
+            $('.navTB').show();
+        }
+
+    } else if (direction == 'H') {
+
+        $('.container').html(horizontal[currentImgH]);
+        currentImgV = 0;
+        if (currentType != $('.container').children().data('type')) {
+            vertical = [];
+            currentType = $('.container').children().data('type');
+            vertical.push(contentGlobal[pageGlobal][currentType][currentClient][counterType]);
+            $.each(contentGlobal[pageGlobal][currentType], function (key) {
+                $.each(contentGlobal[pageGlobal][currentType][key], function (index, val) {
+                    if (vertical[0] != val) {
+                        vertical.push(val);
+                    }
+                    //console.log(val);
+                });
+            });
+            counterType = 0;
+        } else {
+            counterType += 1;
+        }
+
+        window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
+        document.title = currentClient + " | " + currentType;
+
+        if (vertical.length == 1) {
+            $('.navTB').hide();
+        } else {
+            $('.navTB').show();
+        }
+
+        if (horizontal.length == 1) {
+            $('.navLR').hide();
+        } else {
+            $('.navLR').show();
+        }
+
     } else {
-        $('.navTB').show();
+        javascript:void(0);
     }
 
 }

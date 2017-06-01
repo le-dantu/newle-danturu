@@ -11,7 +11,7 @@ function cleanArray(actual) {
   return newArray;
 }
 
-locationUrl = window.location.pathname.split("/");
+locationUrl = window.location.pathname.toLowerCase().split("/");
 locationUrl = cleanArray(locationUrl);
 
 if (locationUrl.length == 1) {
@@ -62,3 +62,19 @@ $(document).ready(function(){
     sendRecive(contentGlobal); //, workTypeGlobal, clientsGlobal, contentTypeGlobal
 
 });
+
+window.onload = function() {
+    window.setTimeout(
+        function()
+        {
+            window.addEventListener(
+                "popstate",
+                function(e) {
+                    backState();
+                    e.preventDefault();
+                },
+                false
+            );
+        },
+    1);
+};

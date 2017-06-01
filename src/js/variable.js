@@ -16,13 +16,16 @@ var currentType = 0;
 var currentClient = 0;
 var counterClient = 0;
 var counterType = 0;
-var locationUrl = false;
+//var locationUrl = false;
 var locPage = false;
 var locCompany = false;
 var locType = false;
 var locKeyword = false;
 var trueKey = false;
 var indicator = 0;
+var globalLinksFlag = false;
+var animDuration = 0;
+
 function isTouchDevice() {
     return 'ontouchstart'in document.documentElement;
 }
