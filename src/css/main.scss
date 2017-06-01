@@ -5,6 +5,7 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
+	background:-webkit-linear-gradient(#3c3058 11.26%, #e849ce 100%);
 }
 
 html {
@@ -138,19 +139,23 @@ nav, .burger-nav {
 		.left {
 			z-index: 1000;
 			top: 0;
-			transform: rotate(90deg);
 			width: 100%;
 			position: absolute;
 			display: block;
+			svg {
+				transform: rotate(90deg);
+			}
 		}
 
 		.right {
 			z-index: 1000;
 			bottom: 0;
-			transform: rotate(90deg);
 			width: 100%;
 			position: absolute;
 			display: block;
+			svg {
+				transform: rotate(90deg);
+			}
 		}
 	}
 

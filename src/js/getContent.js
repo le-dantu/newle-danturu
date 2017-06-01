@@ -54,7 +54,7 @@ function initFirstBlock(page, worktype, clients, keyword) {
 
             currentImgH = horizontal.length - 1;
             currentClient = clients;
-            changeType(true);
+            changeType(true, true);
             return false;
 
         } catch (err) {
@@ -132,126 +132,117 @@ function initFirstBlock(page, worktype, clients, keyword) {
 
 }
 
-function changeType(next) {
+function changeType(next, linksFlag) {
+    linksFlag = linksFlag ? linksFlag : false;
+    globalLinksFlag = linksFlag;
 
     lenCurrent = horizontal.length;
 
     if (next) {
         if (currentImgH == lenCurrent - 1) {
-            animate(getClassAnim(), 'hide');
-            setTimeout(function() {
-                currentImgH = 0;
-                changeSlide('H');
-            }, 750);
-            setTimeout(function() {
-                animate(getClassAnim(), 'show');
-            }, 1000);
+            currentImgH = 0;
+            animation('H');
         } else {
-            animate(getClassAnim(), 'hide');
-            setTimeout(function () {
-                currentImgH += 1;
-                changeSlide('H');
-            }, 750);
-            setTimeout(function () {
-                animate(getClassAnim(), 'show');
-            }, 1000);
+            currentImgH += 1;
+            animation('H');
         }
-        //console.log(currentImg);
-        //console.log(lenCurrent);
+        console.log(currentImgH);
+        console.log(lenCurrent);
     } else {
         if (currentImgH == 0) {
-            animate(getClassAnim(), 'hide');
-            setTimeout(function() {
-                currentImgH = lenCurrent - 1;
-                changeSlide('H');
-            }, 750);
-            setTimeout(function() {
-                animate(getClassAnim(), 'show');
-            }, 1000);
+            currentImgH = lenCurrent - 1;
+            animation('H');
         } else {
-            animate(getClassAnim(), 'hide');
-            setTimeout(function() {
-                currentImgH -= 1;
-                changeSlide('H');
-            }, 750);
-            setTimeout(function() {
-                animate(getClassAnim(), 'show');
-            }, 1000);
+            currentImgH -= 1;
+            animation('H');
         }
-        //console.log(currentImg);
-        //console.log(lenCurrent);
+        console.log(currentImgH);
+        console.log(lenCurrent);
     }
+
+    setTimeout(function() {
+
+        currentImgV = 0;
+
+        if (currentType != $('.container').children().data('type')) {
+            vertical = [];
+            currentType = $('.container').children().data('type');
+            vertical.push(contentGlobal[pageGlobal][currentType][currentClient][counterType]);
+            $.each(contentGlobal[pageGlobal][currentType], function (key) {
+                $.each(contentGlobal[pageGlobal][currentType][key], function (index, val) {
+                    if (vertical[0] != val) {
+                        vertical.push(val);
+                    }
+                    //console.log(val);
+                });
+            });
+            counterType = 0;
+        } else {
+            counterType += 1;
+        }
+
+        if (!linksFlag) {
+            window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
+        }
+
+        document.title = currentClient + " | " + currentType;
+
+        if (vertical.length == 1) {
+            $('.navTB').hide();
+        } else {
+            $('.navTB').show();
+        }
+
+        if (horizontal.length == 1) {
+            $('.navLR').hide();
+        } else {
+            $('.navLR').show();
+        }
+    }, 10);
 
 }
 
 function getContent(next, linksFlag) {
     linksFlag = linksFlag ? linksFlag : false;
     globalLinksFlag = linksFlag;
-    
+
     lenCurrent = vertical.length;
 
     if (next) {
         if (currentImgV == lenCurrent - 1) {
-            animate(getClassAnim(), 'hide');
-            setTimeout(function() {
-                currentImgV = 0;
-                changeSlide('V');
-            }, 750);
-            setTimeout(function() {
-                animate(getClassAnim(), 'show');
-            }, 1000);
+            currentImgV = 0;
+            animation('V');
         } else {
-            animate(getClassAnim(), 'hide');
-            setTimeout(function() {
-                currentImgV += 1;
-                changeSlide('V');
-            }, 750);
-            setTimeout(function() {
-                animate(getClassAnim(), 'show');
-            }, 1000);
+            currentImgV += 1;
+            animation('V');
         }
         //console.log(currentImgV);
         //console.log(lenCurrent);
     } else {
         if (currentImgV == 0) {
-            animate(getClassAnim(), 'hide');
-            setTimeout(function() {
-                currentImgV = lenCurrent - 1;
-                changeSlide('V');
-            }, 750);
-            setTimeout(function() {
-                animate(getClassAnim(), 'show');
-            }, 1000);
+            currentImgV = lenCurrent - 1;
+            animation('V');
         } else {
-            animate(getClassAnim(), 'hide');
-            setTimeout(function() {
-                currentImgV -= 1;
-                changeSlide('V');
-            }, 750);
-            setTimeout(function() {
-                animate(getClassAnim(), 'show');
-            }, 1000);
+            currentImgV -= 1;
+            animation('V');
         }
         //console.log(currentImgV);
         //console.log(lenCurrent);
     }
 
-}
+    setTimeout(function() {
 
-function changeSlide(direction) {
-    if (direction == 'V') {
-
-        $('.container').html(vertical[currentImgV]);
         currentImgH = 0;
         currentType = $('.container').children().data('type');
+
 
         if (currentClient != $('.container').children().data('client')) {
             horizontal = [];
             currentClient = $('.container').children().data('client');
             horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][counterClient]);
-            $.each(contentGlobal[pageGlobal], function(key) {
+            $.each(contentGlobal[pageGlobal], function (key) {
                 if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
-                    $.each(contentGlobal[pageGlobal][key][currentClient], function(index, val) {
+                    $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
                         if (horizontal[0] != val) {
                             horizontal.push(val);
                             //console.log(contentGlobal[key][currentClient][0]);
@@ -264,11 +255,17 @@ function changeSlide(direction) {
             counterClient += 1;
         }
 
-        if (!globalLinksFlag) {
+        if (linksFlag) {
             if (trueKey) {
-                window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType + "/" + locKeyword);
                 document.title = currentClient + " | " + currentType;
+                trueKey = false;
             } else if (pageGlobal != currentType) {
+                document.title = currentClient + " | " + currentType;
+            } else {
+                document.title = currentType;
+            }
+        } else {
+            if (pageGlobal != currentType) {
                 window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
                 document.title = currentClient + " | " + currentType;
             } else {
@@ -288,45 +285,6 @@ function changeSlide(direction) {
         } else {
             $('.navTB').show();
         }
-
-    } else if (direction == 'H') {
-
-        $('.container').html(horizontal[currentImgH]);
-        currentImgV = 0;
-        if (currentType != $('.container').children().data('type')) {
-            vertical = [];
-            currentType = $('.container').children().data('type');
-            vertical.push(contentGlobal[pageGlobal][currentType][currentClient][counterType]);
-            $.each(contentGlobal[pageGlobal][currentType], function (key) {
-                $.each(contentGlobal[pageGlobal][currentType][key], function (index, val) {
-                    if (vertical[0] != val) {
-                        vertical.push(val);
-                    }
-                    //console.log(val);
-                });
-            });
-            counterType = 0;
-        } else {
-            counterType += 1;
-        }
-
-        window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
-        document.title = currentClient + " | " + currentType;
-
-        if (vertical.length == 1) {
-            $('.navTB').hide();
-        } else {
-            $('.navTB').show();
-        }
-
-        if (horizontal.length == 1) {
-            $('.navLR').hide();
-        } else {
-            $('.navLR').show();
-        }
-
-    } else {
-        javascript:void(0);
-    }
+    }, 10);
 
 }
