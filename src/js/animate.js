@@ -52,12 +52,13 @@ function animation(direction) {
         $("." + classAnimSubheader + "_show_start").addClass(classAnimSubheader + "_show_end");
 
 
-        animDuration += 1500;
+        animDuration -= 200;
 
         setTimeout(function(){
-            setTimeout(function(){
-                $("." + classAnim + "_show_start").addClass(classAnim + "_show_end");
-            }, 500);
+            $("." + classAnim + "_show_start").addClass(classAnim + "_show_end");
+        }, 200);
+
+        setTimeout(function(){
             $("." + classAnimHeader + "_show_end").addClass(classAnimHeader + '_hide_start');
             $("." + classAnimHeader + "_show_end").removeClass(classAnimHeader + "_show_start");
             $("." + classAnimHeader + "_hide_start").removeClass(classAnimHeader + "_show_end");
