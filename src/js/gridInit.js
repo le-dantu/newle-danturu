@@ -8,7 +8,7 @@ function gridInit() {
 		ad = ad[0].replace(/\(/,"");
 		ad = ad.replace(/lg/,"sm");
 		ad = ad.replace(/lg\.png/,"sm\.jpg");
-		$(this).attr("style", "background: url(http://le-dantu\.ru"+ad);
+		$(this).attr("style", "background: url("+ad);
 		$(this).attr('onclick', "window.location.href = '/portfolio/" + first(contentGlobal['portfolio'][$(this).data('type')]) + "/" + $(this).data('type') + "/'");
 	});
     $('.navLR').hide();
