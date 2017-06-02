@@ -56,7 +56,7 @@ function animation(direction) {
 
         setTimeout(function(){
             $("." + classAnim + "_show_start").addClass(classAnim + "_show_end");
-        }, 200);
+        }, 700);
 
         setTimeout(function(){
             $("." + classAnimHeader + "_show_end").addClass(classAnimHeader + '_hide_start');
