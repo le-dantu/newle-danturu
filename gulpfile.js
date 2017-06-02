@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var pug = require('gulp-pug');
+var minify = require('gulp-minify');
+
 var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function(){
@@ -31,6 +33,19 @@ gulp.task('js', function() {
   .pipe(gulp.dest('www/js'))
 });
 
+gulp.task('compress', function() {
+  gulp.src('src/js/*.js')
+    .pipe(minify({
+        ext:{
+            src:'.js',
+            min:'.min.js'
+        },
+        exclude: ['tasks'],
+        ignoreFiles: ['.combo.js', '-min.js']
+    }))
+    .pipe(gulp.dest('dist'))
+});
+
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
@@ -48,7 +63,7 @@ gulp.task('browserSync', function() {
     
   })
 })
-
+gulp.task('default', ['compress']);
 gulp.task('watch', ['sass', 'pug', 'media', 'js', 'browserSync'], function (){
   gulp.watch('src/css/*.scss', ['sass']);
   gulp.watch('src/pug/**/*.pug', ['pug']);
