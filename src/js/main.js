@@ -17,18 +17,18 @@ locationUrl = cleanArray(locationUrl);
 if (locationUrl.length == 1) {
     locPage = locationUrl[0];
     locCompany = false;
-    locType = false;
+    locType = locationUrl[0] != 'portfolio' ? locationUrl[0] : false;
     locKeyword = false;
-} else if (locationUrl.length == 2){
+} else if (locationUrl.length == 2) {
     locPage = locationUrl[0];
-    locCompany = locationUrl[1];
-    locType = false;
+    locCompany = locationUrl[0] != 'portfolio' ? locationUrl[1] : locationUrl[1];
+    locType = locationUrl[0] != 'portfolio' ? locationUrl[0] : false;
     locKeyword = false;
-} else if (locationUrl.length == 3){
+} else if (locationUrl.length == 3) {
     locPage = locationUrl[0];
-    locCompany = locationUrl[1];
-    locType = locationUrl[2];
-    locKeyword = false;
+    locCompany = locationUrl[0] != 'portfolio' ? locationUrl[1] : locationUrl[1];
+    locType = locationUrl[0] != 'portfolio' ? locationUrl[0] : locationUrl[2];
+    locKeyword = locationUrl[0] != 'portfolio' ? locationUrl[2] : false;
 } else if (locationUrl.length == 4) {
     locPage = locationUrl[0];
     locCompany = locationUrl[1];

@@ -40,11 +40,12 @@ function initScrollHandler() {
 
 }
 
-function redirectNotFound() {
+function redirectNotFound(err) {
+    err = err ? JSON.stringify(err) : '';
     $.ajax({
         url: '/index.php',
         type: 'POST',
-        data: {data : 'error', url : window.location.pathname},
+        data: {data : 'error', url : window.location.pathname, error : err},
         success: function(data) {
             console.log('Страница не существует');
             window.location.href = data;

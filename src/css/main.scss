@@ -172,6 +172,25 @@ nav, .burger-nav {
 
 }
 
+.burgerMenu {
+	position: absolute;
+	top: 0;
+	right: -100%;
+	padding: 2em;
+	background: #333;
+	color: #eee;
+	font-weight: 700;
+	z-index: 2048;
+	width: 25%;
+	height: calc(100% - 4em);
+	transition: all linear 0.5s;
+	ul {
+		z-index: 2049;
+		list-style: none outside;
+		font-size: 36pt;
+	}
+}
+
 .header {
     color: rgba(255,255,255, 0);
     position: absolute;
@@ -201,31 +220,91 @@ nav, .burger-nav {
 }
 
 .burgerDisplay {
+	display: none;
 	transition: all 500ms ease-out;
+
 	.menuOne {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		align-content: center;
 		position: absolute;
-		top: 0;
+		top: 20%;
 		left: 0;
 		width: 100%;
-		display: block;
-		height: 50%;
+		height: 20%;
+
+		ul.columnOne {
+			position: absolute;
+			left: 0;
+			margin-left: 150%;
+			opacity: 0;
+		}
+
+		ul.columnTwo {
+			position: absolute;
+			padding-top: 1.5em;
+			padding-bottom: 1.5em;
+			right: 0;
+			margin-right: 150%;
+			opacity: 0;
+		}
 	}
+
 	.menuTwo {
 		position: absolute;
 		width: 60%;
-		top: 50%;
+		top: 40%;
 		left: 0;
-		display: block;
-		height: 50%;
+		height: 60%;
 	}
+
 	.menuThree {
 		position: absolute;
 		width: 40%;
-		top: 50%;
+		top: 40%;
 		right: 0;
-		display: block;
-		height: 50%;
+		height: 60%;
 	}
+
+	ul {
+		display: inline-block;
+		line-height: 1.5em;
+
+		li {
+			margin-top: 0.75em;
+			margin-bottom: 0.75em;
+		}
+
+	}
+}
+
+.showBurger {
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	color: #ccc;
+	z-index: 3000;
+	position: absolute;
+	background: rgba(0,0,0,0.8);
+	//transition: all 500ms ease-in;
+
+	.menuOne {
+
+		ul.columnOne {
+			margin-left: 20%;
+			opacity: 1;
+		}
+
+		ul.columnTwo {
+			margin-right: 20%;
+			opacity: 1;
+		}
+	}
+
 }
 
 @import "arrow";

@@ -30,7 +30,7 @@ function initFirstBlock(page, worktype, clients, keyword) {
                 });
             });
         } catch (err) {
-            redirectNotFound();
+            redirectNotFound(err);
             return false;
         }
 
@@ -58,8 +58,26 @@ function initFirstBlock(page, worktype, clients, keyword) {
             return false;
 
         } catch (err) {
-            console.log(err);
-            redirectNotFound();
+            redirectNotFound(err);
+            return false;
+        }
+
+    } else if (page && worktype && !clients && !keyword) {
+
+        try {
+
+            $.each(contentGlobal[pageGlobal][worktype], function (key) {
+                $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
+                    //console.log(key);
+                    if (val !== undefined) {
+                        vertical.push(val);
+                        //console.log(val);
+                    }
+                });
+            });
+
+        } catch (err) {
+            redirectNotFound(err);
             return false;
         }
 
@@ -71,13 +89,15 @@ function initFirstBlock(page, worktype, clients, keyword) {
         } else {
             try {
 
-                $.each(contentGlobal[pageGlobal][pageGlobal][pageGlobal], function (index, val) {
-                    vertical.push(val);
-                    //console.log(val);
+                $.each(contentGlobal[pageGlobal][pageGlobal], function (key, data) {
+                    $.each(contentGlobal[pageGlobal][pageGlobal][key], function (index, val) {
+                        vertical.push(val);
+                        //console.log(val);
+                    });
                 });
 
             } catch (err) {
-                redirectNotFound();
+                redirectNotFound(err);
                 return false;
             }
 
@@ -116,7 +136,7 @@ function initFirstBlock(page, worktype, clients, keyword) {
                 });
             });
         } catch (err) {
-            redirectNotFound();
+            redirectNotFound(err);
             return false;
         }
 
@@ -146,8 +166,8 @@ function changeType(next, linksFlag) {
             currentImgH += 1;
             animation('H');
         }
-        console.log(currentImgH);
-        console.log(lenCurrent);
+        //console.log(currentImgH);
+        //console.log(lenCurrent);
     } else {
         if (currentImgH == 0) {
             currentImgH = lenCurrent - 1;
@@ -156,8 +176,8 @@ function changeType(next, linksFlag) {
             currentImgH -= 1;
             animation('H');
         }
-        console.log(currentImgH);
-        console.log(lenCurrent);
+        //console.log(currentImgH);
+        //console.log(lenCurrent);
     }
 
     setTimeout(function() {
@@ -166,8 +186,13 @@ function changeType(next, linksFlag) {
 
         if (currentType != $('.container').children().data('type')) {
             vertical = [];
+            counterType = 0;
             currentType = $('.container').children().data('type');
-            vertical.push(contentGlobal[pageGlobal][currentType][currentClient][counterType]);
+            var index = [];
+            $.each(contentGlobal[pageGlobal][currentType][currentClient], function (key) {
+                index.push(key);
+            });
+            vertical.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterType]]);
             $.each(contentGlobal[pageGlobal][currentType], function (key) {
                 $.each(contentGlobal[pageGlobal][currentType][key], function (index, val) {
                     if (vertical[0] != val) {
@@ -176,9 +201,23 @@ function changeType(next, linksFlag) {
                     //console.log(val);
                 });
             });
-            counterType = 0;
         } else {
+            vertical = [];
             counterType += 1;
+            var index = [];
+            currentType = $('.container').children().data('type');
+            $.each(contentGlobal[pageGlobal][currentType][currentClient], function (key) {
+                index.push(key);
+            });
+            vertical.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterType]]);
+            $.each(contentGlobal[pageGlobal][currentType], function (key) {
+                $.each(contentGlobal[pageGlobal][currentType][key], function (index, val) {
+                    if (vertical[0] != val) {
+                        vertical.push(val);
+                    }
+                    //console.log(val);
+                });
+            });
         }
 
         if (!linksFlag) {
@@ -187,18 +226,26 @@ function changeType(next, linksFlag) {
 
         document.title = currentClient + " | " + currentType;
 
-        if (vertical.length == 1) {
+        if (vertical.length <= 1) {
+            indicator.turnOff();
             $('.navTB').hide();
         } else {
+            indicator.turnOn();
             $('.navTB').show();
         }
 
-        if (horizontal.length == 1) {
+        if (horizontal.length <= 1) {
             $('.navLR').hide();
         } else {
             $('.navLR').show();
         }
+
+        console.log(vertical);
+        console.log(horizontal);
+
     }, animDuration + 30);
+
+
 
 }
 
@@ -235,11 +282,19 @@ function getContent(next, linksFlag) {
         currentImgH = 0;
         currentType = $('.container').children().data('type');
 
-
         if (currentClient != $('.container').children().data('client')) {
             horizontal = [];
+            var index = [];
+            counterClient = 0;
             currentClient = $('.container').children().data('client');
-            horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][counterClient]);
+            $.each(contentGlobal[pageGlobal][currentType][currentClient], function (key) {
+                index.push(key);
+            });
+            horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterClient]]);
+            console.log(pageGlobal);
+            console.log(currentType);
+            console.log(currentClient);
+            console.log(counterClient);
             $.each(contentGlobal[pageGlobal], function (key) {
                 if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
                     $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
@@ -250,9 +305,30 @@ function getContent(next, linksFlag) {
                     });
                 }
             });
-            counterClient = 0;
         } else {
             counterClient += 1;
+            horizontal = [];
+            var index = [];
+            counterClient = 0;
+            currentClient = $('.container').children().data('client');
+            $.each(contentGlobal[pageGlobal][currentType][currentClient], function (key) {
+                index.push(key);
+            });
+            horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterClient]]);
+            console.log(pageGlobal);
+            console.log(currentType);
+            console.log(currentClient);
+            console.log(counterClient);
+            $.each(contentGlobal[pageGlobal], function (key) {
+                if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
+                    $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
+                        if (horizontal[0] != val) {
+                            horizontal.push(val);
+                            //console.log(contentGlobal[key][currentClient][0]);
+                        }
+                    });
+                }
+            });
         }
 
         if (linksFlag) {
@@ -260,31 +336,37 @@ function getContent(next, linksFlag) {
                 document.title = currentClient + " | " + currentType;
                 trueKey = false;
             } else if (pageGlobal != currentType) {
-                document.title = currentClient + " | " + currentType;
+                document.title = currentType + " | " + currentClient;
             } else {
-                document.title = currentType;
+                document.title = currentClient + " | " + currentType;
             }
         } else {
             if (pageGlobal != currentType) {
                 window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
                 document.title = currentClient + " | " + currentType;
             } else {
-                window.history.pushState(currentType, currentType, "/" + pageGlobal);
-                document.title = currentType;
+                window.history.pushState(currentType + " | " + currentClient, currentType + " | " + currentClient, "/" + pageGlobal + "/" + currentClient);
+                document.title = currentType + " | " + currentClient;
             }
         }
 
-        if (horizontal.length == 1) {
+        if (horizontal.length <= 1) {
             $('.navLR').hide();
         } else {
             $('.navLR').show();
         }
 
-        if (vertical.length == 1) {
+        if (vertical.length <= 1) {
+            indicator.turnOff();
             $('.navTB').hide();
         } else {
+            indicator.turnOn();
             $('.navTB').show();
         }
+
+        console.log(vertical);
+        console.log(horizontal);
+
     }, animDuration + 30);
 
 }
