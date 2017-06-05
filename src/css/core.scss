@@ -1,0 +1,24 @@
+body {
+	font-size: 12pt;
+	font-family: sans-serif;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background:-webkit-linear-gradient(#3c3058 11.26%, #e849ce 100%);
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+.fullScreen {
+	margin: -8px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 10;
+
+}
