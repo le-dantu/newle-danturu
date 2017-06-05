@@ -146,7 +146,7 @@ nav {
 @media screen and ( max-width: 768px) {
 	.gridItem:nth-child(n+7) {
 		display: none;
-		widght: 0;
+		width: 0;
 	}
 }
 
@@ -259,11 +259,15 @@ nav {
 }
 
 .menuWrap {
-	display: none;
-	transition: all 700ms ease;
-	background: rgba(125, 125, 125, 0);
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	color: #ccc;
+	z-index: 0;
 
 	.menuOne {
+
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
@@ -273,17 +277,12 @@ nav {
 		left: 0;
 		width: 100%;
 		height: 20%;
-		transition: all 700ms ease;
-
-		ul.columnOne {
-			transition: all 700ms ease;
-		}
 
 		ul.columnTwo {
 			padding-top: 1.5em;
 			padding-bottom: 1.5em;
-			transition: all 700ms ease;
 		}
+
 	}
 
 	.menuTwo {
@@ -314,28 +313,43 @@ nav {
 	}
 
 	&.open {
-		display: block;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		color: #ccc;
-		z-index: 3000;
 		position: absolute;
 		background: rgba(0, 0, 0, 0.8);
+		transition: all 500ms ease;
 
 		.menuOne {
 
 			ul.columnOne {
-				transition-duration: 0.5s;
-				opacity: 1;
-				transform: translate(-100px, 0px);
+				transition: transform 500ms ease;
+				transition-delay: 0.5s;
+				transform: translate(30%, 0%);
 			}
 
 			ul.columnTwo {
-				transition-duration: 0.5s;
-				opacity: 1;
-				transform: translate(-50px, 0px);
+				transition: transform 500ms ease;
+				transition-delay: 0.2s;
+				transform: translate(30%, 0%);
+			}
+
+		}
+	}
+
+	&.close {
+		position: absolute;
+		transition: all 500ms ease;
+		background: rgba(0, 0, 0, 0);
+		transition-delay: 0.5s;
+
+		.menuOne {
+
+			ul.columnOne {
+				transition: transform 500ms ease;
+				transform: translate(200%, 0%);
+			}
+
+			ul.columnTwo {
+				transition: transform 500ms ease 0.3s;
+				transform: translate(200%, 0%);
 			}
 
 		}

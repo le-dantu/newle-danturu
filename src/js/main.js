@@ -58,6 +58,10 @@ $(document).ready(function(){
         }
     });
 
+    $('.burger').on('click', function() {
+        toggleMenu();
+    });
+
     initScrollHandler();
     sendRecive(contentGlobal); //, workTypeGlobal, clientsGlobal, contentTypeGlobal
 

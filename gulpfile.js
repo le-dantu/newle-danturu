@@ -59,7 +59,7 @@ gulp.task('browserSync', function() {
     open: false,
     reloadOnRestart: false,
     notify: false,
-    reloadDelay: 2000,
+    reloadDelay: 300,
     
   })
 })
