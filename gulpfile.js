@@ -34,16 +34,16 @@ gulp.task('js', function() {
 });
 
 gulp.task('compress', function() {
-  gulp.src('src/js/*.js')
+  return gulp.src('src/js/**/*.js')
     .pipe(minify({
+        ignoreFiles: ['.combo.js', '(.*).min.js', 'min.js'],
         ext:{
             src:'.js',
             min:'.min.js'
         },
-        exclude: ['tasks'],
-        ignoreFiles: ['.combo.js', '.min.js', 'min.js']
+        exclude: ['tasks']
     }))
-    .pipe(gulp.dest('src/js'))
+    .pipe(gulp.dest('www/js'))
 });
 
 gulp.task('browserSync', function() {

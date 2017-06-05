@@ -76,3 +76,7 @@ function animation(direction) {
     }, animDuration);
 
 }
+
+function toggleMenu() {
+    
+}

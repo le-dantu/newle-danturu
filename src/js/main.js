@@ -58,9 +58,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.burger').on('click', function() {
-        toggleMenu();
-    });
+    $('.burger').click(toggleMenu());
 
     initScrollHandler();
     sendRecive(contentGlobal); //, workTypeGlobal, clientsGlobal, contentTypeGlobal
