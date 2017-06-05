@@ -40,7 +40,7 @@ nav {
 		position: absolute;
 		width: 48px;
 		height: 48px;
-		z-index: 1488;
+		z-index: 3001;
 		top: 20px;
 		right: 25px;
 		transition-duration: 0.5s;
@@ -50,8 +50,9 @@ nav {
 			height: 6px;
 			width: 30px;
 			top: 30px;
-			background-color: #212121;
-			transition-duration: 0.5s;
+			background-color: #dcdcdc;
+			//border: solid 0.5px #dcdcdc;
+			transform: rotateZ(-180deg);
 
 			&:before{
 				position: absolute;
@@ -59,7 +60,8 @@ nav {
 				transition-duration: 0.5s;
 				width: 30px;
 				height: 6px;
-				background-color: #212121;
+				background-color: #dcdcdc;
+				//border: solid 0.5px #dcdcdc;
 				content: "";
 			}
 
@@ -69,7 +71,8 @@ nav {
 				transition-duration: 0.5s;
 				width: 30px;
 				height: 6px;
-				background-color: #212121;
+				background-color: #dcdcdc;
+				//border: solid 0.5px #dcdcdc;
 				content: "";
 			}
 
@@ -79,20 +82,17 @@ nav {
 		}
 
 		&.open {
-			z-index: 3001;
+
 			.icon {
-				transition-duration: 0.5s;
-				transform: rotateZ(-180deg);
-				background-color: #dcdcdc;
 
 				&:before{
+					transition-duration: 0.5s;
 					transform: rotateZ(-45deg) scaleX(0.75) translate(-18px, -5px);
-					background-color: #dcdcdc;
 				}
 
 				&:after{
+					transition-duration: 0.5s;
 					transform: rotateZ(45deg) scaleX(0.75) translate(-18px, 5px);
-					background-color: #dcdcdc;
 				}
 			}
 		}
@@ -132,13 +132,16 @@ nav {
 	align-items: stretch;
 	justify-content: center;
 	flex-wrap: wrap;
+	z-index: 2;
 	.gridItem {
 		cursor: pointer;
 		width: 25%;
 		height: 33.33%;
+		z-index: 3;
 		@media screen and ( max-width: 768px) {
 			width: 50%;
 			height: 33.33%;
+			z-index: 4;
 		}
 	}
 }
@@ -314,7 +317,7 @@ nav {
 
 	&.open {
 		position: absolute;
-		background: rgba(0, 0, 0, 0.8);
+		background: rgba(0, 0, 0, 0.9);
 		transition: all 500ms ease;
 
 		.menuOne {

@@ -78,5 +78,16 @@ function animation(direction) {
 }
 
 function toggleMenu() {
-    
+    $('.menuWrap').toggleClass('close');
+    $('.menuWrap').toggleClass('open');
+    $('.burger').toggleClass('open');
+    if ($('.burger').hasClass('open')) {
+        $('.menuWrap').css('z-index', '3000');
+        indicator.turnOff();
+    } else {
+        setTimeout(function() {
+            $('.menuWrap').css('z-index', '0');
+            indicator.turnOn();
+        }, 550);
+    }
 }
