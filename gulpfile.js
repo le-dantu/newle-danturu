@@ -43,7 +43,7 @@ gulp.task('compress', function() {
         exclude: ['tasks'],
         ignoreFiles: ['.combo.js', '-min.js']
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('src/js'))
 });
 
 gulp.task('browserSync', function() {
@@ -69,4 +69,5 @@ gulp.task('watch', ['sass', 'pug', 'media', 'js', 'browserSync'], function (){
   gulp.watch('src/pug/**/*.pug', ['pug']);
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/res/**/*', ['media']);
+  gulp.watch('src/js/**/*.js', ['compress']);
 })
