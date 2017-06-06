@@ -350,6 +350,11 @@ nav {
 					transform: translate(30%, 0%);
 					transition-delay: 150ms*$i;
 
+					a {
+						color: #FFFFFF;
+						text-decoration: none;
+					}
+
 					&:hover {
 						transition-delay: unset;
 						transform: translate(30%, -10px);
@@ -371,10 +376,18 @@ nav {
 
 			@for $i from 1 through 7 {
 				.link#{$i} {
+					line-height: 60px;
+					text-align: center;
 					opacity: 0;
 					transition: all 500ms ease;
 					transform: translate(100%, 0%);
 					transition-delay: 100ms*$i;
+
+					a {
+						color: #FFFFFF;
+						text-decoration: none;
+					}
+
 				}
 			}
 
