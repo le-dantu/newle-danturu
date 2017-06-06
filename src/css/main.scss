@@ -106,6 +106,7 @@ nav {
 
 			.iconBody {
 				background-color: #FFFFFF;
+				transition-duration: 0.5s;
 				&:before{
 					background-color: #FFFFFF;
 					transition-duration: 0.5s;
@@ -305,7 +306,12 @@ nav {
 		width: 100%;
 		height: 20%;
 
-		ul.columnTwo {
+		.columnOne {
+			margin: 0 auto;
+		}
+
+		.columnTwo {
+			display: none;
 			padding-top: 1.5em;
 			padding-bottom: 1.5em;
 		}
@@ -328,17 +334,6 @@ nav {
 		height: 60%;
 	}
 
-	ul {
-		display: inline-block;
-		line-height: 1.5em;
-
-		li {
-			margin-top: 0.75em;
-			margin-bottom: 0.75em;
-		}
-
-	}
-
 	&.open {
 		position: absolute;
 		background: rgba(0, 0, 0, 0.9);
@@ -346,16 +341,21 @@ nav {
 
 		.menuOne {
 
-			ul.columnOne {
-				transition: transform 500ms ease;
-				transition-delay: 0.5s;
-				transform: translate(30%, 0%);
-			}
+			@for $i from 1 through 7 {
+				.link#{$i} {
+					line-height: 60px;
+					text-align: center;
+					opacity: 1;
+					transition: all 500ms ease;
+					transform: translate(30%, 0%);
+					transition-delay: 150ms*$i;
 
-			ul.columnTwo {
-				transition: transform 500ms ease;
-				transition-delay: 0.2s;
-				transform: translate(30%, 0%);
+					&:hover {
+						transition-delay: unset;
+						transform: translate(30%, -10px);
+						cursor: pointer;
+					}
+				}
 			}
 
 		}
@@ -369,14 +369,13 @@ nav {
 
 		.menuOne {
 
-			ul.columnOne {
-				transition: transform 500ms ease;
-				transform: translate(200%, 0%);
-			}
-
-			ul.columnTwo {
-				transition: transform 500ms ease 0.3s;
-				transform: translate(200%, 0%);
+			@for $i from 1 through 7 {
+				.link#{$i} {
+					opacity: 0;
+					transition: all 500ms ease;
+					transform: translate(100%, 0%);
+					transition-delay: 100ms*$i;
+				}
 			}
 
 		}

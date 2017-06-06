@@ -88,6 +88,6 @@ function toggleMenu() {
         setTimeout(function() {
             $('.menuWrap').css('z-index', '0');
             indicator.turnOn();
-        }, 550);
+        }, 1050);
     }
 }

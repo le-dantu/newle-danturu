@@ -7,7 +7,7 @@
 	top: 0;
 	left: 0;
 	opacity: 1;
-	transition-duration: 500ms;
+	//transition-duration: 500ms;
 }
 
 .preloader {
@@ -104,7 +104,8 @@
 }
 
 .hide {
-	width: 0;
-	height: 0;
+	transition-duration: 500ms;
+	//width: 0;
+	//height: 0;
 	opacity: 0;
 }

@@ -148,11 +148,11 @@ function initFirstBlock(page, worktype, clients, keyword) {
     }
 
     currentImgV = vertical.length - 1;
-    getContent(true, true);
 
     setTimeout(function() {
         preLoad(false);
-    }, 2000);
+        getContent(true, true);
+    }, 1500);
 
 }
 
