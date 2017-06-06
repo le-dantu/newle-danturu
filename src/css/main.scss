@@ -381,7 +381,17 @@ nav {
 		}
 	}
 }
-
+.phone {
+	width: 100%;
+	position: relative;
+	.phoneBox {
+		width: 100%;
+		margin: 0 auto;
+		left: 0;
+		right: 0;
+		text-align: center;
+	}
+}
 @import "arrow";
 @import "animate";
 @import "preloader";
