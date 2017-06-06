@@ -60,3 +60,25 @@ function backState() {
         window.location.href = '/';
     }
 }
+
+function preLoad(state) {
+
+    var preLoad = $('.wrapPreloader');
+
+    if (!state && !preLoad.hasClass('hide')) {
+
+        preLoad.toggleClass('hide');
+        console.log('Загрузка окончена');
+
+        setTimeout(function(){
+            preLoad.css('display', 'none');
+        }, 500);
+
+    } else {
+
+        preLoad.toggleClass('hide');
+        console.log('Загрузка начинается');
+
+    }
+
+}

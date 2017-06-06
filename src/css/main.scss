@@ -24,10 +24,10 @@ nav {
 
 		.iconBorder {
 			position: absolute;
-			height: 6px;
+			height: 5px;
 			width: 30px;
-			top: 30px;
-			background-color: #0d0d0d;
+			top: 29px;
+			background-color: #FFFFFF;
 			transform: rotateZ(-180deg);
 
 			&:before{
@@ -35,8 +35,8 @@ nav {
 				top: -12px;
 				transition-duration: 0.5s;
 				width: 30px;
-				height: 6px;
-				background-color: #0d0d0d;
+				height: 5px;
+				background-color: #FFFFFF;
 				content: "";
 			}
 
@@ -45,8 +45,8 @@ nav {
 				top: 12px;
 				transition-duration: 0.5s;
 				width: 30px;
-				height: 6px;
-				background-color: #0d0d0d;
+				height: 5px;
+				background-color: #FFFFFF;
 				content: "";
 			}
 
@@ -57,11 +57,11 @@ nav {
 
 		.iconBody {
 			position: absolute;
-			height: 4px;
+			height: 1px;
 			width: 28px;
 			top: 31px;
 			right: 19px;
-			background-color: #dcdcdc;
+			background-color: #0d0d0d;
 			transform: rotateZ(-180deg);
 
 			&:before{
@@ -69,8 +69,8 @@ nav {
 				top: -12px;
 				transition-duration: 0.5s;
 				width: 28px;
-				height: 4px;
-				background-color: #dcdcdc;
+				height: 1px;
+				background-color: #0d0d0d;
 				content: "";
 			}
 
@@ -79,8 +79,8 @@ nav {
 				top: 12px;
 				transition-duration: 0.5s;
 				width: 28px;
-				height: 4px;
-				background-color: #dcdcdc;
+				height: 1px;
+				background-color: #0d0d0d;
 				content: "";
 			}
 
@@ -95,25 +95,27 @@ nav {
 
 				&:before{
 					transition-duration: 0.5s;
-					transform: rotateZ(-45deg) scaleX(0.75) translate(-18px, -5px);
+					transform: rotateZ(-45deg) scaleX(0.75) translate(-16px, -4px);
 				}
 
 				&:after{
 					transition-duration: 0.5s;
-					transform: rotateZ(45deg) scaleX(0.75) translate(-18px, 5px);
+					transform: rotateZ(45deg) scaleX(0.75) translate(-16px, 4px);
 				}
 			}
 
 			.iconBody {
-
+				background-color: #FFFFFF;
 				&:before{
+					background-color: #FFFFFF;
 					transition-duration: 0.5s;
-					transform: rotateZ(-45deg) scaleX(0.75) translate(-18px, -5px);
+					transform: rotateZ(-45deg) scaleX(0.75) translate(-16px, -4px);
 				}
 
 				&:after{
+					background-color: #FFFFFF;
 					transition-duration: 0.5s;
-					transform: rotateZ(45deg) scaleX(0.75) translate(-18px, 5px);
+					transform: rotateZ(45deg) scaleX(0.75) translate(-16px, 4px);
 				}
 			}
 		}
