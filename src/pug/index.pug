@@ -6,6 +6,7 @@ html
         meta(http-equiv="Cache-control" content="public")
     body
         .fullscreen
+            include preloader
             .contentWrap
                 .container
                     .gridWrap
@@ -26,7 +27,8 @@ html
                 .logo(onclick="window.location.href = '/'")
                     img(src="/res/logo.svg")
                 .burger
-                    .icon
+                    .iconBorder
+                    .iconBody
             .navigationBar
                 .navLR
                     include arrow

@@ -1,6 +1,30 @@
+@font-face {
+	font-family: Roboto-Light;
+	src: url(fonts/Roboto-Light.eot);
+	src: url(fonts/Roboto-Light.eot?#iefix) format("embedded-opentype"), url(fonts/Roboto-Light.woff) format("woff"), url(fonts/Roboto-Light.ttf) format("truetype"), url(fonts/Roboto-Light.svg#robotolight) format("svg")
+}
+
+@font-face {
+	font-family: Roboto-Thin;
+	src: url(fonts/Roboto-Thin.eot);
+	src: url(fonts/Roboto-Thin.eot?#iefix) format("embedded-opentype"), url(fonts/Roboto-Thin.woff) format("woff"), url(fonts/Roboto-Thin.ttf) format("truetype"), url(fonts/Roboto-Thin.svg#robotoThin) format("svg")
+}
+
+@font-face {
+	font-family: RobotoSlab-Light;
+	src: url(fonts/RobotoSlab-Light.eot);
+	src: url(fonts/RobotoSlab-Light.eot?#iefix) format("embedded-opentype"), url(fonts/RobotoSlab-Light.woff) format("woff"), url(fonts/RobotoSlab-Light.ttf) format("truetype"), url(fonts/RobotoSlab-Light.svg#RobotoSlabLight) format("svg")
+}
+
+@font-face {
+	font-family: RobotoSlab-Thin;
+	src: url(fonts/RobotoSlab-Thin.eot);
+	src: url(fonts/RobotoSlab-Thin.eot?#iefix) format("embedded-opentype"), url(fonts/RobotoSlab-Thin.woff) format("woff"), url(fonts/RobotoSlab-Thin.ttf) format("truetype"), url(fonts/RobotoSlab-Thin.svg#RobotoSlabThin) format("svg")
+}
+
 body {
 	font-size: 12pt;
-	font-family: sans-serif;
+	font-family: Roboto-Thin, Arial, sans-serif;
 	position: fixed;
 	width: 100%;
 	height: 100%;
