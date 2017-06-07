@@ -4,19 +4,8 @@
 .menuWrap.close
     .burgerHeader
         .menuOne
-            .linkMenu.columnOne
+            .linkMenu
                 .link1
-                    a(href='/') Главная
+                    a(onclick="initFirstBlock('portfolio')") Портфолио
                 .link2
-                    a(href='/portfolio') Портфолио
-                .link3
-                    a(href='/contacts') Контакты
-                //.link4 Работа в le-dantu
-            .linkMenu.columnTwo
-                .link5 Обучение
-                .link6 Процесс работы
-                .link7 О нас
-        .menuTwo
-            div.trash
-        .menuThree
-            div.contacts
+                    a(onclick="initFirstBlock('contacts')") Контакты

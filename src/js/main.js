@@ -62,10 +62,6 @@ $(document).ready(function(){
         toggleMenu();
     });
 
-    setTimeout(function() {
-        preLoad(false);
-    }, 1500);
-
     initScrollHandler();
     sendRecive(contentGlobal); //, workTypeGlobal, clientsGlobal, contentTypeGlobal
 

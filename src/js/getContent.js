@@ -3,6 +3,11 @@
  */
 function initFirstBlock(page, worktype, clients, keyword) {
 
+    page = page ? page : false;
+    worktype = worktype ? worktype : false;
+    clients = clients ? clients : false;
+    keyword = keyword ? keyword : false;
+
     pageGlobal = page;
 
     if (!(page || worktype || clients || keyword)) {
@@ -148,11 +153,7 @@ function initFirstBlock(page, worktype, clients, keyword) {
     }
 
     currentImgV = vertical.length - 1;
-
-    setTimeout(function() {
-        preLoad(false);
-        getContent(true, true);
-    }, 1500);
+    getContent(true, true);
 
 }
 

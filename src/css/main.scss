@@ -301,37 +301,16 @@ nav {
 		justify-content: space-around;
 		flex-wrap: wrap;
 		position: absolute;
-		top: 20%;
+		top: 0;
 		left: 0;
 		width: 100%;
-		height: 20%;
+		height: 100%;
 
-		.columnOne {
+		.linkMenu {
 			margin: 0 auto;
 		}
 
-		.columnTwo {
-			display: none;
-			padding-top: 1.5em;
-			padding-bottom: 1.5em;
-		}
 
-	}
-
-	.menuTwo {
-		position: absolute;
-		width: 60%;
-		top: 40%;
-		left: 0;
-		height: 60%;
-	}
-
-	.menuThree {
-		position: absolute;
-		width: 40%;
-		top: 40%;
-		right: 0;
-		height: 60%;
 	}
 
 	&.open {
@@ -341,24 +320,27 @@ nav {
 
 		.menuOne {
 
-			@for $i from 1 through 7 {
-				.link#{$i} {
-					line-height: 60px;
-					text-align: center;
-					opacity: 1;
-					transition: all 500ms ease;
-					transform: translate(30%, 0%);
-					transition-delay: 150ms*$i;
+			.linkMenu {
 
-					a {
-						color: #FFFFFF;
-						text-decoration: none;
-					}
+				@for $i from 1 through 7 {
+					.link#{$i} {
+						line-height: 60px;
+						text-align: center;
+						opacity: 1;
+						transition: all 500ms ease;
+						transform: translate(30%, 0%);
+						transition-delay: 150ms*$i;
 
-					&:hover {
-						transition-delay: unset;
-						transform: translate(30%, -10px);
-						cursor: pointer;
+						a {
+							color: #FFFFFF;
+							text-decoration: none;
+						}
+
+						&:hover {
+							transition-delay: unset;
+							transform: translate(30%, -4px);
+							cursor: pointer;
+						}
 					}
 				}
 			}
@@ -374,26 +356,30 @@ nav {
 
 		.menuOne {
 
-			@for $i from 1 through 7 {
-				.link#{$i} {
-					line-height: 60px;
-					text-align: center;
-					opacity: 0;
-					transition: all 500ms ease;
-					transform: translate(100%, 0%);
-					transition-delay: 100ms*$i;
+			.linkMenu {
 
-					a {
-						color: #FFFFFF;
-						text-decoration: none;
+				@for $i from 1 through 7 {
+					.link#{$i} {
+						line-height: 60px;
+						text-align: center;
+						opacity: 0;
+						transition: all 500ms ease;
+						transform: translate(100%, 0%);
+						transition-delay: 100ms*$i;
+
+						a {
+							color: #FFFFFF;
+							text-decoration: none;
+						}
+
 					}
-
 				}
 			}
 
 		}
 	}
 }
+
 .phone {
 	width: 100%;
 	position: relative;
