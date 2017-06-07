@@ -472,11 +472,14 @@ nav {
 		nav {
 			.logo {
 				top: 36px;
-				
+				left: 15px;
 				img {
 					height: 70%;
 					width: auto;
 				}
+			}
+			.burger {
+				right: 15px;
 			}
 		}
 }
