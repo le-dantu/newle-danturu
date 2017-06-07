@@ -29,6 +29,7 @@ nav {
 			top: 29px;
 			background-color: #FFFFFF;
 			transform: rotateZ(-180deg);
+			border-radius: 5px;
 
 			&:before{
 				position: absolute;
@@ -38,6 +39,7 @@ nav {
 				height: 5px;
 				background-color: #FFFFFF;
 				content: "";
+				border-radius: 5px;
 			}
 
 			&:after{
@@ -48,6 +50,7 @@ nav {
 				height: 5px;
 				background-color: #FFFFFF;
 				content: "";
+				border-radius: 5px;
 			}
 
 			&:hover {
@@ -57,21 +60,23 @@ nav {
 
 		.iconBody {
 			position: absolute;
-			height: 1px;
+			height: 3px;
 			width: 28px;
-			top: 31px;
+			top: 30px;
 			right: 19px;
 			background-color: #0d0d0d;
 			transform: rotateZ(-180deg);
+			border-radius: 5px;
 
 			&:before{
 				position: absolute;
 				top: -12px;
 				transition-duration: 0.5s;
 				width: 28px;
-				height: 1px;
+				height: 3px;
 				background-color: #0d0d0d;
 				content: "";
+				border-radius: 5px;
 			}
 
 			&:after{
@@ -79,9 +84,10 @@ nav {
 				top: 12px;
 				transition-duration: 0.5s;
 				width: 28px;
-				height: 1px;
+				height: 3px;
 				background-color: #0d0d0d;
 				content: "";
+				border-radius: 5px;
 			}
 
 			&:hover {
@@ -92,31 +98,37 @@ nav {
 		&.open {
 
 			.iconBorder {
+				border-radius: 5px;
 
 				&:before{
 					transition-duration: 0.5s;
 					transform: rotateZ(-45deg) scaleX(0.75) translate(-16px, -4px);
+					border-radius: 5px;
 				}
 
 				&:after{
 					transition-duration: 0.5s;
 					transform: rotateZ(45deg) scaleX(0.75) translate(-16px, 4px);
+					border-radius: 5px;
 				}
 			}
 
 			.iconBody {
 				background-color: #FFFFFF;
 				transition-duration: 0.5s;
+				border-radius: 5px;
 				&:before{
 					background-color: #FFFFFF;
 					transition-duration: 0.5s;
 					transform: rotateZ(-45deg) scaleX(0.75) translate(-16px, -4px);
+					border-radius: 5px;
 				}
 
 				&:after{
 					background-color: #FFFFFF;
 					transition-duration: 0.5s;
 					transform: rotateZ(45deg) scaleX(0.75) translate(-16px, 4px);
+					border-radius: 5px;
 				}
 			}
 		}
@@ -328,7 +340,7 @@ nav {
 						text-align: center;
 						opacity: 1;
 						transition: all 500ms ease;
-						transform: translate(30%, 0%);
+						transform: translate(0%, 0%);
 						transition-delay: 150ms*$i;
 
 						a {
@@ -338,7 +350,7 @@ nav {
 
 						&:hover {
 							transition-delay: unset;
-							transform: translate(30%, -4px);
+							transform: translate(0%, -4px);
 							cursor: pointer;
 						}
 					}
@@ -364,7 +376,7 @@ nav {
 						text-align: center;
 						opacity: 0;
 						transition: all 500ms ease;
-						transform: translate(100%, 0%);
+						transform: translate(10px, 0%);
 						transition-delay: 100ms*$i;
 
 						a {
@@ -486,3 +498,4 @@ nav {
 @import "arrow";
 @import "animate";
 @import "preloader";
+@import "contacts";
