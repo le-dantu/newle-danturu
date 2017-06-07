@@ -5,6 +5,12 @@
 }
 
 @font-face {
+	font-family: Roboto-Bold;
+	src: url(fonts/Roboto-Bold.eot);
+	src: url(fonts/Roboto-Bold.eot?#iefix) format("embedded-opentype"), url(fonts/Roboto-Bold.woff) format("woff"), url(fonts/Roboto-Bold.ttf) format("truetype"), url(fonts/Roboto-Bold.svg#robotoBold) format("svg")
+}
+
+@font-face {
 	font-family: Roboto-Thin;
 	src: url(fonts/Roboto-Thin.eot);
 	src: url(fonts/Roboto-Thin.eot?#iefix) format("embedded-opentype"), url(fonts/Roboto-Thin.woff) format("woff"), url(fonts/Roboto-Thin.ttf) format("truetype"), url(fonts/Roboto-Thin.svg#robotoThin) format("svg")
