@@ -30,10 +30,10 @@ function sendRecive (content) { //, workType, clients, contentType
      })
     .done(function() {
         console.log( "success" );
-        
+
         setTimeout(function() {
             preLoad(false);
-        }, 1500);
+        }, 750);
 
         initFirstBlock(locPage, locType, locCompany, locKeyword);
         //initFirstBlock('vacancies', 'vacancies', 'vacancies');
