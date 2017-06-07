@@ -143,7 +143,7 @@ nav {
 		height: 60px;
 		top: 22px;
 		left: 20px;
-		z-index: 1400;
+		z-index: 3000;
 		img {
 			height: 100%;
 			transition: all linear 0.5s;
@@ -442,48 +442,49 @@ nav {
 				text-align: center;
 				right: 0;
 				left: 0;
+				top: 18px;
 				margin: 0 auto;
 				width: 100%;
-				font-size: 1.1em;
+				font-size: 1em;
 				text-shadow: 
-					-0   -2px 1px #FFFFFF,
-					 0   -2px 1px #FFFFFF,
-					-0    2px 1px #FFFFFF,
-					 0    2px 1px #FFFFFF,
-					-2px -0   1px #FFFFFF,
-					 2px -0   1px #FFFFFF,
-					-2px  0   1px #FFFFFF,
-					 2px  0   1px #FFFFFF,
-					-1px -2px 1px #FFFFFF,
-					 1px -2px 1px #FFFFFF,
-					-1px  2px 1px #FFFFFF,
-					 1px  2px 1px #FFFFFF,
-					-2px -1px 1px #FFFFFF,
-					 2px -1px 1px #FFFFFF,
-					-2px  1px 1px #FFFFFF,
-					 2px  1px 1px #FFFFFF,
-					-2px -2px 1px #FFFFFF,
-					 2px -2px 1px #FFFFFF,
-					-2px  2px 1px #FFFFFF,
-					 2px  2px 1px #FFFFFF,
-					-2px -2px 1px #FFFFFF,
-					 2px -2px 1px #FFFFFF,
-					-2px  2px 1px #FFFFFF,
-					 2px  2px 1px #FFFFFF;
+					-0   -1px 1px #FFFFFF,
+					 0   -1px 1px #FFFFFF,
+					-0    1px 1px #FFFFFF,
+					 0    1px 1px #FFFFFF,
+					-1px -0   1px #FFFFFF,
+					 1px -0   1px #FFFFFF,
+					-1px  0   1px #FFFFFF,
+					 1px  0   1px #FFFFFF,
+					-0.5px -1px 1px #FFFFFF,
+					 0.5px -1px 1px #FFFFFF,
+					-0.5px  1px 1px #FFFFFF,
+					 0.5px  1px 1px #FFFFFF,
+					-1px -0.5px 1px #FFFFFF,
+					 1px -0.5px 1px #FFFFFF,
+					-1px  0.5px 1px #FFFFFF,
+					 1px  0.5px 1px #FFFFFF,
+					-1px -1px 1px #FFFFFF,
+					 1px -1px 1px #FFFFFF,
+					-1px  1px 1px #FFFFFF,
+					 1px  1px 1px #FFFFFF,
+					-1px -1px 1px #FFFFFF,
+					 1px -1px 1px #FFFFFF,
+					-1px  1px 1px #FFFFFF,
+					 1px  1px 1px #FFFFFF;
 			}
 		}
 		.navigationBar {
 			.navTB {
 				.left {
 					z-index: 1000;
-					top: 5%;
+					top: 7%;
 					width: 100%;
 				}
 			}	
 		}
 		nav {
 			.logo {
-				top: 36px;
+				top: 20px;
 				left: 15px;
 				img {
 					height: 70%;
@@ -491,7 +492,31 @@ nav {
 				}
 			}
 			.burger {
-				right: 15px;
+				right: 10px;
+				top: 8px;
+				.iconBorder {
+					height: 6px;
+					top: 28px;
+					&:before{
+						height: 6px;
+					}
+
+					&:after{
+						height: 6px;
+					}
+				}
+
+				.iconBody {
+					height: 2px;
+
+					&:before{
+						height: 2px;
+					}
+
+					&:after{
+						height: 2px;
+					}
+				}
 			}
 		}
 }
