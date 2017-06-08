@@ -9,6 +9,8 @@ function initFirstBlock(page, worktype, clients, keyword) {
     keyword = keyword ? keyword : false;
 
     pageGlobal = page;
+    
+    vertical = [];
 
     if (!(page || worktype || clients || keyword)) {
         gridInit();
