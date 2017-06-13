@@ -18,13 +18,13 @@ nav {
 		width: 48px;
 		height: 48px;
 		z-index: 3001;
-		top: 20px;
+		top: 18px;
 		right: 25px;
 		transition-duration: 0.5s;
 
 		.iconBorder {
 			position: absolute;
-			height: 5px;
+			height: 7px;
 			width: 30px;
 			top: 29px;
 			background-color: #FFFFFF;
@@ -33,10 +33,10 @@ nav {
 
 			&:before{
 				position: absolute;
-				top: -12px;
+				top: -9px;
 				transition-duration: 0.5s;
 				width: 30px;
-				height: 5px;
+				height: 7px;
 				background-color: #FFFFFF;
 				content: "";
 				border-radius: 5px;
@@ -44,10 +44,10 @@ nav {
 
 			&:after{
 				position: absolute;
-				top: 12px;
+				top: 9px;
 				transition-duration: 0.5s;
 				width: 30px;
-				height: 5px;
+				height: 7px;
 				background-color: #FFFFFF;
 				content: "";
 				border-radius: 5px;
@@ -61,18 +61,18 @@ nav {
 		.iconBody {
 			position: absolute;
 			height: 3px;
-			width: 28px;
-			top: 30px;
-			right: 19px;
+			width: 24px;
+			top: 31px;
+			right: 21px;
 			background-color: #0d0d0d;
 			transform: rotateZ(-180deg);
 			border-radius: 5px;
 
 			&:before{
 				position: absolute;
-				top: -12px;
+				top: -9px;
 				transition-duration: 0.5s;
-				width: 28px;
+				width: 24px;
 				height: 3px;
 				background-color: #0d0d0d;
 				content: "";
@@ -81,9 +81,9 @@ nav {
 
 			&:after{
 				position: absolute;
-				top: 12px;
+				top: 9px;
 				transition-duration: 0.5s;
-				width: 28px;
+				width: 24px;
 				height: 3px;
 				background-color: #0d0d0d;
 				content: "";
@@ -102,13 +102,13 @@ nav {
 
 				&:before{
 					transition-duration: 0.5s;
-					transform: rotateZ(-45deg) scaleX(0.75) translate(-16px, -4px);
+					transform: rotateZ(-45deg) scaleX(0.76) translate(-12px, -4px);
 					border-radius: 5px;
 				}
 
 				&:after{
 					transition-duration: 0.5s;
-					transform: rotateZ(45deg) scaleX(0.75) translate(-16px, 4px);
+					transform: rotateZ(45deg) scaleX(0.76) translate(-12px, 4px);
 					border-radius: 5px;
 				}
 			}
@@ -120,14 +120,14 @@ nav {
 				&:before{
 					background-color: #FFFFFF;
 					transition-duration: 0.5s;
-					transform: rotateZ(-45deg) scaleX(0.75) translate(-16px, -4px);
+					transform: rotateZ(-45deg) scaleX(0.76) translate(-12px, -4px);
 					border-radius: 5px;
 				}
 
 				&:after{
 					background-color: #FFFFFF;
 					transition-duration: 0.5s;
-					transform: rotateZ(45deg) scaleX(0.75) translate(-16px, 4px);
+					transform: rotateZ(45deg) scaleX(0.76) translate(-12px, 4px);
 					border-radius: 5px;
 				}
 			}
@@ -502,27 +502,10 @@ nav {
 			right: 10px;
 			top: 8px;
 			.iconBorder {
-				height: 6px;
 				top: 28px;
-				&:before{
-					height: 6px;
-				}
-
-				&:after{
-					height: 6px;
-				}
 			}
-
-			.iconBody {
-				height: 2px;
-
-				&:before{
-					height: 2px;
-				}
-
-				&:after{
-					height: 2px;
-				}
+			.iconBody { 
+				top: 30px;
 			}
 		}
 	}
@@ -588,30 +571,7 @@ nav {
 		}
 		.burger {
 			right: 10px;
-			top: 8px;
-			.iconBorder {
-				height: 6px;
-				top: 28px;
-				&:before{
-					height: 6px;
-				}
-
-				&:after{
-					height: 6px;
-				}
-			}
-
-			.iconBody {
-				height: 2px;
-
-				&:before{
-					height: 2px;
-				}
-
-				&:after{
-					height: 2px;
-				}
-			}
+			top: 4px;
 		}
 	}
 }
