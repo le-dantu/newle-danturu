@@ -6,6 +6,6 @@
         .menuOne
             .linkMenu
                 .link1
-                    a(onclick="initFirstBlock('portfolio'); toggleMenu(); window.history.pushState('', '', '/portfolio');") Портфолио
+                    a(onclick="toggleMenu(); linksFlag = true; currentClient = false; window.history.pushState('', '', '/portfolio'); initFirstBlock('portfolio'); ") Портфолио
                 .link2
-                    a(onclick="initFirstBlock('contacts'); toggleMenu(); window.history.pushState('', '', '/contacts');") Контакты
+                    a(onclick="toggleMenu(); linksFlag = true; currentClient = false; window.history.pushState('', '', '/contacts');  initFirstBlock('contacts', 'contacts');") Контакты

@@ -49,12 +49,16 @@
 
 .contacts__info {
 	font-size: 1.75rem;
-	position: relative;
-	padding-top: 4rem
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 30%;
 }
 
 .contacts__info__interactive {
-	font-family: RobotoSlab-Light,serif;
 	margin-bottom: .625rem
 }
 
@@ -86,6 +90,7 @@
 	}
 }
 
+
 @media screen and (min-width: 500px) {
 	.contacts {
 		padding: 0 0 500px
@@ -95,9 +100,9 @@
 @media screen and (min-width: 900px) {
 
 	.contacts .wrap {
-		padding: 0 20px
+		padding: 0 20px;
+		
 	}
-
 	.contacts__form {
 		width: calc(100% - 40px)
 	}
@@ -138,29 +143,11 @@
 		width: 100%;
 		float: left;
 		background: 0 0;
-		padding-top: 25%;
 	}
 }
 
-@media screen and (min-width: 1500px) {
-
-	.contacts__container {
-		margin: 0;
-		margin-left: calc(50% - 770px + 1440px * .27)
-	}
-
-	.contacts .wrap {
-		padding: 0;
-		margin: 0
-	}
-
+@media screen and (max-width: 641px) {
 	.contacts__info {
-		width: calc(1440px * .73 * .6)
+		font-size: 1.2em;
 	}
-
-	.contacts__form {
-		float: left;
-		width: calc(1440px * .73 * .4)
-	}
-
 }
