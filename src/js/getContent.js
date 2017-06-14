@@ -3,6 +3,7 @@
  */
 function initFirstBlock(page, worktype, clients, keyword) {
 
+    indicator.turnOff();
     page = page ? page : false;
     worktype = worktype ? worktype : false;
     clients = clients ? clients : false;
@@ -25,14 +26,14 @@ function initFirstBlock(page, worktype, clients, keyword) {
 
             $.each(contentGlobal[pageGlobal][worktype][clients], function (index, val) {
                 vertical.push(val);
-                //console.log(data);
+                //if ( debug == 1 || debug == "all" ) { if ( debug == 1 || debug == "all" ) { console.log(data) } };
             });
             $.each(contentGlobal[pageGlobal][worktype], function (key) {
                 $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
-                    //console.log(key);
+                    //if ( debug == 1 || debug == "all" ) { console.log(key) };
                     if (key != clients) {
                         vertical.push(val);
-                        //console.log(val);
+                        //if ( debug == 1 || debug == "all" ) { console.log(val) };
                     }
                 });
             });
@@ -40,7 +41,19 @@ function initFirstBlock(page, worktype, clients, keyword) {
             redirectNotFound(err);
             return false;
         }
+        if (vertical.length <= 1) {
+            indicator.turnOff();
+            $('.navTB').hide();
+        } else {
+            indicator.turnOn();
+            $('.navTB').show();
+        }
 
+        if (horizontal.length <= 1) {
+            $('.navLR').hide();
+        } else {
+            $('.navLR').show();
+        }
     } else if (page && !worktype && clients && !keyword) {
 
         try {
@@ -49,7 +62,7 @@ function initFirstBlock(page, worktype, clients, keyword) {
                 $.each(contentGlobal[pageGlobal][key][clients], function (index, val) {
                     if (contentGlobal[pageGlobal][key][clients] !== undefined) {
                         horizontal.push(val);
-                        //console.log(val);
+                        //if ( debug == 1 || debug == "all" ) { console.log(val) };
                     }
                 });
             });
@@ -68,6 +81,19 @@ function initFirstBlock(page, worktype, clients, keyword) {
             redirectNotFound(err);
             return false;
         }
+        if (vertical.length <= 1) {
+            indicator.turnOff();
+            $('.navTB').hide();
+        } else {
+            indicator.turnOn();
+            $('.navTB').show();
+        }
+
+        if (horizontal.length <= 1) {
+            $('.navLR').hide();
+        } else {
+            $('.navLR').show();
+        }
 
     } else if (page && worktype && !clients && !keyword) {
 
@@ -75,10 +101,10 @@ function initFirstBlock(page, worktype, clients, keyword) {
 
             $.each(contentGlobal[pageGlobal][worktype], function (key) {
                 $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
-                    //console.log(key);
+                    //if ( debug == 1 || debug == "all" ) { console.log(key) };
                     if (val !== undefined) {
                         vertical.push(val);
-                        //console.log(val);
+                        //if ( debug == 1 || debug == "all" ) { console.log(val) };
                     }
                 });
             });
@@ -86,6 +112,19 @@ function initFirstBlock(page, worktype, clients, keyword) {
         } catch (err) {
             redirectNotFound(err);
             return false;
+        }
+        if (vertical.length <= 1) {
+            indicator.turnOff();
+            $('.navTB').hide();
+        } else {
+            indicator.turnOn();
+            $('.navTB').show();
+        }
+
+        if (horizontal.length <= 1) {
+            $('.navLR').hide();
+        } else {
+            $('.navLR').show();
         }
 
     } else if (page && !worktype && !clients && !keyword) {
@@ -99,13 +138,26 @@ function initFirstBlock(page, worktype, clients, keyword) {
                 $.each(contentGlobal[pageGlobal][pageGlobal], function (key, data) {
                     $.each(contentGlobal[pageGlobal][pageGlobal][key], function (index, val) {
                         vertical.push(val);
-                        //console.log(val);
+                        //if ( debug == 1 || debug == "all" ) { console.log(val) };
                     });
                 });
 
             } catch (err) {
                 redirectNotFound(err);
                 return false;
+            }
+            if (vertical.length <= 1) {
+                indicator.turnOff();
+                $('.navTB').hide();
+            } else {
+                indicator.turnOn();
+                $('.navTB').show();
+            }
+
+            if (horizontal.length <= 1) {
+                $('.navLR').hide();
+            } else {
+                $('.navLR').show();
             }
 
         }
@@ -114,7 +166,7 @@ function initFirstBlock(page, worktype, clients, keyword) {
 
         try {
             if (contentGlobal[pageGlobal][worktype][clients][keyword] !== undefined) {
-                console.log("Верный ключ");
+                if ( debug == 1 || debug == "all" ) { console.log("Верный ключ") };
                 trueKey = true;
                 vertical.push(contentGlobal[pageGlobal][worktype][clients][keyword]);
             } else {
@@ -127,17 +179,17 @@ function initFirstBlock(page, worktype, clients, keyword) {
             $.each(contentGlobal[pageGlobal][worktype][clients], function (index, val) {
                 if (vertical.length == 0) {
                     vertical.push(val);
-                    //console.log(val);
+                    //if ( debug == 1 || debug == "all" ) { console.log(val) };
                 }
                 if (vertical.length != 0 && val != vertical[0]) {
                     vertical.push(val);
-                    //console.log(val);
+                    //if ( debug == 1 || debug == "all" ) { console.log(val) };
                 }
             });
             $.each(contentGlobal[pageGlobal][worktype], function (key) {
                 $.each(contentGlobal[pageGlobal][worktype][key], function (index, val) {
                     if (key != clients) {
-                        //console.log(key);
+                        //if ( debug == 1 || debug == "all" ) { console.log(key) };
                         vertical.push(val);
                     }
                 });
@@ -146,6 +198,19 @@ function initFirstBlock(page, worktype, clients, keyword) {
             redirectNotFound(err);
             return false;
         }
+        if (vertical.length <= 1) {
+            indicator.turnOff();
+            $('.navTB').hide();
+        } else {
+            indicator.turnOn();
+            $('.navTB').show();
+        }
+
+        if (horizontal.length <= 1) {
+            $('.navLR').hide();
+        } else {
+            $('.navLR').show();
+        }
 
     } else {
 
@@ -153,9 +218,11 @@ function initFirstBlock(page, worktype, clients, keyword) {
         return false;
 
     }
-
+    
+    if ( debug == 1 || debug == "all" ) { console.log(vertical.length) };
     currentImgV = vertical.length - 1;
     getContent(true, true);
+
 
 }
 
@@ -173,8 +240,8 @@ function changeType(next, linksFlag) {
             currentImgH += 1;
             animation('H');
         }
-        //console.log(currentImgH);
-        //console.log(lenCurrent);
+        //if ( debug == 1 || debug == "all" ) { console.log(currentImgH) };
+        //if ( debug == 1 || debug == "all" ) { console.log(lenCurrent) };
     } else {
         if (currentImgH == 0) {
             currentImgH = lenCurrent - 1;
@@ -183,8 +250,8 @@ function changeType(next, linksFlag) {
             currentImgH -= 1;
             animation('H');
         }
-        //console.log(currentImgH);
-        //console.log(lenCurrent);
+        //if ( debug == 1 || debug == "all" ) { console.log(currentImgH) };
+        //if ( debug == 1 || debug == "all" ) { console.log(lenCurrent) };
     }
 
     setTimeout(function() {
@@ -205,7 +272,7 @@ function changeType(next, linksFlag) {
                     if (vertical[0] != val) {
                         vertical.push(val);
                     }
-                    //console.log(val);
+                    //if ( debug == 1 || debug == "all" ) { console.log(val) };
                 });
             });
         } else {
@@ -222,7 +289,7 @@ function changeType(next, linksFlag) {
                     if (vertical[0] != val) {
                         vertical.push(val);
                     }
-                    //console.log(val);
+                    //if ( debug == 1 || debug == "all" ) { console.log(val) };
                 });
             });
         }
@@ -247,9 +314,8 @@ function changeType(next, linksFlag) {
             $('.navLR').show();
         }
 
-        console.log(vertical);
-        console.log(horizontal);
-
+        if ( debug == 1 || debug == "all" ) { console.log(vertical) };
+        if ( debug == 1 || debug == "all" ) { console.log(horizontal) };
     }, animDuration + 30);
 
 
@@ -270,8 +336,8 @@ function getContent(next, linksFlag) {
             currentImgV += 1;
             animation('V');
         }
-        //console.log(currentImgV);
-        //console.log(lenCurrent);
+        //if ( debug == 1 || debug == "all" ) { console.log(currentImgV) };
+        //if ( debug == 1 || debug == "all" ) { console.log(lenCurrent) };
     } else {
         if (currentImgV == 0) {
             currentImgV = lenCurrent - 1;
@@ -280,8 +346,8 @@ function getContent(next, linksFlag) {
             currentImgV -= 1;
             animation('V');
         }
-        //console.log(currentImgV);
-        //console.log(lenCurrent);
+        //if ( debug == 1 || debug == "all" ) { console.log(currentImgV) };
+        //if ( debug == 1 || debug == "all" ) { console.log(lenCurrent) };
     }
 
     setTimeout(function() {
@@ -298,16 +364,16 @@ function getContent(next, linksFlag) {
                 index.push(key);
             });
             horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterClient]]);
-            console.log(pageGlobal);
-            console.log(currentType);
-            console.log(currentClient);
-            console.log(counterClient);
+            if ( debug == 1 || debug == "all" ) { console.log(pageGlobal) };
+            if ( debug == 1 || debug == "all" ) { console.log(currentType) };
+            if ( debug == 1 || debug == "all" ) { console.log(currentClient) };
+            if ( debug == 1 || debug == "all" ) { console.log(counterClient) };
             $.each(contentGlobal[pageGlobal], function (key) {
                 if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
                     $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
                         if (horizontal[0] != val) {
                             horizontal.push(val);
-                            //console.log(contentGlobal[key][currentClient][0]);
+                            //if ( debug == 1 || debug == "all" ) { console.log(contentGlobal[key][currentClient][0]) };
                         }
                     });
                 }
@@ -322,16 +388,16 @@ function getContent(next, linksFlag) {
                 index.push(key);
             });
             horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterClient]]);
-            console.log(pageGlobal);
-            console.log(currentType);
-            console.log(currentClient);
-            console.log(counterClient);
+            if ( debug == 1 || debug == "all" ) { console.log(pageGlobal) };
+            if ( debug == 1 || debug == "all" ) { console.log(currentType) };
+            if ( debug == 1 || debug == "all" ) { console.log(currentClient) };
+            if ( debug == 1 || debug == "all" ) { console.log(counterClient) };
             $.each(contentGlobal[pageGlobal], function (key) {
                 if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
                     $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
                         if (horizontal[0] != val) {
                             horizontal.push(val);
-                            //console.log(contentGlobal[key][currentClient][0]);
+                            //if ( debug == 1 || debug == "all" ) { console.log(contentGlobal[key][currentClient][0]) };
                         }
                     });
                 }
@@ -371,8 +437,8 @@ function getContent(next, linksFlag) {
             $('.navTB').show();
         }
 
-        console.log(vertical);
-        console.log(horizontal);
+        if ( debug == 1 || debug == "all" ) { console.log(vertical) };
+        if ( debug == 1 || debug == "all" ) { console.log(horizontal) };
 
     }, animDuration + 30);
 

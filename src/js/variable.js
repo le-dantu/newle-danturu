@@ -26,7 +26,7 @@ var indicator = 0;
 var globalLinksFlag = false;
 var animDuration = 0;
 var allDuration = 0;
-
+var debug = 1;
 function isTouchDevice() {
     return 'ontouchstart'in document.documentElement;
 }
