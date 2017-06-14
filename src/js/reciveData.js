@@ -3,7 +3,7 @@
  */
 
 function sendRecive (content) { //, workType, clients, contentType
-
+console.log( getFnName(arguments.callee) + ' start' );
     $.getJSON(content, function(data) {
         contentGlobal = data;
         //console.log(contentGlobal);
@@ -29,7 +29,7 @@ function sendRecive (content) { //, workType, clients, contentType
 */
      })
     .done(function() {
-        console.log( "success" );
+        console.log( " success" );
 
         setTimeout(function() {
             preLoad(false);
