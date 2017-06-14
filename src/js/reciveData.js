@@ -3,7 +3,8 @@
  */
 
 function sendRecive (content) { //, workType, clients, contentType
-console.log( getFnName(arguments.callee) + ' start' );
+var funName = getFnName(arguments.callee);
+if ( debug == 1 || debug == "all" ) { console.log( funName + ' start' ) };
     $.getJSON(content, function(data) {
         contentGlobal = data;
         //console.log(contentGlobal);
@@ -29,7 +30,7 @@ console.log( getFnName(arguments.callee) + ' start' );
 */
      })
     .done(function() {
-        console.log( " success" );
+        if ( debug == 1 || debug == "all" ) { console.log( funName + ":done, success" ) };
 
         setTimeout(function() {
             preLoad(false);
@@ -40,6 +41,6 @@ console.log( getFnName(arguments.callee) + ' start' );
         //initFirstBlock('contacts', 'contacts', 'contacts');
     })
     .fail(function() {
-        console.log( "error" );
+        if ( debug == 1 || debug == "all" ) { console.log( funName + ":done, error" ) };
     });
 }
