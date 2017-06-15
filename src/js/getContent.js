@@ -41,19 +41,25 @@ function initFirstBlock(page, worktype, clients, keyword) {
             redirectNotFound(err);
             return false;
         }
-        if (vertical.length <= 1) {
-            indicator.turnOff();
-            $('.navTB').hide();
-        } else {
-            indicator.turnOn();
-            $('.navTB').show();
+        finally {
+            if (vertical.length <= 1) {
+                indicator.turnOff();
+                $('.navTB').hide();
+            } else {
+                indicator.turnOn();
+                $('.navTB').show();
+            }
+
+            if (horizontal.length <= 1) {
+                $('.navLR').hide();
+            } else {
+                $('.navLR').show();
+            }
+
+            currentImgV = vertical.length - 1;
+            getContent(true, true);
         }
 
-        if (horizontal.length <= 1) {
-            $('.navLR').hide();
-        } else {
-            $('.navLR').show();
-        }
     } else if (page && !worktype && clients && !keyword) {
 
         try {
@@ -81,18 +87,23 @@ function initFirstBlock(page, worktype, clients, keyword) {
             redirectNotFound(err);
             return false;
         }
-        if (vertical.length <= 1) {
-            indicator.turnOff();
-            $('.navTB').hide();
-        } else {
-            indicator.turnOn();
-            $('.navTB').show();
-        }
+        finally {
+            if (vertical.length <= 1) {
+                indicator.turnOff();
+                $('.navTB').hide();
+            } else {
+                indicator.turnOn();
+                $('.navTB').show();
+            }
 
-        if (horizontal.length <= 1) {
-            $('.navLR').hide();
-        } else {
-            $('.navLR').show();
+            if (horizontal.length <= 1) {
+                $('.navLR').hide();
+            } else {
+                $('.navLR').show();
+            }
+
+            currentImgV = vertical.length - 1;
+            getContent(true, true);
         }
 
     } else if (page && worktype && !clients && !keyword) {
@@ -113,18 +124,23 @@ function initFirstBlock(page, worktype, clients, keyword) {
             redirectNotFound(err);
             return false;
         }
-        if (vertical.length <= 1) {
-            indicator.turnOff();
-            $('.navTB').hide();
-        } else {
-            indicator.turnOn();
-            $('.navTB').show();
-        }
+        finally {
+            if (vertical.length <= 1) {
+                indicator.turnOff();
+                $('.navTB').hide();
+            } else {
+                indicator.turnOn();
+                $('.navTB').show();
+            }
 
-        if (horizontal.length <= 1) {
-            $('.navLR').hide();
-        } else {
-            $('.navLR').show();
+            if (horizontal.length <= 1) {
+                $('.navLR').hide();
+            } else {
+                $('.navLR').show();
+            }
+
+            currentImgV = vertical.length - 1;
+            getContent(true, true);
         }
 
     } else if (page && !worktype && !clients && !keyword) {
@@ -146,18 +162,23 @@ function initFirstBlock(page, worktype, clients, keyword) {
                 redirectNotFound(err);
                 return false;
             }
-            if (vertical.length <= 1) {
-                indicator.turnOff();
-                $('.navTB').hide();
-            } else {
-                indicator.turnOn();
-                $('.navTB').show();
-            }
+            finally {
+                if (vertical.length <= 1) {
+                    indicator.turnOff();
+                    $('.navTB').hide();
+                } else {
+                    indicator.turnOn();
+                    $('.navTB').show();
+                }
 
-            if (horizontal.length <= 1) {
-                $('.navLR').hide();
-            } else {
-                $('.navLR').show();
+                if (horizontal.length <= 1) {
+                    $('.navLR').hide();
+                } else {
+                    $('.navLR').show();
+                }
+
+                currentImgV = vertical.length - 1;
+                getContent(true, true);
             }
 
         }
@@ -198,18 +219,27 @@ function initFirstBlock(page, worktype, clients, keyword) {
             redirectNotFound(err);
             return false;
         }
-        if (vertical.length <= 1) {
-            indicator.turnOff();
-            $('.navTB').hide();
-        } else {
-            indicator.turnOn();
-            $('.navTB').show();
-        }
+        finally {
 
-        if (horizontal.length <= 1) {
-            $('.navLR').hide();
-        } else {
-            $('.navLR').show();
+            window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + clients + "/" + worktype + "/" + keyword);
+
+            if (vertical.length <= 1) {
+                indicator.turnOff();
+                $('.navTB').hide();
+            } else {
+                indicator.turnOn();
+                $('.navTB').show();
+            }
+
+            if (horizontal.length <= 1) {
+                $('.navLR').hide();
+            } else {
+                $('.navLR').show();
+            }
+
+            currentImgV = vertical.length - 1;
+            getContent(true, true);
+            return true;
         }
 
     } else {
@@ -218,11 +248,6 @@ function initFirstBlock(page, worktype, clients, keyword) {
         return false;
 
     }
-    
-    if ( debug == 1 || debug == "all" ) { console.log(vertical.length) };
-    currentImgV = vertical.length - 1;
-    getContent(true, true);
-
 
 }
 
