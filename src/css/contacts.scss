@@ -48,7 +48,6 @@
 }
 
 .contacts__info {
-	font-size: 1.75rem;
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -68,7 +67,6 @@
 }
 
 .contacts__info__link--long {
-	font-size: 1.5rem
 }
 
 .contacts__info__address {
@@ -85,7 +83,6 @@
 	}
 
 	.contacts__info__link--long {
-		font-size: inherit
 	}
 }
 
@@ -145,8 +142,13 @@
 	}
 }
 
-@media screen and (max-width: 641px) {
+@media screen and (min-width: 641px) {
 	.contacts__info {
-		font-size: 1.2em;
+		font-size: 1.6em;
+	}
+}
+@media screen and (max-width: 642px) {
+	.contacts__info {
+		font-size: 1.1em;
 	}
 }

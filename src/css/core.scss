@@ -35,12 +35,14 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
+	-webkit-text-size-adjust: 100%;
 	background:-webkit-linear-gradient(#3c3058 11.26%, #e849ce 100%);
 }
 
 html {
 	width: 100%;
 	height: 100%;
+	-webkit-text-size-adjust: 100%;
 }
 
 .fullScreen {
