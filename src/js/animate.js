@@ -27,7 +27,7 @@ function animation(direction) {
         $("." + classAnim + "_hide_start").addClass(classAnim + "_hide_end");
 
     }
-
+    
     setTimeout(function(){
 
         if (direction == 'H') {
@@ -87,7 +87,22 @@ function toggleMenu() {
     } else {
         setTimeout(function() {
             $('.menuWrap').css('z-index', '0');
-            indicator.turnOn();
+            if ( debug == 1 || debug == "all" ) { console.log ("finally try/catch, vertical.length = " + vertical.length) }
+            if (vertical.length <= 1) {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is OFF" ); }
+                indicator.turnOff();
+                $('.navTB').hide();
+            } else {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
+                indicator.turnOn();
+                $('.navTB').show();
+            }
+
+            if (horizontal.length <= 1) {
+                $('.navLR').hide();
+            } else {
+                $('.navLR').show();
+            }
         }, 1050);
     }
 }

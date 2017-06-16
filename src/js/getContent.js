@@ -42,10 +42,13 @@ function initFirstBlock(page, worktype, clients, keyword) {
             return false;
         }
         finally {
+            if ( debug == 1 || debug == "all" ) { console.log ("finally try/catch, vertical.length = " + vertical.length) }
             if (vertical.length <= 1) {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is OFF" ); }
                 indicator.turnOff();
                 $('.navTB').hide();
             } else {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
                 indicator.turnOn();
                 $('.navTB').show();
             }
@@ -88,10 +91,13 @@ function initFirstBlock(page, worktype, clients, keyword) {
             return false;
         }
         finally {
+            if ( debug == 1 || debug == "all" ) { console.log ("finally try/catch, vertical.length = " + vertical.length) }
             if (vertical.length <= 1) {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is OFF" ); }
                 indicator.turnOff();
                 $('.navTB').hide();
             } else {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
                 indicator.turnOn();
                 $('.navTB').show();
             }
@@ -125,10 +131,13 @@ function initFirstBlock(page, worktype, clients, keyword) {
             return false;
         }
         finally {
+            if ( debug == 1 || debug == "all" ) { console.log ("finally try/catch, vertical.length = " + vertical.length) }
             if (vertical.length <= 1) {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is OFF" ); }
                 indicator.turnOff();
                 $('.navTB').hide();
             } else {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
                 indicator.turnOn();
                 $('.navTB').show();
             }
@@ -163,10 +172,13 @@ function initFirstBlock(page, worktype, clients, keyword) {
                 return false;
             }
             finally {
+                if ( debug == 1 || debug == "all" ) { console.log ("finally try/catch, vertical.length = " + vertical.length) }
                 if (vertical.length <= 1) {
+                    if ( debug == 1 || debug == "all" ) { console.log ( "indicator is OFF" ); }
                     indicator.turnOff();
                     $('.navTB').hide();
                 } else {
+                    if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
                     indicator.turnOn();
                     $('.navTB').show();
                 }
@@ -220,13 +232,15 @@ function initFirstBlock(page, worktype, clients, keyword) {
             return false;
         }
         finally {
-
+            if ( debug == 1 || debug == "all" ) { console.log ("finally try/catch, vertical.length = " + vertical.length) }
             window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + clients + "/" + worktype + "/" + keyword);
 
             if (vertical.length <= 1) {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is OFF" ); }
                 indicator.turnOff();
                 $('.navTB').hide();
             } else {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
                 indicator.turnOn();
                 $('.navTB').show();
             }
@@ -329,6 +343,7 @@ function changeType(next, linksFlag) {
             indicator.turnOff();
             $('.navTB').hide();
         } else {
+            if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
             indicator.turnOn();
             $('.navTB').show();
         }
@@ -458,6 +473,7 @@ function getContent(next, linksFlag) {
             indicator.turnOff();
             $('.navTB').hide();
         } else {
+            if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
             indicator.turnOn();
             $('.navTB').show();
         }
