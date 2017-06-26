@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var pug = require('gulp-pug');
+var minify = require('gulp-minify');
+
 var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function(){
@@ -31,6 +33,19 @@ gulp.task('js', function() {
   .pipe(gulp.dest('www/js'))
 });
 
+gulp.task('compress', function() {
+  return gulp.src('src/js/**/*.js')
+    .pipe(minify({
+        ignoreFiles: ['.combo.js', '(.*).min.js', 'min.js'],
+        ext:{
+            src:'.js',
+            min:'.min.js'
+        },
+        exclude: ['tasks']
+    }))
+    .pipe(gulp.dest('www/js'))
+});
+
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
@@ -44,14 +59,15 @@ gulp.task('browserSync', function() {
     open: false,
     reloadOnRestart: false,
     notify: false,
-    reloadDelay: 2000,
+    reloadDelay: 300,
     
   })
 })
-
-gulp.task('watch', ['sass', 'pug', 'media', 'js', 'browserSync'], function (){
+gulp.task('default', ['compress']);
+gulp.task('watch', ['sass', 'pug', 'media', 'js', 'compress', 'browserSync'], function (){
   gulp.watch('src/css/*.scss', ['sass']);
   gulp.watch('src/pug/**/*.pug', ['pug']);
   gulp.watch('src/js/**/*.js', ['js']);
   gulp.watch('src/res/**/*', ['media']);
+  gulp.watch('src/js/**/*.js', ['compress']);
 })

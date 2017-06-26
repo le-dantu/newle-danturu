@@ -1,0 +1,154 @@
+.contacts__info {
+	text-align: center;
+	line-height: 1.43375;
+	letter-spacing: .055625rem;
+	text-transform: uppercase
+}
+
+.contacts {
+	padding: 0 0 100%;
+	background: #382B49;
+	color: #fff;
+	position: relative;
+	overflow: hidden
+}
+
+.contacts__container {
+	height: 32rem;
+	position: relative;
+	padding: 4.6875rem 0;
+	background: rgba(56,43,73,.5);
+	text-align: center
+}
+
+.contacts__container::before {
+	content: '';
+	position: absolute;
+	top: 100%;
+	height: 70px;
+	left: 0;
+	right: 0;
+	opacity: .5;
+	background: linear-gradient(to bottom,#382b49 0,rgba(56,43,73,0) 100%)
+}
+
+.contacts .wrap {
+	padding: 0 10px;
+	position: relative;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	z-index: 1;
+	transition: -webkit-transform .75s;
+	transition: transform .75s
+}
+
+.contacts__container--flipped .wrap {
+	-webkit-transform: translateX(-100%);
+	transform: translateX(-100%)
+}
+
+.contacts__info {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 30%;
+}
+
+.contacts__info__interactive {
+	margin-bottom: .625rem
+}
+
+.contacts__info__interactive a {
+	display: block;
+	color: #00DEFF
+}
+
+.contacts__info__link--long {
+}
+
+.contacts__info__address {
+}
+
+.contacts__info__address span {
+	display: block
+}
+
+@media screen and (min-width: 400px) {
+	.contacts__form__container {
+		width: 315px;
+		margin: 0 auto 1.25rem
+	}
+
+	.contacts__info__link--long {
+	}
+}
+
+
+@media screen and (min-width: 500px) {
+	.contacts {
+		padding: 0 0 500px
+	}
+}
+
+@media screen and (min-width: 900px) {
+
+	.contacts .wrap {
+		padding: 0 20px;
+		
+	}
+	.contacts__form {
+		width: calc(100% - 40px)
+	}
+}
+
+@media screen and (min-width: 1230px) {
+
+	.clients .wrap {
+		width: 1200px;
+		margin: 0 auto
+	}
+
+	.contacts {
+		padding: 0
+	}
+
+	.contacts__container {
+		padding: 9.375rem 0 8.125rem;
+		width: 73%;
+		height: auto;
+		margin-left: 27%
+	}
+
+	.contacts__container::before {
+		top: 0;
+		width: 70px;
+		height: 100%;
+		right: 100%;
+		left: auto;
+		background: linear-gradient(to right, rgba(56, 43, 73, 0) 0, #382b49 100%)
+	}
+
+	.contacts .wrap {
+		padding: 0 1.875rem
+	}
+
+	.contacts__info {
+		width: 100%;
+		float: left;
+		background: 0 0;
+	}
+}
+
+@media screen and (min-width: 641px) {
+	.contacts__info {
+		font-size: 1.6em;
+	}
+}
+@media screen and (max-width: 642px) {
+	.contacts__info {
+		font-size: 1.1em;
+	}
+}

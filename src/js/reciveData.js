@@ -3,7 +3,8 @@
  */
 
 function sendRecive (content) { //, workType, clients, contentType
-
+var funName = getFnName(arguments.callee);
+if ( debug == 1 || debug == "all" ) { console.log( funName + ' start' ) };
     $.getJSON(content, function(data) {
         contentGlobal = data;
         //console.log(contentGlobal);
@@ -29,12 +30,17 @@ function sendRecive (content) { //, workType, clients, contentType
 */
      })
     .done(function() {
-        console.log( "success" );
+        if ( debug == 1 || debug == "all" ) { console.log( funName + ":done, success" ) };
+
+        setTimeout(function() {
+            preLoad(false);
+        }, 750);
+
         initFirstBlock(locPage, locType, locCompany, locKeyword);
         //initFirstBlock('vacancies', 'vacancies', 'vacancies');
         //initFirstBlock('contacts', 'contacts', 'contacts');
     })
     .fail(function() {
-        console.log( "error" );
+        if ( debug == 1 || debug == "all" ) { console.log( funName + ":done, error" ) };
     });
 }

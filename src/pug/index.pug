@@ -2,77 +2,68 @@ doctype html
 html
     head
         meta(charset="utf-8")
-        meta(name="viewport" content="width=device-width, initial-scale=1")
-        link(type="text/css" rel="stylesheet" href="css/main.css")
+        meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
+        meta(http-equiv="Cache-control" content="public")
+        link(href="/img/favicon/apple-icon-57x57.png" rel="apple-touch-icon" sizes="57x57")
+        link(href="/img/favicon/apple-icon-60x60.png" rel="apple-touch-icon" sizes="60x60")
+        link(href="/img/favicon/apple-icon-72x72.png" rel="apple-touch-icon" sizes="72x72")
+        link(href="/img/favicon/apple-icon-76x76.png" rel="apple-touch-icon" sizes="76x76")
+        link(href="/img/favicon/apple-icon-114x114.png" rel="apple-touch-icon" sizes="114x114")
+        link(href="/img/favicon/apple-icon-120x120.png" rel="apple-touch-icon" sizes="120x120")
+        link(href="/img/favicon/apple-icon-144x144.png" rel="apple-touch-icon" sizes="144x144")
+        link(href="/img/favicon/apple-icon-152x152.png" rel="apple-touch-icon" sizes="152x152")
+        link(href="/img/favicon/apple-icon-180x180.png" rel="apple-touch-icon" sizes="180x180")
+        link(href="/img/favicon/android-icon-192x192.png" rel="icon" sizes="192x192" type="image/png")
+        link(href="/img/favicon/favicon-32x32.png" rel="shortcut icon" sizes="32x32" type="image/png")
+        link(href="/img/favicon/favicon-96x96.png" rel="shortcut icon" sizes="96x96" type="image/png")
+        link(href="/img/favicon/favicon-16x16.png" rel="shortcut icon" sizes="16x16" type="image/png")
+        link(href="/img/favicon/manifest.json" rel="manifest")
+        meta(content="#CCFF00" name="msapplication-TileColor")
+        meta(content="/ms-icon-144x144.png" name="msapplication-TileImage")
+        meta(content="#CCFF00" name="theme-color")
     body
         .fullscreen
+            include preloader
             .contentWrap
                 .container
                     .gridWrap
-<<<<<<< HEAD
-                        .gridItem(data-type="design" class="image")
-                        .gridItem(data-type="icons" class="image")
-                        .gridItem(data-type="illustrations" class="image")
-                        .gridItem(data-type="solutions" class="image")
-                        .gridItem(data-type="logo" class="image")
-                        .gridItem(data-type="solutions" class="image")
-                        .gridItem(data-type="logo" class="image")
-                        .gridItem(data-type="illustrations" class="image")
-                        .gridItem(data-type="icons" class="image")
-                        .gridItem(data-type="illustrations" class="image")
-                        .gridItem(data-type="design" class="image")
-                        .gridItem(data-type="solutions" class="image")
-            .aboutBar
-=======
-                        .gridItem(data-type="Design" class="image")
-                        .gridItem(data-type="Icons" class="image")
-                        .gridItem(data-type="Illustrations" class="image")
-                        .gridItem(data-type="Solutions" class="image")
-                        .gridItem(data-type="Logo" class="image")
-                        .gridItem(data-type="Solutions" class="image")
-                        .gridItem(data-type="Logo" class="image")
-                        .gridItem(data-type="Illustrations" class="image")
-                        .gridItem(data-type="Icons" class="image")
-                        .gridItem(data-type="Illustrations" class="image")
-                        .gridItem(data-type="Design" class="image")
-                        .gridItem(data-type="Solutions" class="image")
+                        .gridItem(data-type="design" data-client="westcall" data-key="cake" class="image" )
+                        .gridItem(data-type="design" data-client="panimport" data-key="ship" class="image")
+                        .gridItem(data-type="design" data-client="pomegranate" data-key="surf" class="image")
+                        .gridItem(data-type="design" data-client="redkos" data-key="funny" class="image")
+                        .gridItem(data-type="logo" data-client="japonets" data-key="japan" class="image")
+                        .gridItem(data-type="design" data-client="westcall" data-key="westcallsite" class="image")
+                        .gridItem(data-type="design" data-client="oleg-pogudin" data-key="pigudinsite" class="image")
+                        .gridItem(data-type="solutions" data-client="mt-service" data-key="mtgame" class="image")
+                        .gridItem(data-type="illustrations" data-client="gik" data-key="illustrationgik" class="image")
+                        .gridItem(data-type="icons" data-client="skladonline" data-key="townicon" class="image")
+                        .gridItem(data-type="icons" data-client="westcall" data-key="simpleicons" class="image")
+                        .gridItem(data-type="design" data-client="westcall" data-key="knowledge" class="image")
+            include menu
             nav
->>>>>>> master
-                .logo
-                    img(src="res/logo.svg")
-                .burger(onclick="UI.burger.trigger()")
-                    img(src="res/burger.svg")
-            .burgerMenu
-                .burger-nav
-                    p &nbsp;
-                    .burger-close(onclick="UI.burger.trigger()")
-                        img(src="res/close.svg")
-                ul
-                    li портфолио
-                    li контакты
-                    li о нас
+                .logo(onclick="window.location.href = '/'")
+                    img(src="/res/logo.svg")
+                .phone
+                    .phoneBox 
+                        a(href="tel:+78124099820") +7 (812) 409-98-20
+                .burger
+                    .iconBorder
+                    .iconBody
             .navigationBar
-                .navlR
+                .navLR
                     include arrow
                 .navTB
                     include arrow
-<<<<<<< HEAD
     script(type="text/javascript" defer src="/js/vendor/jquery-3.2.1.min.js")
-    script(type="text/javascript" defer src="/js/vendor/wheel-indicator.js")
-    script(type="text/javascript" defer src="/js/variable.js")
-    script(type="text/javascript" defer src="/js/gridInit.js")
-    script(type="text/javascript" defer src="/js/reciveData.js")
-    script(type="text/javascript" defer src="/js/eventHandler.js")
-    script(type="text/javascript" defer src="/js/getContent.js")
-    script(type="text/javascript" defer src="/js/main.js")
-=======
-    script(type="text/javascript" defer src="js/vendor/jquery-3.2.1.min.js")
-    script(type="text/javascript" defer src="js/vendor/wheel-indicator.js")
-    script(type="text/javascript" defer src="js/variable.js")
-    script(type="text/javascript" defer src="js/reciveData.js")
-    script(type="text/javascript" defer src="js/eventHandler.js")
-    script(type="text/javascript" defer src="js/getContent.js")
-    script(type="text/javascript" defer src="js/main.js")
-    script(type="text/javascript" defer src="js/gridInit.js")
-    script(type="text/javascript" defer src="js/ui.js")
->>>>>>> master
+    script(type="text/javascript" defer src="/js/vendor/wheel-indicator.min.js")
+    script(type="text/javascript" defer src="/js/development.min.js")
+    script(type="text/javascript" defer src="/js/variable.min.js")
+    script(type="text/javascript" defer src="/js/gridInit.min.js")
+    script(type="text/javascript" defer src="/js/reciveData.min.js")
+    script(type="text/javascript" defer src="/js/eventHandler.min.js")
+    script(type="text/javascript" defer src="/js/animate.min.js")
+    script(type="text/javascript" defer src="/js/getContent.min.js")
+    script(type="text/javascript" defer src="/js/main.min.js")
+    script(type="text/javascript" defer src="/js/ui.min.js")
+        <script>(function(i,s,o,g,r,a,m){i.GoogleAnalyticsObject=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-101129387-1','auto');ga('send','pageview');</script><!-- Yandex.Metrika counter --><script type="text/javascript">(function(d,w,c){(w[c]=w[c]||[]).push(function(){try{w.yaCounter45007489=new Ya.Metrika({id:45007489,clickmap:!0,trackLinks:!0,accurateTrackBounce:!0,webvisor:!0,trackHash:!0})}catch(e){}});var n=d.getElementsByTagName("script")[0],s=d.createElement("script"),f=function(){n.parentNode.insertBefore(s,n)};s.type="text/javascript";s.async=!0;s.src="https://mc.yandex.ru/metrika/watch.js";if(w.opera=="[object Opera]"){d.addEventListener("DOMContentLoaded",f,!1)}else{f()}})(document,window,"yandex_metrika_callbacks");</script><noscript><div><img src="https://mc.yandex.ru/watch/45007489" style="position:absolute; left:-9999px;" alt=""/></div></noscript><!--/Yandex.Metrika counter --><!-- Facebook Pixel Code --><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1394556780556949');fbq('track','PageView');</script><noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1394556780556949&ev=PageView&noscript=1"/></noscript><!-- DO NOT MODIFY --><!-- End Facebook Pixel Code --><script type="text/javascript">(window.Image?(new Image()):document.createElement('img')).src='https://vk.com/rtrg?p=VK-RTRG-129668-ez6o6';</script><!-- Код тега ремаркетинга Google --><script type="text/javascript">var google_conversion_id=1026740863;var google_custom_params=window.google_tag_params;var google_remarketing_only=!0;</script><script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script><noscript><div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1026740863/?guid=ON&amp;script=0"/></div></noscript>
+link(type="text/css" rel="stylesheet" href="/css/main.css")

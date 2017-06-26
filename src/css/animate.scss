@@ -1,0 +1,60 @@
+.default_show_start {
+    //width: 0;
+    opacity: 0;
+    transition: all 500ms ease-in;
+}
+
+.default_show_end {
+    //width: 0;
+    opacity: 1 !important;
+}
+
+.default_hide_start {
+    //width: 0;
+    opacity: 1;
+    transition: all 200ms ease-out;
+}
+
+.default_hide_end {
+    //width: 0;
+    opacity: 0 !important;
+}
+
+.header_show_start {
+    transition: all 1000ms cubic-bezier(0,0,0.1,1);
+    padding-right: 30px;
+}
+.header_show_end {
+    opacity: 1;
+    padding-right: 15px;
+    color: rgba(255,255,255,1);
+}
+.subheader_show_start {
+    padding-right: 15px;
+    transition: all 1000ms 500ms cubic-bezier(0,0,0.3,1);
+}
+.subheader_show_end {
+    opacity: 1;
+    padding-right: 0;
+}
+.header_hide_start {
+    padding-right: 15px;
+    transition: all 1000ms ease-in;
+    opacity: 1;
+}
+.header_hide_end {
+    padding-right: 10px;
+    opacity: 0;
+}
+.subheader_hide_start {
+    padding-right: 0;
+    opacity: 1;
+    transition: all 1000ms 100ms ease-in;
+}
+.subheader_hide_end {
+    padding-right: 0;
+    opacity: 0;
+}
+.hideText {
+    display: none;
+}

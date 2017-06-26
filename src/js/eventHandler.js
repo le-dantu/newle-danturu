@@ -26,7 +26,7 @@ function clickArrow(direction) {
 }
 
 function initScrollHandler() {
-    var indicator = new WheelIndicator({
+    indicator = new WheelIndicator({
         callback: function(e){
             if (e.direction == 'down') {
                 clickArrow('bottom');
@@ -37,5 +37,48 @@ function initScrollHandler() {
         },
         preventMouse: false
     });
+
+}
+
+function redirectNotFound(err) {
+    err = err ? JSON.stringify(err) : '';
+    $.ajax({
+        url: '/index.php',
+        type: 'POST',
+        data: {data : 'error', url : window.location.pathname, error : err},
+        success: function(data) {
+            console.log('Страница не существует');
+            window.location.href = data;
+        }
+    });
+}
+
+function backState() {
+    if (document.referrer) {
+        window.location.href = document.referrer;
+    } else {
+        window.location.href = '/';
+    }
+}
+
+function preLoad(state) {
+
+    var preLoad = $('.wrapPreloader');
+
+    if (!state && !preLoad.hasClass('hide')) {
+
+        preLoad.toggleClass('hide');
+        console.log('Загрузка окончена');
+
+        setTimeout(function(){
+            preLoad.css('display', 'none');
+        }, 500);
+
+    } else {
+
+        preLoad.toggleClass('hide');
+        console.log('Загрузка начинается');
+
+    }
 
 }
