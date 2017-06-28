@@ -63,8 +63,12 @@ $(document).ready(function(){
     });
 
     initScrollHandler();
-    sendRecive(contentGlobal); //, workTypeGlobal, clientsGlobal, contentTypeGlobal
-
+    var dataInterval = setInterval(function() {
+        if (getDataFlag) {
+            clearInterval(dataInterval);
+            sendRecive(contentGlobal); //, workTypeGlobal, clientsGlobal, contentTypeGlobal
+        }
+    }, 10);
 });
 
 window.onload = function() {

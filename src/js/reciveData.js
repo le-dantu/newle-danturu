@@ -32,9 +32,9 @@ if ( debug == 1 || debug == "all" ) { console.log( funName + ' start' ) };
     .done(function() {
         if ( debug == 1 || debug == "all" ) { console.log( funName + ":done, success" ) };
 
-        setTimeout(function() {
-            preLoad(false);
-        }, 750);
+        //setTimeout(function() {
+        preLoad(false);
+        //}, 750);
 
         initFirstBlock(locPage, locType, locCompany, locKeyword);
         //initFirstBlock('vacancies', 'vacancies', 'vacancies');

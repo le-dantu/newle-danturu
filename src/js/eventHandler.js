@@ -72,7 +72,7 @@ function preLoad(state) {
 
         setTimeout(function(){
             preLoad.css('display', 'none');
-        }, 500);
+        }, 50);
 
     } else {
 
