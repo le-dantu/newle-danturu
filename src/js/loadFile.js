@@ -34,3 +34,16 @@ function handleComplete(event) {
 	//    document.body.appendChild(event.result);
 	//}
 }
+
+
+function addLoadStack(element, name, path) {
+	var imageLoad = new createjs.LoadQueue(true);
+	imageLoad.on("fileload", handleImageLoad, this, true, element);
+	imageLoad.loadFile({id:name, src:path});
+}
+
+function handleImageLoad(event, element) {
+	console.log(event);
+	$(element).attr("style", "background: url("+event);
+	$(element).attr('onclick', "initFirstBlock('portfolio', '" + $(element).data('type') + "', '" + $(element).data('client') + "', '" + $(element).data('key') + "')");
+}
