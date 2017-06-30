@@ -361,7 +361,6 @@ function changeType(next, linksFlag) {
 
 
 }
-
 function getContent(next, linksFlag) {
     linksFlag = linksFlag ? linksFlag : false;
     globalLinksFlag = linksFlag;
