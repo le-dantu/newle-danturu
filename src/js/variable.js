@@ -6,6 +6,7 @@ var contentGlobal = '/content.json';
 //var clientsGlobal = '/clients.json';
 //var workTypeGlobal = '/worktype.json';
 //var contentTypeGlobal = '/contenttype.json';
+var manifestImage = '{"manifest":[';
 var horizontal = [];
 var vertical = [];
 var pageGlobal = 0;

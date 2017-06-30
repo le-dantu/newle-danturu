@@ -33,7 +33,6 @@ if ( debug == 1 || debug == "all" ) { console.log( funName + ' start' ) };
         if ( debug == 1 || debug == "all" ) { console.log( funName + ":done, success" ) };
 
         //setTimeout(function() {
-        preLoad(false);
         //}, 750);
 
         initFirstBlock(locPage, locType, locCompany, locKeyword);
