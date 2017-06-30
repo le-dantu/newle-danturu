@@ -70,9 +70,10 @@ function preLoad(state) {
         preLoad.toggleClass('hide');
         console.log('Загрузка окончена');
 
+        preLoad.css('opacity', '0');
         setTimeout(function(){
             preLoad.css('display', 'none');
-        }, 50);
+        }, 100);
 
     } else {
 
