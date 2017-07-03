@@ -18,6 +18,10 @@ function handleProgress(event) {
 }
 
 function handleFileLoad(event) {
+	//console.log(event);
+	//if (event.item.type == 'css') {
+		//$('<link type="text/css" rel="stylesheet" href="' + event.item.src + '">').insertAfter("body");
+	//} else 
 	if (event.item.type != 'manifest') {
 		//console.log(event.timeStamp);
 		console.log(event.item.id + ' загружен за: ' + (event.timeStamp - time) +'мс!');
@@ -36,20 +40,15 @@ function handleComplete(event) {
 	//}
 }
 
-function addStartImage(name, path) {
+function loadOneImage(name, path) {
 	imageLoad.on("fileload", handleImageLoad, this);
-	imageLoad.loadFile({id:name, src:path});
+	imageLoad.loadFile(path);
 }
 
 function startLoadImage() {
 	imageLoad.on("fileload", handleImageLoad, this);
 	imageLoad.on("complete", handleGridLoad, this);
 	imageLoad.loadManifest(JSON.parse(manifestImage));
-}
-
-function addLoadStack(element, name, path) {
-	imageLoad.on("fileload", handleImageLoad, this);
-	imageLoad.loadFile({id:name, src:path});
 }
 
 function handleImageLoad(event) {
@@ -61,10 +60,18 @@ function handleImageLoad(event) {
 	//$(element).attr('onclick', "initFirstBlock('portfolio', '" + $(element).data('type') + "', '" + $(element).data('client') + "', '" + $(element).data('key') + "')");
 }
 
-
 function handleGridLoad(event) {
 	//console.log(event);
 	preLoad(false);
+	//$(element).attr("style", "background: url("+event);
+	//$(element).attr('onclick', "initFirstBlock('portfolio', '" + $(element).data('type') + "', '" + $(element).data('client') + "', '" + $(element).data('key') + "')");
+}
+
+function handleOneImage(event) {
+	//console.log(event);
+	$(".gridItem[data-key="+event.item.id+"]").attr("style", "background: url("+event.item.src+")");
+	console.log(event.item.id + ' загружен за: ' + (event.timeStamp - time) +'мс!');
+	time = event.timeStamp;
 	//$(element).attr("style", "background: url("+event);
 	//$(element).attr('onclick', "initFirstBlock('portfolio', '" + $(element).data('type') + "', '" + $(element).data('client') + "', '" + $(element).data('key') + "')");
 }

@@ -11,6 +11,11 @@ function cleanArray(actual) {
   return newArray;
 }
 
+function getSrcPath(innerElement) {
+    var match = /(url.\S+.png)/.exec(innerElement);
+    return match[0].subStr(4);
+}
+
 locationUrl = window.location.pathname.toLowerCase().split("/");
 locationUrl = cleanArray(locationUrl);
 
