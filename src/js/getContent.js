@@ -361,6 +361,7 @@ function changeType(next, linksFlag) {
 
 
 }
+
 function getContent(next, linksFlag) {
     linksFlag = linksFlag ? linksFlag : false;
     globalLinksFlag = linksFlag;
@@ -389,97 +390,98 @@ function getContent(next, linksFlag) {
         //if ( debug == 1 || debug == "all" ) { console.log(lenCurrent) };
     }
 
-    setTimeout(function() {
+    var animInterval = setInterval(function() {
+        if (!loadInterval) {
+            clearInterval(animInterval);
+            currentImgH = 0;
+            currentType = $('.container').children().data('type');
 
-        currentImgH = 0;
-        currentType = $('.container').children().data('type');
-
-        if (currentClient != $('.container').children().data('client')) {
-            horizontal = [];
-            var index = [];
-            counterClient = 0;
-            currentClient = $('.container').children().data('client');
-            $.each(contentGlobal[pageGlobal][currentType][currentClient], function (key) {
-                index.push(key);
-            });
-            horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterClient]]);
-            if ( debug == 1 || debug == "all" ) { console.log(pageGlobal) };
-            if ( debug == 1 || debug == "all" ) { console.log(currentType) };
-            if ( debug == 1 || debug == "all" ) { console.log(currentClient) };
-            if ( debug == 1 || debug == "all" ) { console.log(counterClient) };
-            $.each(contentGlobal[pageGlobal], function (key) {
-                if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
-                    $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
-                        if (horizontal[0] != val) {
-                            horizontal.push(val);
-                            //if ( debug == 1 || debug == "all" ) { console.log(contentGlobal[key][currentClient][0]) };
-                        }
-                    });
-                }
-            });
-        } else {
-            counterClient += 1;
-            horizontal = [];
-            var index = [];
-            counterClient = 0;
-            currentClient = $('.container').children().data('client');
-            $.each(contentGlobal[pageGlobal][currentType][currentClient], function (key) {
-                index.push(key);
-            });
-            horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterClient]]);
-            if ( debug == 1 || debug == "all" ) { console.log(pageGlobal) };
-            if ( debug == 1 || debug == "all" ) { console.log(currentType) };
-            if ( debug == 1 || debug == "all" ) { console.log(currentClient) };
-            if ( debug == 1 || debug == "all" ) { console.log(counterClient) };
-            $.each(contentGlobal[pageGlobal], function (key) {
-                if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
-                    $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
-                        if (horizontal[0] != val) {
-                            horizontal.push(val);
-                            //if ( debug == 1 || debug == "all" ) { console.log(contentGlobal[key][currentClient][0]) };
-                        }
-                    });
-                }
-            });
-        }
-
-        if (linksFlag) {
-            if (trueKey) {
-                document.title = currentClient + " | " + currentType;
-                trueKey = false;
-            } else if (pageGlobal != currentType) {
-                document.title = currentType + " | " + currentClient;
+            if (currentClient != $('.container').children().data('client')) {
+                horizontal = [];
+                var index = [];
+                counterClient = 0;
+                currentClient = $('.container').children().data('client');
+                $.each(contentGlobal[pageGlobal][currentType][currentClient], function (key) {
+                    index.push(key);
+                });
+                horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterClient]]);
+                if ( debug == 1 || debug == "all" ) { console.log(pageGlobal) };
+                if ( debug == 1 || debug == "all" ) { console.log(currentType) };
+                if ( debug == 1 || debug == "all" ) { console.log(currentClient) };
+                if ( debug == 1 || debug == "all" ) { console.log(counterClient) };
+                $.each(contentGlobal[pageGlobal], function (key) {
+                    if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
+                        $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
+                            if (horizontal[0] != val) {
+                                horizontal.push(val);
+                                //if ( debug == 1 || debug == "all" ) { console.log(contentGlobal[key][currentClient][0]) };
+                            }
+                        });
+                    }
+                });
             } else {
-                document.title = currentClient + " | " + currentType;
+                counterClient += 1;
+                horizontal = [];
+                var index = [];
+                counterClient = 0;
+                currentClient = $('.container').children().data('client');
+                $.each(contentGlobal[pageGlobal][currentType][currentClient], function (key) {
+                    index.push(key);
+                });
+                horizontal.push(contentGlobal[pageGlobal][currentType][currentClient][index[counterClient]]);
+                if ( debug == 1 || debug == "all" ) { console.log(pageGlobal) };
+                if ( debug == 1 || debug == "all" ) { console.log(currentType) };
+                if ( debug == 1 || debug == "all" ) { console.log(currentClient) };
+                if ( debug == 1 || debug == "all" ) { console.log(counterClient) };
+                $.each(contentGlobal[pageGlobal], function (key) {
+                    if (contentGlobal[pageGlobal][key][currentClient] !== undefined) {
+                        $.each(contentGlobal[pageGlobal][key][currentClient], function (index, val) {
+                            if (horizontal[0] != val) {
+                                horizontal.push(val);
+                                //if ( debug == 1 || debug == "all" ) { console.log(contentGlobal[key][currentClient][0]) };
+                            }
+                        });
+                    }
+                });
             }
-        } else {
-            if (pageGlobal != currentType) {
-                window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
-                document.title = currentClient + " | " + currentType;
+
+            if (linksFlag) {
+                if (trueKey) {
+                    document.title = currentClient + " | " + currentType;
+                    trueKey = false;
+                } else if (pageGlobal != currentType) {
+                    document.title = currentType + " | " + currentClient;
+                } else {
+                    document.title = currentClient + " | " + currentType;
+                }
             } else {
-                window.history.pushState(currentType + " | " + currentClient, currentType + " | " + currentClient, "/" + pageGlobal + "/" + currentClient);
-                document.title = currentType + " | " + currentClient;
+                if (pageGlobal != currentType) {
+                    window.history.pushState(currentClient + " | " + currentType, currentClient + " | " + currentType, "/" + pageGlobal + "/" + currentClient + "/" + currentType);
+                    document.title = currentClient + " | " + currentType;
+                } else {
+                    window.history.pushState(currentType + " | " + currentClient, currentType + " | " + currentClient, "/" + pageGlobal + "/" + currentClient);
+                    document.title = currentType + " | " + currentClient;
+                }
             }
+
+            if (horizontal.length <= 1) {
+                $('.navLR').hide();
+            } else {
+                $('.navLR').show();
+            }
+
+            if (vertical.length <= 1) {
+                indicator.turnOff();
+                $('.navTB').hide();
+            } else {
+                if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
+                indicator.turnOn();
+                $('.navTB').show();
+            }
+
+            if ( debug == 1 || debug == "all" ) { console.log(vertical) };
+            if ( debug == 1 || debug == "all" ) { console.log(horizontal) };
         }
-
-        if (horizontal.length <= 1) {
-            $('.navLR').hide();
-        } else {
-            $('.navLR').show();
-        }
-
-        if (vertical.length <= 1) {
-            indicator.turnOff();
-            $('.navTB').hide();
-        } else {
-            if ( debug == 1 || debug == "all" ) { console.log ( "indicator is ON" ); } 
-            indicator.turnOn();
-            $('.navTB').show();
-        }
-
-        if ( debug == 1 || debug == "all" ) { console.log(vertical) };
-        if ( debug == 1 || debug == "all" ) { console.log(horizontal) };
-
-    }, animDuration + 30);
+    }, 5);
 
 }

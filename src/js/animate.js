@@ -34,16 +34,18 @@ function animation(direction) {
 
     }
 
-    var loadInterval = setInterval(function() {
+    loadInterval = setInterval(function() {
+        console.log('Ждем загрузки json');
         if (getDataFlag) {
             clearInterval(loadInterval);
             setTimeout(function(){
-
+                console.log('Вроде отработала анимация');
+                getDataFlag = false;
                 if (direction == 'H') {
 
-                    if (!globalLinksFlag) {
-                        loadOneImage(getSrcPath(horizontalCurrentHTML));
-                        $('.container').html(horizontalCurrentHTML);
+                    if (globalLinksFlag) {
+                        loadOneImage(getSrcPath(horizontalCurrentHTML), verticalCurrentHTML);
+                        console.log('Призываю к загрузке');
                     } else {
                         $('.container').html(horizontalCurrentHTML);
                     }
@@ -52,9 +54,9 @@ function animation(direction) {
                     $(".subheader").html($(".subheader").data('type'));
                 } else if (direction == 'V') {
 
-                    if (!globalLinksFlag) {
-                        loadOneImage(getSrcPath(verticalCurrentHTML));
-                        $('.container').html(verticalCurrentHTML);
+                    if (globalLinksFlag) {
+                        loadOneImage(getSrcPath(verticalCurrentHTML), verticalCurrentHTML);
+                        console.log('Призываю к загрузке');
                     } else {
                         $('.container').html(verticalCurrentHTML);
                     }
@@ -63,39 +65,45 @@ function animation(direction) {
                     $(".subheader").html($(".subheader").data('type'));
                 }
 
-                classAnim = getClassAnim();
+                loadInterval = setInterval(function() {
+                    if (getDataFlag) {
+                        clearInterval(loadInterval);
+                        loadInterval = false;
+                        classAnim = getClassAnim();
 
-                $("." + classAnim + "").addClass(classAnim + '_show_start');
-                animDuration = Number($("." + classAnim + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
+                        $("." + classAnim + "").addClass(classAnim + '_show_start');
+                        animDuration = Number($("." + classAnim + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
 
-                $("." + classAnimHeader + "").addClass(classAnimHeader + '_show_start');
-                $("." + classAnimSubheader + "").addClass(classAnimSubheader + '_show_start');
-                animDuration = Number($("." + classAnimHeader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 > Number($("." + classAnimSubheader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 ? Number($("." + classAnimHeader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 : Number($("." + classAnimSubheader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
-                $("." + classAnimHeader + "_show_start").addClass(classAnimHeader + "_show_end");
-                $("." + classAnimSubheader + "_show_start").addClass(classAnimSubheader + "_show_end");
+                        $("." + classAnimHeader + "").addClass(classAnimHeader + '_show_start');
+                        $("." + classAnimSubheader + "").addClass(classAnimSubheader + '_show_start');
+                        animDuration = Number($("." + classAnimHeader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 > Number($("." + classAnimSubheader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 ? Number($("." + classAnimHeader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 : Number($("." + classAnimSubheader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
+                        $("." + classAnimHeader + "_show_start").addClass(classAnimHeader + "_show_end");
+                        $("." + classAnimSubheader + "_show_start").addClass(classAnimSubheader + "_show_end");
 
 
-                animDuration -= 200;
+                        animDuration -= 200;
 
-                setTimeout(function(){
-                    $("." + classAnim + "_show_start").addClass(classAnim + "_show_end");
-                }, 700);
+                        setTimeout(function(){
+                            $("." + classAnim + "_show_start").addClass(classAnim + "_show_end");
+                        }, 700);
 
-                setTimeout(function(){
-                    $("." + classAnimHeader + "_show_end").addClass(classAnimHeader + '_hide_start');
-                    $("." + classAnimHeader + "_show_end").removeClass(classAnimHeader + "_show_start");
-                    $("." + classAnimHeader + "_hide_start").removeClass(classAnimHeader + "_show_end");
-                    $("." + classAnimSubheader + "_show_end").addClass(classAnimSubheader + '_hide_start');
-                    $("." + classAnimSubheader + "_show_end").removeClass(classAnimSubheader + "_show_start");
-                    $("." + classAnimSubheader + "_hide_start").removeClass(classAnimSubheader + "_show_end");
-                    animDuration = Number($("." + classAnimHeader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 > Number($("." + classAnimSubheader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 ? Number($("." + classAnimHeader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 : Number($("." + classAnimSubheader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
-                    $("." + classAnimHeader + "_hide_start").addClass(classAnimHeader + "_hide_end");
-                    $("." + classAnimSubheader + "_hide_start").addClass(classAnimSubheader + "_hide_end");
-                    setTimeout(function() {
-                        $("." + classAnimHeader).addClass('hideText');
-                        $("." + classAnimSubheader).addClass('hideText');
-                    }, animDuration);
-                }, animDuration);
+                        setTimeout(function(){
+                            $("." + classAnimHeader + "_show_end").addClass(classAnimHeader + '_hide_start');
+                            $("." + classAnimHeader + "_show_end").removeClass(classAnimHeader + "_show_start");
+                            $("." + classAnimHeader + "_hide_start").removeClass(classAnimHeader + "_show_end");
+                            $("." + classAnimSubheader + "_show_end").addClass(classAnimSubheader + '_hide_start');
+                            $("." + classAnimSubheader + "_show_end").removeClass(classAnimSubheader + "_show_start");
+                            $("." + classAnimSubheader + "_hide_start").removeClass(classAnimSubheader + "_show_end");
+                            animDuration = Number($("." + classAnimHeader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 > Number($("." + classAnimSubheader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 ? Number($("." + classAnimHeader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 : Number($("." + classAnimSubheader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
+                            $("." + classAnimHeader + "_hide_start").addClass(classAnimHeader + "_hide_end");
+                            $("." + classAnimSubheader + "_hide_start").addClass(classAnimSubheader + "_hide_end");
+                            setTimeout(function() {
+                                $("." + classAnimHeader).addClass('hideText');
+                                $("." + classAnimSubheader).addClass('hideText');
+                            }, animDuration);
+                        }, animDuration);
+                    }
+                }, 5);
             }, animDuration);
         }
     }, 5);

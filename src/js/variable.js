@@ -29,6 +29,7 @@ var animDuration = 0;
 var allDuration = 0;
 var debug = 1;
 var getDataFlag = false;
+var loadInterval = false;
 function isTouchDevice() {
     return 'ontouchstart'in document.documentElement;
 }

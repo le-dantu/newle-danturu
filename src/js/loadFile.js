@@ -40,9 +40,10 @@ function handleComplete(event) {
 	//}
 }
 
-function loadOneImage(name, path) {
-	imageLoad.on("fileload", handleImageLoad, this);
-	imageLoad.loadFile(path);
+function loadOneImage(pathImage, element) {
+	console.log(pathImage);
+	imageLoad.on("fileload", handleOneImage, this, false, element);
+	imageLoad.loadFile(pathImage);
 }
 
 function startLoadImage() {
@@ -67,11 +68,11 @@ function handleGridLoad(event) {
 	//$(element).attr('onclick', "initFirstBlock('portfolio', '" + $(element).data('type') + "', '" + $(element).data('client') + "', '" + $(element).data('key') + "')");
 }
 
-function handleOneImage(event) {
+function handleOneImage(event, element) {
 	//console.log(event);
-	$(".gridItem[data-key="+event.item.id+"]").attr("style", "background: url("+event.item.src+")");
-	console.log(event.item.id + ' загружен за: ' + (event.timeStamp - time) +'мс!');
-	time = event.timeStamp;
+	console.log('Слайд загружен за!');
+	$('.container').html(element);
+	getDataFlag = true;
 	//$(element).attr("style", "background: url("+event);
 	//$(element).attr('onclick', "initFirstBlock('portfolio', '" + $(element).data('type') + "', '" + $(element).data('client') + "', '" + $(element).data('key') + "')");
 }
