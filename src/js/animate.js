@@ -29,7 +29,7 @@ function animation(direction) {
         $("." + classAnim + "_show_end").addClass(classAnim + '_hide_start');
         $("." + classAnim + "_show_end").removeClass(classAnim + "_show_start");
         $("." + classAnim + "_hide_start").removeClass(classAnim + "_show_end");
-        animDuration = Number($("." + classAnim + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
+        animDuration = Number($("." + classAnim + "_hide_start").css('transition-duration').replace(/s/g, '')) * 1000;
         $("." + classAnim + "_hide_start").addClass(classAnim + "_hide_end");
 
     }
@@ -72,11 +72,11 @@ function animation(direction) {
                         classAnim = getClassAnim();
 
                         $("." + classAnim + "").addClass(classAnim + '_show_start');
-                        animDuration = Number($("." + classAnim + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
+                        animDuration = Number($("." + classAnim + "_show_start").css('transition-duration').replace(/s/g, '')) * 1000;
 
                         $("." + classAnimHeader + "").addClass(classAnimHeader + '_show_start');
                         $("." + classAnimSubheader + "").addClass(classAnimSubheader + '_show_start');
-                        animDuration = Number($("." + classAnimHeader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 > Number($("." + classAnimSubheader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 ? Number($("." + classAnimHeader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 : Number($("." + classAnimSubheader + "_show_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
+                        animDuration = Number($("." + classAnimHeader + "_show_start").css('transition-duration').replace(/s/g, '')) * 1000 > Number($("." + classAnimSubheader + "_show_start").css('transition-duration').replace(/s/g, '')) * 1000 ? Number($("." + classAnimHeader + "_show_start").css('transition-duration').replace(/s/g, '')) * 1000 : Number($("." + classAnimSubheader + "_show_start").css('transition-duration').replace(/s/g, '')) * 1000;
                         $("." + classAnimHeader + "_show_start").addClass(classAnimHeader + "_show_end");
                         $("." + classAnimSubheader + "_show_start").addClass(classAnimSubheader + "_show_end");
 
@@ -94,7 +94,7 @@ function animation(direction) {
                             $("." + classAnimSubheader + "_show_end").addClass(classAnimSubheader + '_hide_start');
                             $("." + classAnimSubheader + "_show_end").removeClass(classAnimSubheader + "_show_start");
                             $("." + classAnimSubheader + "_hide_start").removeClass(classAnimSubheader + "_show_end");
-                            animDuration = Number($("." + classAnimHeader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 > Number($("." + classAnimSubheader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 ? Number($("." + classAnimHeader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000 : Number($("." + classAnimSubheader + "_hide_start").css('transition').split(" ")[1].replace(/s/g, '')) * 1000;
+                            animDuration = Number($("." + classAnimHeader + "_hide_start").css('transition-duration').replace(/s/g, '')) * 1000 > Number($("." + classAnimSubheader + "_hide_start").css('transition-duration').replace(/s/g, '')) * 1000 ? Number($("." + classAnimHeader + "_hide_start").css('transition-duration').replace(/s/g, '')) * 1000 : Number($("." + classAnimSubheader + "_hide_start").css('transition-duration').replace(/s/g, '')) * 1000;
                             $("." + classAnimHeader + "_hide_start").addClass(classAnimHeader + "_hide_end");
                             $("." + classAnimSubheader + "_hide_start").addClass(classAnimSubheader + "_hide_end");
                             setTimeout(function() {
